@@ -9,3 +9,5 @@
 #else
 #error Ghost only supports Windows!
 #endif // GT_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)
