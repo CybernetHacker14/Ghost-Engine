@@ -1,3 +1,4 @@
+#include <gtpch.h>
 #include <Ghost.h>
 
 class Sandbox : public Ghost::Application {

@@ -1,3 +1,4 @@
+#include "gtpch.h"
 #include "Log.h"
 
 namespace Ghost {

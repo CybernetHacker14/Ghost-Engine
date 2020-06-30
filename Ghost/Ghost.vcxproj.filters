@@ -34,6 +34,7 @@
     <ClInclude Include="src\Ghost\Log.h">
       <Filter>Ghost</Filter>
     </ClInclude>
+    <ClInclude Include="src\gtpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Ghost\Log.cpp">
       <Filter>Ghost</Filter>
     </ClCompile>
+    <ClCompile Include="src\gtpch.cpp" />
   </ItemGroup>
 </Project>

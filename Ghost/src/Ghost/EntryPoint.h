@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 #ifdef GT_PLATFORM_WINDOWS
 
 extern Ghost::Application* Ghost::CreateApplication();

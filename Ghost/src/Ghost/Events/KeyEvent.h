@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Ghost {
 	class GHOST_API KeyEvent : public Event {
 	public:

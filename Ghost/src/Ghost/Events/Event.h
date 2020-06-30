@@ -2,9 +2,6 @@
 
 #include "Ghost/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Ghost {
 	/*  Events in Ghost are currently blocking, i.e., when an event occurs it
 		immediately gets dispatched and must  be dealt with with right then and there.

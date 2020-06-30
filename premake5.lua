@@ -18,6 +18,9 @@ project "Ghost"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	
+	pchheader "gtpch.h"
+	pchsource "Ghost/src/gtpch.cpp"
 
 	files{
 		"%{prj.name}/src/**.h",
