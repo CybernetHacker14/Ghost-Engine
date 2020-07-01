@@ -2,11 +2,13 @@
 #include "Application.h"
 
 #include "Events/ApplicationEvent.h"
-#include "Ghost/Log.h"
+
+#include <GLFW/glfw3.h>
 
 namespace Ghost {
 	Application::Application()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -15,14 +17,10 @@ namespace Ghost {
 
 	void Application::Run()
 	{
-		WindowResizeEvent e(1200, 720);
-		if (e.IsInCategory(EventCategoryApplication)) {
-			GT_TRACE(e);
+		while (m_Running) {
+			glClearColor(0, 0, 0, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
+			m_Window->OnUpdate();
 		}
-		if (e.IsInCategory(EventCategoryInput)) {
-			GT_TRACE(e);
-		}
-
-		while (true);
 	}
 }

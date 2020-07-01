@@ -1,5 +1,4 @@
 #include "gtpch.h"
-#include "Log.h"
 
 namespace Ghost {
 	std::shared_ptr<spdlog::logger> Log::s_CoreLogger;
