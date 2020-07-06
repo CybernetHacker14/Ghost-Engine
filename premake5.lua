@@ -14,8 +14,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Ghost/vendor/GLFW/include"
+IncludeDir["Glad"] = "Ghost/vendor/Glad/include"
 
 include "Ghost/vendor/GLFW"
+include "Ghost/vendor/Glad"
 
 project "Ghost"
 	location "Ghost"
@@ -36,22 +38,25 @@ project "Ghost"
 	includedirs{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 	
 	links{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines{
 			"GT_PLATFORM_WINDOWS",
-			"GT_BUILD_DLL"
+			"GT_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands{
@@ -60,14 +65,17 @@ project "Ghost"
 
 	filter "configurations:Debug"
 		defines "GT_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "GT_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "GT_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"
@@ -94,7 +102,7 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines{
@@ -103,12 +111,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "GT_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "GT_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "GT_DIST"
+		buildoptions "/MD"
 		optimize "On"

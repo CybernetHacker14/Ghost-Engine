@@ -37,6 +37,12 @@
     <ClInclude Include="src\Ghost\Events\MouseEvent.h">
       <Filter>Ghost\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ghost\Layer.h">
+      <Filter>Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\LayerStack.h">
+      <Filter>Ghost</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ghost\Log.h">
       <Filter>Ghost</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Application.cpp">
+      <Filter>Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Layer.cpp">
+      <Filter>Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\LayerStack.cpp">
       <Filter>Ghost</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Log.cpp">

@@ -24,7 +24,8 @@ namespace Ghost {
 
 		std::string ToString() const override {
 			std::stringstream ss;
-			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << " repeats";
+			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << " repeats)";
+			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(KeyPressed)
