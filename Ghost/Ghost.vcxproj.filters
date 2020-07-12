@@ -7,8 +7,14 @@
     <Filter Include="Ghost\Events">
       <UniqueIdentifier>{6E1F9107-5A82-20AC-0308-5962EF49EC2E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Ghost\ImGui">
+      <UniqueIdentifier>{749F5E84-E054-D779-6949-D150D5FDCD7D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\Ghost\Events\MouseEvent.h">
       <Filter>Ghost\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ghost\ImGui\ImGuiLayer.h">
+      <Filter>Ghost\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ghost\Layer.h">
       <Filter>Ghost</Filter>
     </ClInclude>
@@ -49,6 +58,9 @@
     <ClInclude Include="src\Ghost\Window.h">
       <Filter>Ghost</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -58,6 +70,9 @@
     <ClCompile Include="src\Ghost\Application.cpp">
       <Filter>Ghost</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ghost\ImGui\ImGuiLayer.cpp">
+      <Filter>Ghost\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ghost\Layer.cpp">
       <Filter>Ghost</Filter>
     </ClCompile>
@@ -66,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="src\Ghost\Log.cpp">
       <Filter>Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

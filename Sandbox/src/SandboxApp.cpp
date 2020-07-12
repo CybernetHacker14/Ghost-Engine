@@ -7,11 +7,9 @@ public:
 	}
 
 	void OnUpdate() override {
-		GT_INFO("ExampleLayer::Update");
 	}
 
 	void OnEvent(Ghost::Event& event) override {
-		GT_TRACE("{0}", event);
 	}
 };
 
@@ -19,6 +17,7 @@ class Sandbox : public Ghost::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Ghost::ImGuiLayer());
 	}
 
 	~Sandbox() {
