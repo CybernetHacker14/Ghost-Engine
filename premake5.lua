@@ -1,13 +1,12 @@
 workspace "Ghost"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations{
 		"Debug",
 		"Release",
 		"Dist"
 	}
-
-	startproject "Sandbox"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -17,9 +16,12 @@ IncludeDir["GLFW"] = "Ghost/vendor/GLFW/include"
 IncludeDir["Glad"] = "Ghost/vendor/Glad/include"
 IncludeDir["ImGui"] = "Ghost/vendor/imgui"
 
+group "Dependencies"
 include "Ghost/vendor/GLFW"
 include "Ghost/vendor/Glad"
 include "Ghost/vendor/imgui"
+
+group ""
 
 project "Ghost"
 	location "Ghost"
@@ -64,7 +66,7 @@ project "Ghost"
 		}
 
 		postbuildcommands{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"
