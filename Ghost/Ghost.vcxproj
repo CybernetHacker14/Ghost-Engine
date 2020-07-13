@@ -158,11 +158,15 @@
     <ClInclude Include="src\Ghost\Events\KeyEvent.h" />
     <ClInclude Include="src\Ghost\Events\MouseEvent.h" />
     <ClInclude Include="src\Ghost\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Ghost\Input.h" />
+    <ClInclude Include="src\Ghost\KeyCodes.h" />
     <ClInclude Include="src\Ghost\Layer.h" />
     <ClInclude Include="src\Ghost\LayerStack.h" />
     <ClInclude Include="src\Ghost\Log.h" />
+    <ClInclude Include="src\Ghost\MouseButtonCodes.h" />
     <ClInclude Include="src\Ghost\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\gtpch.h" />
   </ItemGroup>
@@ -173,6 +177,7 @@
     <ClCompile Include="src\Ghost\LayerStack.cpp" />
     <ClCompile Include="src\Ghost\Log.cpp" />
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\gtpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

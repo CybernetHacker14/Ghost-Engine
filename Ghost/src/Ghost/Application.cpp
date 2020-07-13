@@ -1,6 +1,8 @@
 #include "gtpch.h"
 #include "Application.h"
+#include "Input.h"
 
+#include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
 namespace Ghost {

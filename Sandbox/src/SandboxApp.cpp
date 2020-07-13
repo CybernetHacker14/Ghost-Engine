@@ -7,6 +7,16 @@ public:
 	}
 
 	void OnUpdate() override {
+		bool state1 = Ghost::Input::IsKeyDown(GT_KEY_0);
+		bool state2 = Ghost::Input::IsKeyUp(GT_KEY_0);
+
+		if (state1) {
+			GT_WARN("0 Key Down");
+		}
+
+		if (state2) {
+			GT_WARN("0 Key Up");
+		}
 	}
 
 	void OnEvent(Ghost::Event& event) override {

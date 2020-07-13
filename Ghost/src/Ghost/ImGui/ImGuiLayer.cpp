@@ -11,8 +11,6 @@
 #include <glad/glad.h>
 
 namespace Ghost {
-	#define BIND_EVENT_FN(x) std::bind(&ImGuiLayer::x,this,std::placeholders::_1)
-
 	ImGuiLayer::ImGuiLayer()
 		:Layer("ImGuiLayer")
 	{
