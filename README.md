@@ -7,4 +7,14 @@ Libraries used: ImGui, spdlog, GLFW, Glad, glm
 
 Features implemented:-
  * Entry Point
- * Logging
+ * Logging 
+ * Premake setup 
+ * Event System 
+ * Events
+ * Precompiled Headers
+ * Layers
+ * Modern OpenGL setup using Glad
+ * ImGui 
+ * Input Polling 
+ * Ghost Key and Mouse codes
+ * Docking
