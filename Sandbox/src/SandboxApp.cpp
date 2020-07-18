@@ -1,5 +1,7 @@
 #include <Ghost.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Ghost::Layer {
 public:
 	ExampleLayer()
@@ -19,6 +21,12 @@ public:
 		}
 	}
 
+	void OnImGuiRender() override {
+		ImGui::Begin("SandBox");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
+
 	void OnEvent(Ghost::Event& event) override {
 	}
 };
@@ -27,7 +35,6 @@ class Sandbox : public Ghost::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Ghost::ImGuiLayer());
 	}
 
 	~Sandbox() {

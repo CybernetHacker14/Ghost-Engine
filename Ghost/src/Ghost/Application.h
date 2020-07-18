@@ -7,6 +7,8 @@
 #include "Ghost/Events/Event.h"
 #include "Ghost/Events/ApplicationEvent.h"
 
+#include "Ghost/ImGui/ImGuiLayer.h"
+
 namespace Ghost {
 	class GHOST_API Application
 	{
@@ -27,6 +29,7 @@ namespace Ghost {
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_layerStack;
 	private:

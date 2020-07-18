@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "Input.h"
 
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
 namespace Ghost {
@@ -16,8 +15,8 @@ namespace Ghost {
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(GT_BIND_EVENT_FN(Application::OnEvent));
 
-		unsigned int id;
-		glGenVertexArrays(1, &id);
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 	}
 
 	Application::~Application()
@@ -56,6 +55,11 @@ namespace Ghost {
 
 			for (Layer* layer : m_layerStack)
 				layer->OnUpdate();
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_layerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}
