@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Ghost/Window.h"
+#include "Ghost/Renderer/GraphicsContext.h"
 
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 
 namespace Ghost {
 	class WindowsWindow : public Window {
@@ -26,6 +27,7 @@ namespace Ghost {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData {
 			std::string Title;

@@ -155,7 +155,13 @@
     <ClInclude Include="src\Ghost\LayerStack.h" />
     <ClInclude Include="src\Ghost\Log.h" />
     <ClInclude Include="src\Ghost\MouseButtonCodes.h" />
+    <ClInclude Include="src\Ghost\Renderer\Buffer.h" />
+    <ClInclude Include="src\Ghost\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Ghost\Renderer\Renderer.h" />
+    <ClInclude Include="src\Ghost\Renderer\Shader.h" />
     <ClInclude Include="src\Ghost\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\gtpch.h" />
@@ -575,6 +581,11 @@
     <ClCompile Include="src\Ghost\Layer.cpp" />
     <ClCompile Include="src\Ghost\LayerStack.cpp" />
     <ClCompile Include="src\Ghost\Log.cpp" />
+    <ClCompile Include="src\Ghost\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Ghost\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Ghost\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\gtpch.cpp">
@@ -595,4 +606,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project>
+</Project> 

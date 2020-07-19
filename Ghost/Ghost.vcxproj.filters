@@ -13,8 +13,14 @@
     <Filter Include="src\Ghost\ImGui">
       <UniqueIdentifier>{0BD3389C-775E-A660-806F-2955EC790261}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Ghost\Renderer">
+      <UniqueIdentifier>{E7E13585-D3C5-F6DA-3C26-F12D2829E15C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -87,8 +93,26 @@
     <ClInclude Include="src\Ghost\MouseButtonCodes.h">
       <Filter>src\Ghost</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\Buffer.h">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\GraphicsContext.h">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\Renderer.h">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\Shader.h">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ghost\Window.h">
       <Filter>src\Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1342,6 +1366,21 @@
     </ClCompile>
     <ClCompile Include="src\Ghost\Log.cpp">
       <Filter>src\Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\Buffer.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\Renderer.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\Shader.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
