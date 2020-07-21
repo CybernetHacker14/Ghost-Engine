@@ -35,6 +35,8 @@ namespace Ghost {
 		uint32_t indices[3] = { 0, 1, 2 };
 		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
+		m_Shader.reset(Shader::Create());
+
 		std::string vertexSrc = R"(
 			#version 460 core
 
@@ -49,6 +51,8 @@ namespace Ghost {
 			}
 		)";
 
+		m_Shader->Compile(vertexSrc, ShaderType::VertexShader);
+
 		std::string fragmentSrc = R"(
 			#version 460 core
 
@@ -62,7 +66,9 @@ namespace Ghost {
 			}
 		)";
 
-		m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
+		m_Shader->Compile(fragmentSrc, ShaderType::FragmentShader);
+
+		m_Shader->Link();
 	}
 
 	Application::~Application()
