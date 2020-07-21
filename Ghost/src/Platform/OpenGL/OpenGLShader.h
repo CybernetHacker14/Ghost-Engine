@@ -8,11 +8,11 @@ namespace Ghost {
 		OpenGLShader();
 		virtual ~OpenGLShader();
 
-		virtual bool Compile(const std::string& source, const ShaderType type);
-		virtual bool Link();
+		virtual bool Compile(const std::string& source, const ShaderType type) override;
+		virtual bool Link() override;
 
-		virtual void Bind() const;
-		virtual void Unbind() const;
+		virtual void Bind() const override;
+		virtual void Unbind() const override;
 
 	private:
 		uint32_t m_RendererID;
