@@ -2,6 +2,10 @@
 
 #include "Ghost/Renderer/Shader.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 namespace Ghost {
 	class OpenGLShader : public Shader {
 	public:
@@ -13,6 +17,8 @@ namespace Ghost {
 
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
+
+		virtual void UploadUniformMat4(const std::string& name, const glm::mat4& matrix) const override;
 
 	private:
 		uint32_t m_RendererID;

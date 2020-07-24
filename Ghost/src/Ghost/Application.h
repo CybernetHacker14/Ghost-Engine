@@ -9,11 +9,8 @@
 
 #include "Ghost/ImGui/ImGuiLayer.h"
 
-#include "Ghost/Renderer/Buffer.h"
-#include "Ghost/Renderer/Shader.h"
-
 namespace Ghost {
-	class GHOST_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -36,11 +33,6 @@ namespace Ghost {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_layerStack;
-
-		unsigned int m_VertexArray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 	private:
 		static Application* s_Instance;
 	};

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace Ghost {
 	enum class ShaderType {
@@ -16,6 +18,8 @@ namespace Ghost {
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
+
+		virtual void UploadUniformMat4(const std::string& name, const glm::mat4& matrix) const = 0;
 
 		static Shader* Create(); // Creates an empty shader
 	};
