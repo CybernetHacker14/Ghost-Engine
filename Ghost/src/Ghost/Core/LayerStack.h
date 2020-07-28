@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Ghost/Core.h"
+#include "Ghost/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>
 
 namespace Ghost {
-	class GHOST_API LayerStack {
+	class LayerStack {
 	public:
 		LayerStack();
 		~LayerStack();

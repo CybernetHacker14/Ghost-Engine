@@ -1,9 +1,31 @@
 #include "gtpch.h"
-#include "OpenGLShader.h"
 
+#include <fstream>
 #include <glad/glad.h>
 
+#include "OpenGLShader.h"
+
 namespace Ghost {
+	static ShaderType GLEnumToShaderType(const GLenum& type) {
+		if (type == GL_VERTEX_SHADER)
+			return ShaderType::VertexShader;
+		if (type == GL_FRAGMENT_SHADER)
+			return ShaderType::FragmentShader;
+
+		GT_CORE_ASSERT(false, "Unknown Shader type!");
+		return ShaderType::None;
+	}
+
+	static GLenum StringToGLEnum(const std::string& type) {
+		if (type == "vertex")
+			return GL_VERTEX_SHADER;
+		if (type == "fragment" || type == "pixel")
+			return GL_FRAGMENT_SHADER;
+
+		GT_CORE_ASSERT(false, "Unknown Shader type!");
+		return 0;
+	}
+
 	OpenGLShader::OpenGLShader()
 	{
 		m_RendererID = glCreateProgram();
@@ -14,7 +36,97 @@ namespace Ghost {
 		glDeleteProgram(m_RendererID);
 	}
 
-	bool OpenGLShader::Compile(const std::string& source, const ShaderType type)
+	std::string OpenGLShader::ReadFile(const std::string& filepath)
+	{
+		std::string result;
+		std::ifstream in(filepath, std::ios::in | std::ios::binary);
+		if (in) {
+			in.seekg(0, std::ios::end);
+			result.resize(in.tellg());
+			in.seekg(0, std::ios::beg);
+			in.read(&result[0], result.size());
+			in.close();
+		}
+		else {
+			GT_CORE_ASSERT("Could not open file at '{0}'", filepath);
+		}
+
+		return result;
+	}
+
+	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
+	{
+		std::unordered_map<GLenum, std::string> shaderSources;
+
+		const char* typeToken = "#type";
+		size_t typeTokenLength = strlen(typeToken);
+		size_t pos = source.find(typeToken, 0);
+		while (pos != std::string::npos)
+		{
+			size_t eol = source.find_first_of("\r\n", pos);
+			GT_CORE_ASSERT(eol != std::string::npos, "Syntax error");
+			size_t begin = pos + typeTokenLength + 1;
+			std::string type = source.substr(begin, eol - begin);
+			GT_CORE_ASSERT(StringToGLEnum(type), "Invalid shader type specified");
+
+			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
+			pos = source.find(typeToken, nextLinePos);
+			shaderSources[StringToGLEnum(type)] = source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
+		}
+
+		return shaderSources;
+	}
+
+	bool OpenGLShader::Compile(const std::string& filepath)
+	{
+		std::string source = ReadFile(filepath);
+		std::unordered_map<GLenum, std::string> shaderSources = PreProcess(source);
+
+		GT_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
+
+		GLuint shaderID = 0;
+		const GLchar* sourceCStr;
+		GLint isCompiled = 0;
+
+		for (auto&& [key, value] : shaderSources) {
+			GLenum type = key;
+			const std::string& source = value;
+
+			sourceCStr = source.c_str();
+
+			shaderID = glCreateShader(type);
+
+			glShaderSource(shaderID, 1, &sourceCStr, nullptr);
+			glCompileShader(shaderID);
+			glGetShaderiv(shaderID, GL_COMPILE_STATUS, &isCompiled);
+
+			if (isCompiled == GL_FALSE) {
+				glDeleteShader(shaderID);
+				GT_CORE_FATAL("Shader compilation failure!");
+				GT_CORE_ASSERT(false, "Shader could not be compiled");
+				return false;
+			}
+			else {
+				glAttachShader(m_RendererID, shaderID);
+				m_ShaderIDMap[GLEnumToShaderType(type)] = shaderID;
+			}
+		}
+
+		if (isCompiled == GL_FALSE) {
+			return false;
+		}
+		else {
+			// Extract name from filepath
+			auto lastSlash = filepath.find_last_of("/\\");
+			lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+			auto lastDot = filepath.rfind('.');
+			auto count = lastDot == std::string::npos ? filepath.size() - lastSlash : lastDot - lastSlash;
+			m_Name = filepath.substr(lastSlash, count);
+			return false;
+		}
+	}
+
+	bool OpenGLShader::Compile(const std::string& name, const std::string& source, const ShaderType type)
 	{
 		GLuint shaderID = 0;
 		const GLchar* shaderSource = source.c_str();
@@ -43,6 +155,7 @@ namespace Ghost {
 				else {
 					glAttachShader(m_RendererID, shaderID);
 					m_ShaderIDMap[type] = shaderID;
+					m_Name = name;
 					return true;
 				}
 			}
@@ -63,6 +176,7 @@ namespace Ghost {
 				else {
 					glAttachShader(m_RendererID, shaderID);
 					m_ShaderIDMap[type] = shaderID;
+					m_Name = name;
 					return true;
 				}
 			}
@@ -110,7 +224,43 @@ namespace Ghost {
 		glUseProgram(0);
 	}
 
-	void OpenGLShader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix) const
+	void OpenGLShader::UploadUniformInt(const std::string& name, int value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1i(location, value);
+	}
+
+	void OpenGLShader::UploadUniformFloat(const std::string& name, float value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1f(location, value);
+	}
+
+	void OpenGLShader::UploadUniformFloat2(const std::string& name, const glm::vec2& values)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform2f(location, values.x, values.y);
+	}
+
+	void OpenGLShader::UploadUniformFloat3(const std::string& name, const glm::vec3& values)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform3f(location, values.x, values.y, values.z);
+	}
+
+	void OpenGLShader::UploadUniformFloat4(const std::string& name, const glm::vec4& values)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform4f(location, values.r, values.g, values.b, values.a);
+	}
+
+	void OpenGLShader::UploadUniformMat3(const std::string& name, const glm::mat3& matrix)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
+	void OpenGLShader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));

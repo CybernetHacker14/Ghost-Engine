@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ghost/Window.h"
+#include "Ghost/Core/Window.h"
 #include "Ghost/Renderer/GraphicsContext.h"
 
 #include "GLFW/glfw3.h"

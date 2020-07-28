@@ -2,27 +2,31 @@
 
 // For use by Ghost applications
 
-#include "Ghost/Application.h"
-#include "Ghost/Layer.h"
-#include "Ghost/Log.h"
+#include "Ghost/Core/Application.h"
+#include "Ghost/Core/Layer.h"
+#include "Ghost/Core/Log.h"
 
-#include "Ghost/Input.h"
-#include "Ghost/KeyCodes.h"
-#include "Ghost/MouseButtonCodes.h"
+#include "Ghost/Core/Timestep.h"
+
+#include "Ghost/Core/Input.h"
+#include "Ghost/Core/KeyCodes.h"
+#include "Ghost/Core/MouseButtonCodes.h"
+#include "Ghost/Camera/Controllers/OrthographicCameraController.h"
 
 #include "Ghost/ImGui/ImGuiLayer.h"
 
 // --Renderer----------------------
 #include "Ghost/Renderer/Renderer.h"
-#include "Ghost/Renderer/RendererCommand.h"
+#include "Ghost/Renderer/RenderCommand.h"
 
 #include "Ghost/Renderer/Buffer.h"
 #include "Ghost/Renderer/Shader.h"
+#include "Ghost/Renderer/Texture.h"
 #include "Ghost/Renderer/VertexArray.h"
 
 #include "Ghost/Camera/OrthographicCamera.h"
 // --------------------------------
 
 // --Entry Point-------------------
-#include "Ghost/EntryPoint.h"
+#include "Ghost/Core/EntryPoint.h"
 // --------------------------------

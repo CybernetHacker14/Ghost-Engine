@@ -1,12 +1,11 @@
 #include "gtpch.h"
-#include "VertexArray.h"
+#include "Texture.h"
 
 #include "Ghost/Renderer/Renderer.h"
-
-#include "Platform/OpenGL/OpenGLVertexArray.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace Ghost {
-	VertexArray* VertexArray::Create()
+	Ref<Texture2D> Texture2D::Create(const std::string& path)
 	{
 		switch (Renderer::GetAPI()) {
 			case RendererAPI::API::None:
@@ -16,7 +15,7 @@ namespace Ghost {
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return new OpenGLVertexArray();
+				return std::make_shared<OpenGLTexture2D>(path);
 			}
 		}
 

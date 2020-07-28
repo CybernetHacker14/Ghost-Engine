@@ -3,11 +3,10 @@
 
 #include "imgui.h"
 
-// #define IMGUI_IMPL_API
 #include "examples/imgui_impl_glfw.h"
 #include "examples/imgui_impl_opengl3.h"
 
-#include "Ghost/Application.h"
+#include "Ghost/Core/Application.h"
 
 // TEMPORARY
 #include <GLFW/glfw3.h>
@@ -63,17 +62,15 @@ namespace Ghost {
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::OnImGuiRender()
-	{
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
-	}
-
 	void ImGuiLayer::Begin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+	}
+
+	void ImGuiLayer::OnImGuiRender()
+	{
 	}
 
 	void ImGuiLayer::End()

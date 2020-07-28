@@ -7,11 +7,23 @@
     <Filter Include="src\Ghost">
       <UniqueIdentifier>{21C9FBB2-8D33-B029-D671-61CF421B8E7E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Ghost\Camera">
+      <UniqueIdentifier>{79AE8F14-65A7-AE66-8ED9-93EB7A318E72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Ghost\Camera\Controllers">
+      <UniqueIdentifier>{5FAA7E91-4B65-6E3D-F41C-E787E0B6B8CD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Ghost\Core">
+      <UniqueIdentifier>{19CA34F5-0598-28FB-EE2B-9921DA980460}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Ghost\Events">
       <UniqueIdentifier>{E5C5B11A-D1BE-D06C-FAF0-B5F1E648B078}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Ghost\ImGui">
       <UniqueIdentifier>{0BD3389C-775E-A660-806F-2955EC790261}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Ghost\ImGui\Utilities">
+      <UniqueIdentifier>{3681EC75-A243-2000-EBF3-AE8C57F5F8DD}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Ghost\Renderer">
       <UniqueIdentifier>{E7E13585-D3C5-F6DA-3C26-F12D2829E15C}</UniqueIdentifier>
@@ -46,19 +58,52 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ghost.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Application.h">
-      <Filter>src\Ghost</Filter>
+    <ClInclude Include="src\Ghost\Camera\Controllers\OrthographicCameraController.h">
+      <Filter>src\Ghost\Camera\Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Core.h">
-      <Filter>src\Ghost</Filter>
+    <ClInclude Include="src\Ghost\Camera\OrthographicCamera.h">
+      <Filter>src\Ghost\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\EntryPoint.h">
-      <Filter>src\Ghost</Filter>
+    <ClInclude Include="src\Ghost\Core\Application.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\Core.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\EntryPoint.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\Input.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\KeyCodes.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\Layer.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\LayerStack.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\Log.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\MouseButtonCodes.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\Timestep.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Core\Window.h">
+      <Filter>src\Ghost\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Events\ApplicationEvent.h">
       <Filter>src\Ghost\Events</Filter>
@@ -75,23 +120,8 @@
     <ClInclude Include="src\Ghost\ImGui\ImGuiLayer.h">
       <Filter>src\Ghost\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Input.h">
-      <Filter>src\Ghost</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ghost\KeyCodes.h">
-      <Filter>src\Ghost</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ghost\Layer.h">
-      <Filter>src\Ghost</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ghost\LayerStack.h">
-      <Filter>src\Ghost</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ghost\Log.h">
-      <Filter>src\Ghost</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ghost\MouseButtonCodes.h">
-      <Filter>src\Ghost</Filter>
+    <ClInclude Include="src\Ghost\ImGui\Utilities\ImGuiConsole.h">
+      <Filter>src\Ghost\ImGui\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Renderer\Buffer.h">
       <Filter>src\Ghost\Renderer</Filter>
@@ -99,19 +129,40 @@
     <ClInclude Include="src\Ghost\Renderer\GraphicsContext.h">
       <Filter>src\Ghost\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\RenderCommand.h">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ghost\Renderer\Renderer.h">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\RendererAPI.h">
       <Filter>src\Ghost\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Renderer\Shader.h">
       <Filter>src\Ghost\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Window.h">
-      <Filter>src\Ghost</Filter>
+    <ClInclude Include="src\Ghost\Renderer\Texture.h">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\VertexArray.h">
+      <Filter>src\Ghost\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
@@ -1347,17 +1398,28 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
-    <ClInclude Include="src\Ghost\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Ghost\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\Ghost\Renderer\RendererCommand.h" />
-    <ClInclude Include="src\Ghost\Camera\OrthographicCamera.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Ghost\Application.cpp">
-      <Filter>src\Ghost</Filter>
+    <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp">
+      <Filter>src\Ghost\Camera\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Camera\OrthographicCamera.cpp">
+      <Filter>src\Ghost\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Core\Application.cpp">
+      <Filter>src\Ghost\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Core\Layer.cpp">
+      <Filter>src\Ghost\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Core\LayerStack.cpp">
+      <Filter>src\Ghost\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Core\Log.cpp">
+      <Filter>src\Ghost\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\ImGui\ImGuiBuild.cpp">
       <Filter>src\Ghost\ImGui</Filter>
@@ -1365,28 +1427,46 @@
     <ClCompile Include="src\Ghost\ImGui\ImGuiLayer.cpp">
       <Filter>src\Ghost\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ghost\Layer.cpp">
-      <Filter>src\Ghost</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ghost\LayerStack.cpp">
-      <Filter>src\Ghost</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ghost\Log.cpp">
-      <Filter>src\Ghost</Filter>
+    <ClCompile Include="src\Ghost\ImGui\Utilities\ImGuiConsole.cpp">
+      <Filter>src\Ghost\ImGui\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\Buffer.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\RenderCommand.cpp">
       <Filter>src\Ghost\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\Renderer.cpp">
       <Filter>src\Ghost\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\RendererAPI.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\Shader.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\Texture.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\VertexArray.cpp">
       <Filter>src\Ghost\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -1398,12 +1478,8 @@
     <ClCompile Include="src\gtpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
-    <ClCompile Include="src\Ghost\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Ghost\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\Ghost\Renderer\RendererCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\Ghost\Camera\OrthographicCamera.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Ghost/Core.h"
-#include "Ghost/Layer.h"
+#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Layer.h"
 #include "Ghost/Events/ApplicationEvent.h"
 #include "Ghost/Events/KeyEvent.h"
 #include "Ghost/Events/MouseEvent.h"
 
 namespace Ghost {
-	class GHOST_API ImGuiLayer : public Layer {
+	class ImGuiLayer : public Layer {
 	public:
 		ImGuiLayer();
 		~ImGuiLayer();

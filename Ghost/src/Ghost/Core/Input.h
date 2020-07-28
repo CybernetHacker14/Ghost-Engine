@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Ghost/Core.h"
+#include "Ghost/Core/Core.h"
 
 namespace Ghost {
-	class GHOST_API Input {
+	class Input {
 	public:
 		inline static bool IsKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
 		inline static bool IsKeyDown(int keycode) { return s_Instance->IsKeyDownImpl(keycode); }

@@ -1,8 +1,8 @@
 #include "gtpch.h"
 #include "WindowsInput.h"
 
-#include "Ghost/Core.h"
-#include "Ghost/Application.h"
+#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Application.h"
 #include "Ghost/Events/MouseEvent.h"
 #include "Ghost/Events/KeyEvent.h"
 

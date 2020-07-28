@@ -5,6 +5,8 @@
 #include "Application.h"
 #include "Input.h"
 
+#include <GLFW/glfw3.h>
+
 namespace Ghost {
 	Application* Application::s_Instance = nullptr;
 
@@ -13,8 +15,11 @@ namespace Ghost {
 		GT_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window = Scope<Window>(Window::Create());
 		m_Window->SetEventCallback(GT_BIND_EVENT_FN(Application::OnEvent));
+		m_Window->SetVSync(false);
+
+		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -39,6 +44,7 @@ namespace Ghost {
 	void Application::OnEvent(Event& e) {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(GT_BIND_EVENT_FN(Application::OnWindowClosed));
+		dispatcher.Dispatch<WindowResizeEvent>(GT_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = m_layerStack.end(); it != m_layerStack.begin();) {
 			(*--it)->OnEvent(e);
@@ -51,8 +57,14 @@ namespace Ghost {
 	void Application::Run()
 	{
 		while (m_Running) {
-			for (Layer* layer : m_layerStack)
-				layer->OnUpdate();
+			float time = (float)glfwGetTime(); // Platform::GetTime() - Platform based implementation and abstraction
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
+			if (!m_Minimized) {
+				for (Layer* layer : m_layerStack)
+					layer->OnUpdate(timestep);
+			}
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_layerStack)
@@ -67,5 +79,18 @@ namespace Ghost {
 	{
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0) {
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false;
 	}
 }

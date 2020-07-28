@@ -1,11 +1,13 @@
 #pragma once
 
-#include "Core.h"
-#include "Window.h"
+#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Window.h"
 
-#include "Ghost/LayerStack.h"
+#include "Ghost/Core/LayerStack.h"
 #include "Ghost/Events/Event.h"
 #include "Ghost/Events/ApplicationEvent.h"
+
+#include "Ghost/Core/Timestep.h"
 
 #include "Ghost/ImGui/ImGuiLayer.h"
 
@@ -28,11 +30,17 @@ namespace Ghost {
 		inline static Application& Get() { return *s_Instance; }
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
-
-		std::unique_ptr<Window> m_Window;
+		bool OnWindowResize(WindowResizeEvent& e);
+	private:
+		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
+
 		bool m_Running = true;
+		bool m_Minimized = false;
+
 		LayerStack m_layerStack;
+
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "gtpch.h"
-#include "Ghost/Core.h"
+#include "Ghost/Core/Core.h"
 
 namespace Ghost {
 	/*  Events in Ghost are currently blocking, i.e., when an event occurs it
@@ -33,7 +33,7 @@ namespace Ghost {
 
 	#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class GHOST_API Event {
+	class Event {
 		friend class EventDispatcher;
 	public:
 		virtual EventType GetEventType() const = 0;

@@ -1,17 +1,18 @@
 #pragma once
 
-#include "Ghost/Core.h"
+#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Timestep.h"
 #include "Ghost/Events/Event.h"
 
 namespace Ghost {
-	class GHOST_API Layer {
+	class Layer {
 	public:
 		Layer(const std::string& name = "Layer");
 		virtual ~Layer();
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

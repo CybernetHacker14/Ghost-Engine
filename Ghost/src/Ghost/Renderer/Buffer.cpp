@@ -1,7 +1,7 @@
 #include "gtpch.h"
 #include "Buffer.h"
 
-#include "Renderer.h"
+#include "Ghost/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLBuffer.h"
 

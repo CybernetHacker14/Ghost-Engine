@@ -2,7 +2,7 @@
 
 #include "gtpch.h"
 
-#include "Ghost/Core.h"
+#include "Ghost/Core/Core.h"
 #include "Ghost/Events/Event.h"
 
 namespace Ghost {
@@ -12,15 +12,15 @@ namespace Ghost {
 		unsigned int Height;
 
 		WindowProps(const std::string& title = "Ghost Engine",
-			unsigned int width = 1280,
-			unsigned int height = 720)
+			unsigned int width = 1600,
+			unsigned int height = 900)
 			: Title(title), Width(width), Height(height)
 		{
 		}
 	};
 
 	// Interface representing a desktop system based Window
-	class GHOST_API Window {
+	class Window {
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 

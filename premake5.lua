@@ -16,6 +16,7 @@ IncludeDir["GLFW"] = "Ghost/vendor/GLFW/include"
 IncludeDir["Glad"] = "Ghost/vendor/Glad/include"
 IncludeDir["ImGui"] = "Ghost/vendor/imgui"
 IncludeDir["glm"] = "Ghost/vendor/glm"
+IncludeDir["stb_image"] = "Ghost/vendor/stb_image"
 
 group "Dependencies"
 include "Ghost/vendor/GLFW"
@@ -40,6 +41,8 @@ project "Ghost"
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -54,7 +57,8 @@ project "Ghost"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 	
 	links{
