@@ -6,7 +6,7 @@
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace Ghost {
-	VertexArray* VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI()) {
 			case RendererAPI::API::None:
@@ -16,7 +16,7 @@ namespace Ghost {
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return new OpenGLVertexArray();
+				return CreateRef<OpenGLVertexArray>();
 			}
 		}
 

@@ -1,4 +1,5 @@
 #include <Ghost.h>
+#include <Ghost/Core/EntryPoint.h>
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
@@ -7,13 +8,15 @@
 
 #include "imgui/imgui.h"
 
+#include "Sandbox2D.h"
+
 class ExampleLayer : public Ghost::Layer {
 public:
 	ExampleLayer()
 		:Layer("Example"), m_CameraController(1600.0f / 900.0f)
 	{
-		m_VertexArray.reset(Ghost::VertexArray::Create());
-		m_BGVertexArray.reset(Ghost::VertexArray::Create());
+		m_VertexArray = Ghost::VertexArray::Create();
+		m_BGVertexArray = Ghost::VertexArray::Create();
 
 		float vertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -24,7 +27,7 @@ public:
 
 		Ghost::Ref<Ghost::VertexBuffer> vertexBuffer;
 
-		vertexBuffer.reset(Ghost::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = Ghost::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		Ghost::BufferLayout layout = {
 			{Ghost::ShaderDataType::Float3, "a_Position"},
@@ -40,7 +43,7 @@ public:
 
 		Ghost::Ref<Ghost::IndexBuffer> indexBuffer;
 
-		indexBuffer.reset(Ghost::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		indexBuffer = Ghost::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 		m_BGVertexArray->SetIndexBuffer(indexBuffer);
 
@@ -166,7 +169,7 @@ public:
 	{
 		#pragma region Background
 
-		m_BackgroundVA.reset(Ghost::VertexArray::Create());
+		m_BackgroundVA = Ghost::VertexArray::Create();
 
 		float sqB = ((float)glm::sqrt(3.0f)) * 0.25f;
 
@@ -181,7 +184,7 @@ public:
 
 		Ghost::Ref<Ghost::VertexBuffer> backgroundVB;
 
-		backgroundVB.reset(Ghost::VertexBuffer::Create(backgroundVertices, sizeof(backgroundVertices)));
+		backgroundVB = Ghost::VertexBuffer::Create(backgroundVertices, sizeof(backgroundVertices));
 
 		Ghost::BufferLayout backgroundLayout = {
 			{Ghost::ShaderDataType::Float3, "a_Position"}
@@ -200,7 +203,7 @@ public:
 
 		Ghost::Ref<Ghost::IndexBuffer> backgroundIB;
 
-		backgroundIB.reset(Ghost::IndexBuffer::Create(backgroundIndices, sizeof(backgroundIndices) / sizeof(uint32_t)));
+		backgroundIB = Ghost::IndexBuffer::Create(backgroundIndices, sizeof(backgroundIndices) / sizeof(uint32_t));
 
 		m_BackgroundVA->SetIndexBuffer(backgroundIB);
 
@@ -208,7 +211,7 @@ public:
 
 		#pragma region Foreground
 
-		m_ForegroundVA.reset(Ghost::VertexArray::Create());
+		m_ForegroundVA = Ghost::VertexArray::Create();
 
 		float sqF1 = ((float)glm::sqrt(3.0f)) * 0.2f;
 		float sqF2 = ((float)glm::sqrt(3.0f)) * 0.1F;
@@ -233,7 +236,7 @@ public:
 
 		Ghost::Ref<Ghost::VertexBuffer> foregroundVB;
 
-		foregroundVB.reset(Ghost::VertexBuffer::Create(foregroundVertices, sizeof(foregroundVertices)));
+		foregroundVB = Ghost::VertexBuffer::Create(foregroundVertices, sizeof(foregroundVertices));
 
 		Ghost::BufferLayout foregroundLayout = {
 			{Ghost::ShaderDataType::Float3, "a_Position"}
@@ -261,7 +264,7 @@ public:
 
 		Ghost::Ref<Ghost::IndexBuffer> foregroundIB;
 
-		foregroundIB.reset(Ghost::IndexBuffer::Create(foregroundIndices, sizeof(foregroundIndices) / sizeof(uint32_t)));
+		foregroundIB = Ghost::IndexBuffer::Create(foregroundIndices, sizeof(foregroundIndices) / sizeof(uint32_t));
 
 		m_ForegroundVA->SetIndexBuffer(foregroundIB);
 
@@ -352,7 +355,8 @@ private:
 class Sandbox : public Ghost::Application {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox() {

@@ -26,7 +26,3 @@
 
 #include "Ghost/Camera/OrthographicCamera.h"
 // --------------------------------
-
-// --Entry Point-------------------
-#include "Ghost/Core/EntryPoint.h"
-// --------------------------------

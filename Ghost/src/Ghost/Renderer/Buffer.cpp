@@ -6,7 +6,7 @@
 #include "Platform/OpenGL/OpenGLBuffer.h"
 
 namespace Ghost {
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size) {
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size) {
 		switch (Renderer::GetAPI()) {
 			case RendererAPI::API::None:
 			{
@@ -15,7 +15,7 @@ namespace Ghost {
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return new OpenGLVertexBuffer(vertices, size);
+				return CreateRef<OpenGLVertexBuffer>(vertices, size);
 			}
 
 			GT_CORE_ASSERT(false, "Unknown RendererAPI");
@@ -23,7 +23,7 @@ namespace Ghost {
 		}
 	}
 
-	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size) {
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t size) {
 		switch (Renderer::GetAPI())
 		{
 			case RendererAPI::API::None:
@@ -33,7 +33,7 @@ namespace Ghost {
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return new OpenGLIndexBuffer(indices, size);
+				return CreateRef<OpenGLIndexBuffer>(indices, size);
 			}
 
 			GT_CORE_ASSERT(false, "Unknown RendererAPI");
