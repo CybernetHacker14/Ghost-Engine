@@ -9,7 +9,7 @@
 namespace Ghost {
 	class OrthographicCameraController {
 	public:
-		OrthographicCameraController(float aspectRatio, bool rotation = false);
+		OrthographicCameraController(float aspectRatio, bool rotation = true);
 
 		void OnUpdate(Timestep ts);
 		void OnEvent(Event& e);
@@ -29,7 +29,7 @@ namespace Ghost {
 
 		bool m_Rotation;
 		glm::vec3 m_CameraPosition = { 0.0f, 0.0f, 0.0f };
-		float m_CameraRotation = 0;
+		float m_CameraRotation = 0; // In degrees, in the anti-clockwise direction
 		float m_CameraTranslationSpeed = 1.0f, m_CameraRotationSpeed = 180.0f;
 	};
 }

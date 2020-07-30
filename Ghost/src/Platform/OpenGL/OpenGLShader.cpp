@@ -70,8 +70,12 @@ namespace Ghost {
 			GT_CORE_ASSERT(StringToGLEnum(type), "Invalid shader type specified");
 
 			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
+
+			GT_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
 			pos = source.find(typeToken, nextLinePos);
-			shaderSources[StringToGLEnum(type)] = source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
+
+			shaderSources[StringToGLEnum(type)] =
+				(pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
 		}
 
 		return shaderSources;
@@ -194,21 +198,27 @@ namespace Ghost {
 			// Delete Program
 			glDeleteProgram(m_RendererID);
 			// Delete Shaders
-			glDeleteShader(m_ShaderIDMap[ShaderType::VertexShader]);
-			glDeleteShader(m_ShaderIDMap[ShaderType::FragmentShader]);
+
+			for (auto& it : m_ShaderIDMap) {
+				glDetachShader(m_RendererID, it.second);
+				glDeleteShader(it.second);
+			}
+
+			m_ShaderIDMap.clear();
 
 			GT_CORE_FATAL("Shader link failure!");
 			GT_CORE_ASSERT(false, "Shader program couldn't be linked");
 			return false;
 		}
 		else {
-			// Detach shaders after a successful link
-			glDetachShader(m_RendererID, m_ShaderIDMap[ShaderType::VertexShader]);
-			glDetachShader(m_RendererID, m_ShaderIDMap[ShaderType::FragmentShader]);
+			// Automated Cleanup
 
-			// TEMPORARY: Clearing out the entries from the map
-			m_ShaderIDMap.erase(ShaderType::VertexShader);
-			m_ShaderIDMap.erase(ShaderType::FragmentShader);
+			for (auto& it : m_ShaderIDMap) {
+				glDetachShader(m_RendererID, it.second);
+				glDeleteShader(it.second);
+			}
+
+			m_ShaderIDMap.clear();
 
 			return true;
 		}

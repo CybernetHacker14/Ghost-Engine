@@ -1,12 +1,16 @@
 [submodule "Ghost/vendor/spdlog"]
 	path = Ghost/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+	branch = v1.x
 [submodule "Ghost/vendor/GLFW"]
 	path = Ghost/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+	branch = master
 [submodule "Ghost/vendor/imgui"]
 	path = Ghost/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+	branch = docking
 [submodule "Ghost/vendor/glm"]
 	path = Ghost/vendor/glm
 	url = https://github.com/g-truc/glm
+	branch = master

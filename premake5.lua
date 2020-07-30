@@ -7,6 +7,10 @@ workspace "Ghost"
 		"Release",
 		"Dist"
 	}
+	
+	flags{
+		"MultiProcessorCompile"
+	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -72,7 +76,6 @@ project "Ghost"
 		systemversion "latest"
 
 		defines{
-			"GT_PLATFORM_WINDOWS",
 			"GT_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}

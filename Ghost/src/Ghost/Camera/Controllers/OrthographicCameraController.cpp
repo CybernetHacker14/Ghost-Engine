@@ -15,17 +15,21 @@ namespace Ghost {
 	void OrthographicCameraController::OnUpdate(Timestep ts)
 	{
 		if (Input::IsKeyPressed(GT_KEY_A)) {
-			m_CameraPosition.x -= m_CameraTranslationSpeed * ts;
+			m_CameraPosition.x -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+			m_CameraPosition.y -= sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 		}
 		else if (Input::IsKeyPressed(GT_KEY_D)) {
-			m_CameraPosition.x += m_CameraTranslationSpeed * ts;
+			m_CameraPosition.x += cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+			m_CameraPosition.y += sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 		}
 
 		if (Input::IsKeyPressed(GT_KEY_W)) {
-			m_CameraPosition.y += m_CameraTranslationSpeed * ts;
+			m_CameraPosition.x += sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+			m_CameraPosition.y += cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 		}
 		else if (Input::IsKeyPressed(GT_KEY_S)) {
-			m_CameraPosition.y -= m_CameraTranslationSpeed * ts;
+			m_CameraPosition.x -= sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+			m_CameraPosition.y -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 		}
 
 		if (m_Rotation) {
@@ -36,7 +40,14 @@ namespace Ghost {
 				m_CameraRotation -= m_CameraRotationSpeed * ts;
 			}
 
+			m_CameraRotation <= -180.0f ? m_CameraRotation += 360.0f : m_CameraRotation -= 360.0f;
+
 			m_Camera.SetRotation(m_CameraRotation);
+		}
+
+		if (Input::IsKeyDown(GT_KEY_0)) {
+			m_CameraRotation = 0.0f;
+			m_CameraPosition = { 0.0f, 0.0f, 0.0f };
 		}
 
 		m_Camera.SetPosition(m_CameraPosition);

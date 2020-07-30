@@ -9,7 +9,7 @@
 #include <GLFW/glfw3.h>
 
 namespace Ghost {
-	Input* Input::s_Instance = new WindowsInput();
+	Scope<Input> Input::s_Instance = CreateScope<WindowsInput>();
 
 	bool WindowsInput::IsKeyPressedImpl(int keycode)
 	{
@@ -27,9 +27,7 @@ namespace Ghost {
 				return false;
 			}
 			else {
-				if (m_keyPressMap[keycode] != GLFW_PRESS) {
-					m_keyPressMap[keycode] = state;
-				}
+				m_keyPressMap[keycode] = state;
 				return state == GLFW_PRESS;
 			}
 		}
@@ -48,9 +46,7 @@ namespace Ghost {
 				return false;
 			}
 			else {
-				if (m_keyPressMap[keycode] != GLFW_RELEASE) {
-					m_keyPressMap[keycode] = state;
-				}
+				m_keyPressMap[keycode] = state;
 				return state == GLFW_RELEASE;
 			}
 		}
