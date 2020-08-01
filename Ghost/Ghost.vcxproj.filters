@@ -1489,5 +1489,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\GraphicsContext.cpp" />
+    <ClCompile Include="src\Ghost\Core\Input.cpp" />
+    <ClCompile Include="src\Ghost\Core\Window.cpp" />
   </ItemGroup>
 </Project>

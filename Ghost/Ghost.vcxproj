@@ -597,9 +597,11 @@
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Ghost\Camera\OrthographicCamera.cpp" />
     <ClCompile Include="src\Ghost\Core\Application.cpp" />
+    <ClCompile Include="src\Ghost\Core\Input.cpp" />
     <ClCompile Include="src\Ghost\Core\Layer.cpp" />
     <ClCompile Include="src\Ghost\Core\LayerStack.cpp" />
     <ClCompile Include="src\Ghost\Core\Log.cpp" />
+    <ClCompile Include="src\Ghost\Core\Window.cpp" />
     <ClCompile Include="src\Ghost\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Ghost\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Ghost\ImGui\Utilities\ImGuiConsole.cpp" />

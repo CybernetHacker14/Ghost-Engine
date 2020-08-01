@@ -5,3 +5,5 @@ bin-int/
 
 # Files
 *.user
+*.json
+*.log
