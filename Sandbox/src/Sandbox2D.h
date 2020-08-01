@@ -21,5 +21,7 @@ private:
 	Ghost::Ref<Ghost::VertexArray> m_SquareVA;
 	Ghost::Ref<Ghost::Shader> m_FlatColorShader;
 
+	Ghost::Ref<Ghost::Texture2D> m_Texture;
+
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 };

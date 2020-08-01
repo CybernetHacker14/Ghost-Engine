@@ -1,5 +1,5 @@
 #include "Sandbox2D.h"
-#include "imgui/imgui.h"
+#include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -13,39 +13,20 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	m_SquareVA = Ghost::VertexArray::Create();
+	GT_PROFILE_FUNCTION();
 
-	float squareVertices[3 * 4] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
-	};
-
-	Ghost::Ref<Ghost::VertexBuffer> squareVB;
-	squareVB = Ghost::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
-	squareVB->SetLayout({
-		{Ghost::ShaderDataType::Float3, "a_Position"}
-		});
-
-	m_SquareVA->AddVertexBuffer(squareVB);
-
-	uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
-	Ghost::Ref<Ghost::IndexBuffer> squareIB;
-	squareIB = Ghost::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
-	m_SquareVA->SetIndexBuffer(squareIB);
-
-	m_FlatColorShader = Ghost::Shader::Create();
-	m_FlatColorShader->Compile("assets/shaders/FlatColor.glsl");
-	m_FlatColorShader->Link();
+	m_Texture = Ghost::Texture2D::Create("assets/textures/crate2_diffuse.png");
 }
 
 void Sandbox2D::OnDetach()
 {
+	GT_PROFILE_FUNCTION();
 }
 
 void Sandbox2D::OnUpdate(Ghost::Timestep ts)
 {
+	GT_PROFILE_FUNCTION();
+
 	// Update
 	m_CameraController.OnUpdate(ts);
 
@@ -53,18 +34,19 @@ void Sandbox2D::OnUpdate(Ghost::Timestep ts)
 	Ghost::RenderCommand::SetClearColor({ 0.1f,0.1f,0.1f,1 });
 	Ghost::RenderCommand::Clear();
 
-	Ghost::Renderer::BeginScene(m_CameraController.GetCamera());
+	Ghost::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	std::dynamic_pointer_cast<Ghost::OpenGLShader>(m_FlatColorShader)->Bind();
-	std::dynamic_pointer_cast<Ghost::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
+	Ghost::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+	Ghost::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
 
-	Ghost::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+	Ghost::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 5.0f, 5.0f }, m_Texture);
 
-	Ghost::Renderer::EndScene();
+	Ghost::Renderer2D::EndScene();
 }
 
 void Sandbox2D::OnImGuiRender()
 {
+	GT_PROFILE_FUNCTION();
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 	ImGui::End();

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Event.h"
+#include "Ghost/Events/Event.h"
 
 namespace Ghost {
 	class KeyEvent : public Event {

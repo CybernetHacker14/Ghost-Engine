@@ -15,6 +15,8 @@
 
 #include "Ghost/Core/Log.h"
 
+#include "Ghost/Debug/Instrumentor.h"
+
 #ifdef GT_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif // GT_PLATFORM_WINDOWS

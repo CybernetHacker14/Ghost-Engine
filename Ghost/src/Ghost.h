@@ -2,6 +2,8 @@
 
 // For use by Ghost applications
 
+#include "Ghost/Core/Core.h"
+
 #include "Ghost/Core/Application.h"
 #include "Ghost/Core/Layer.h"
 #include "Ghost/Core/Log.h"
@@ -17,6 +19,7 @@
 
 // --Renderer----------------------
 #include "Ghost/Renderer/Renderer.h"
+#include "Ghost/Renderer/Renderer2D.h"
 #include "Ghost/Renderer/RenderCommand.h"
 
 #include "Ghost/Renderer/Buffer.h"

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <glad/glad.h>
 
-#include "OpenGLShader.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Ghost {
 	static ShaderType GLEnumToShaderType(const GLenum& type) {
@@ -28,24 +28,36 @@ namespace Ghost {
 
 	OpenGLShader::OpenGLShader()
 	{
+		GT_PROFILE_FUNCTION();
+
 		m_RendererID = glCreateProgram();
 	}
 
 	OpenGLShader::~OpenGLShader()
 	{
+		GT_PROFILE_FUNCTION();
+
 		glDeleteProgram(m_RendererID);
 	}
 
 	std::string OpenGLShader::ReadFile(const std::string& filepath)
 	{
+		GT_PROFILE_FUNCTION();
+
 		std::string result;
 		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 		if (in) {
 			in.seekg(0, std::ios::end);
-			result.resize(in.tellg());
-			in.seekg(0, std::ios::beg);
-			in.read(&result[0], result.size());
-			in.close();
+			size_t size = in.tellg();
+			if (size != -1) {
+				result.resize(size);
+				in.seekg(0, std::ios::beg);
+				in.read(&result[0], size);
+				in.close();
+			}
+			else {
+				GT_CORE_ERROR("Could not read from file '{0}'", filepath);
+			}
 		}
 		else {
 			GT_CORE_ASSERT("Could not open file at '{0}'", filepath);
@@ -56,6 +68,8 @@ namespace Ghost {
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
 	{
+		GT_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> shaderSources;
 
 		const char* typeToken = "#type";
@@ -83,6 +97,8 @@ namespace Ghost {
 
 	bool OpenGLShader::Compile(const std::string& filepath)
 	{
+		GT_PROFILE_FUNCTION();
+
 		std::string source = ReadFile(filepath);
 		std::unordered_map<GLenum, std::string> shaderSources = PreProcess(source);
 
@@ -132,6 +148,8 @@ namespace Ghost {
 
 	bool OpenGLShader::Compile(const std::string& name, const std::string& source, const ShaderType type)
 	{
+		GT_PROFILE_FUNCTION();
+
 		GLuint shaderID = 0;
 		const GLchar* shaderSource = source.c_str();
 		GLint isCompiled = 0;
@@ -189,6 +207,8 @@ namespace Ghost {
 
 	bool OpenGLShader::Link()
 	{
+		GT_PROFILE_FUNCTION();
+
 		glLinkProgram(m_RendererID);
 
 		GLint isLinked = 0;
@@ -226,12 +246,44 @@ namespace Ghost {
 
 	void OpenGLShader::Bind() const
 	{
+		GT_PROFILE_FUNCTION();
+
 		glUseProgram(m_RendererID);
 	}
 
 	void OpenGLShader::Unbind() const
 	{
+		GT_PROFILE_FUNCTION();
+
 		glUseProgram(0);
+	}
+
+	void OpenGLShader::SetInt(const std::string& name, int value)
+	{
+		GT_PROFILE_FUNCTION();
+
+		UploadUniformInt(name, value);
+	}
+
+	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
+	{
+		GT_PROFILE_FUNCTION();
+
+		UploadUniformFloat3(name, value);
+	}
+
+	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
+	{
+		GT_PROFILE_FUNCTION();
+
+		UploadUniformFloat4(name, value);
+	}
+
+	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
+	{
+		GT_PROFILE_FUNCTION();
+
+		UploadUniformMat4(name, value);
 	}
 
 	void OpenGLShader::UploadUniformInt(const std::string& name, int value)

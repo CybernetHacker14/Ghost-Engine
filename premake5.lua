@@ -1,5 +1,5 @@
 workspace "Ghost"
-	architecture "x64"
+	architecture "x86_64"
 	startproject "Sandbox"
 
 	configurations{
@@ -124,9 +124,6 @@ project "Sandbox"
 	filter "system:windows"
 		systemversion "latest"
 
-		defines{
-			"GT_PLATFORM_WINDOWS",
-		}
 
 	filter "configurations:Debug"
 		defines "GT_DEBUG"

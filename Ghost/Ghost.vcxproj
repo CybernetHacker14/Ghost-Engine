@@ -158,6 +158,7 @@
     <ClInclude Include="src\Ghost\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Ghost\Core\Timestep.h" />
     <ClInclude Include="src\Ghost\Core\Window.h" />
+    <ClInclude Include="src\Ghost\Debug\Instrumentor.h" />
     <ClInclude Include="src\Ghost\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Ghost\Events\Event.h" />
     <ClInclude Include="src\Ghost\Events\KeyEvent.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="src\Ghost\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Ghost\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Ghost\Renderer\Renderer.h" />
+    <ClInclude Include="src\Ghost\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Ghost\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Ghost\Renderer\Shader.h" />
     <ClInclude Include="src\Ghost\Renderer\Texture.h" />
@@ -602,8 +604,10 @@
     <ClCompile Include="src\Ghost\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Ghost\ImGui\Utilities\ImGuiConsole.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Ghost\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Ghost\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Ghost\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Ghost\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Shader.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Texture.cpp" />

@@ -1,11 +1,7 @@
 #include "gtpch.h"
-#include "LayerStack.h"
+#include "Ghost/Core/LayerStack.h"
 
 namespace Ghost {
-	LayerStack::LayerStack()
-	{
-	}
-
 	LayerStack::~LayerStack()
 	{
 		for (Layer* layer : m_Layers) {

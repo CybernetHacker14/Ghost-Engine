@@ -1,5 +1,5 @@
 #include "gtpch.h"
-#include "Layer.h"
+#include "Ghost/Core/Layer.h"
 
 namespace Ghost {
 	Layer::Layer(const std::string& debugName)

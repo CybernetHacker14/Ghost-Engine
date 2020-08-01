@@ -29,11 +29,11 @@ namespace Ghost {
 	{
 		std::string Name;
 		ShaderDataType Type;
-		uint32_t Offset;
 		uint32_t Size;
+		size_t Offset;
 		bool Normalized;
 
-		BufferElement() {}
+		BufferElement() = default;
 
 		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
 			: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalized(normalized)
@@ -81,9 +81,11 @@ namespace Ghost {
 		std::vector<BufferElement>::const_iterator end() const { return m_Elements.end(); }
 	private:
 		void CalculateOffsetsAndStride() {
+			size_t offset = 0;
 			m_Stride = 0;
 			for (BufferElement& element : m_Elements) {
-				element.Offset = m_Stride;
+				element.Offset = offset;
+				offset += element.Size;
 				m_Stride += element.Size;
 			}
 		}

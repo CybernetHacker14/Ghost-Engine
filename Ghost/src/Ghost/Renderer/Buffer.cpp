@@ -1,5 +1,5 @@
 #include "gtpch.h"
-#include "Buffer.h"
+#include "Ghost/Renderer/Buffer.h"
 
 #include "Ghost/Renderer/Renderer.h"
 

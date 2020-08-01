@@ -1,5 +1,5 @@
 #include "gtpch.h"
-#include "VertexArray.h"
+#include "Ghost/Renderer/VertexArray.h"
 
 #include "Ghost/Renderer/Renderer.h"
 

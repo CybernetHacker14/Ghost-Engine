@@ -1,5 +1,5 @@
 #include "gtpch.h"
-#include "WindowsInput.h"
+#include "Platform/Windows/WindowsInput.h"
 
 #include "Ghost/Core/Core.h"
 #include "Ghost/Core/Application.h"
@@ -22,38 +22,44 @@ namespace Ghost {
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetKey(window, keycode);
-		if (m_keyPressMap.find(keycode) != m_keyPressMap.end()) {
-			if (m_keyPressMap[keycode] == state) {
-				return false;
-			}
-			else {
-				m_keyPressMap[keycode] = state;
-				return state == GLFW_PRESS;
-			}
+
+		bool value = false;
+
+		if (state == GLFW_RELEASE) {
+			value = false;
+		}
+
+		if (state == GLFW_PRESS && m_keyPressMap[keycode] == GLFW_RELEASE) {
+			value = true;
 		}
 		else {
-			m_keyPressMap[keycode] = state;
-			return false;
+			value = false;
 		}
+
+		m_keyPressMap[keycode] = state;
+		return value;
 	}
 
 	bool WindowsInput::IsKeyUpImpl(int keycode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetKey(window, keycode);
-		if (m_keyPressMap.find(keycode) != m_keyPressMap.end()) {
-			if (m_keyPressMap[keycode] == state) {
-				return false;
-			}
-			else {
-				m_keyPressMap[keycode] = state;
-				return state == GLFW_RELEASE;
-			}
+
+		bool value = false;
+
+		if (state == GLFW_PRESS) {
+			value = false;
+		}
+
+		if (state == GLFW_RELEASE && m_keyPressMap[keycode] == GLFW_PRESS) {
+			value = true;
 		}
 		else {
-			m_keyPressMap[keycode] = state;
-			return false;
+			value = false;
 		}
+
+		m_keyPressMap[keycode] = state;
+		return value;
 	}
 
 	bool WindowsInput::IsMouseButtonPressedImpl(int button) {

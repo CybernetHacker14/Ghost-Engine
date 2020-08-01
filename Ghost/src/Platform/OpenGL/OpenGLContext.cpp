@@ -1,5 +1,5 @@
 #include "gtpch.h"
-#include "OpenGLContext.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
@@ -13,6 +13,8 @@ namespace Ghost {
 
 	void OpenGLContext::Init()
 	{
+		GT_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		GT_CORE_ASSERT(status, "Failed to initialize Glad!");
@@ -33,6 +35,8 @@ namespace Ghost {
 
 	void OpenGLContext::SwapBuffers()
 	{
+		GT_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_WindowHandle);
 	}
 }

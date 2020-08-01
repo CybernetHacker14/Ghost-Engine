@@ -25,9 +25,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		Ghost::Ref<Ghost::VertexBuffer> vertexBuffer;
-
-		vertexBuffer = Ghost::VertexBuffer::Create(vertices, sizeof(vertices));
+		Ghost::Ref<Ghost::VertexBuffer> vertexBuffer = Ghost::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		Ghost::BufferLayout layout = {
 			{Ghost::ShaderDataType::Float3, "a_Position"},
@@ -41,9 +39,7 @@ public:
 
 		uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
 
-		Ghost::Ref<Ghost::IndexBuffer> indexBuffer;
-
-		indexBuffer = Ghost::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
+		Ghost::Ref<Ghost::IndexBuffer> indexBuffer = Ghost::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 		m_BGVertexArray->SetIndexBuffer(indexBuffer);
 
@@ -100,8 +96,8 @@ public:
 
 		m_Texture = Ghost::Texture2D::Create("assets/textures/test_texture.png");
 
-		std::dynamic_pointer_cast<Ghost::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<Ghost::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Ghost::Timestep ts) override {
@@ -119,7 +115,7 @@ public:
 
 		for (int x = 0; x < 10; x++) {
 			for (int y = 0; y < 10; y++) {
-				std::dynamic_pointer_cast<Ghost::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_Color2);
+				m_FlatColorShader->SetFloat4("u_Color", m_Color2);
 
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
@@ -128,8 +124,8 @@ public:
 			}
 		}
 
-		std::dynamic_pointer_cast<Ghost::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<Ghost::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_Color1);
+		m_FlatColorShader->Bind();
+		m_FlatColorShader->SetFloat4("u_Color", m_Color1);
 		Ghost::Renderer::Submit(m_FlatColorShader, m_BGVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		/*m_Texture->Bind();

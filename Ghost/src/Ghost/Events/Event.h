@@ -36,6 +36,8 @@ namespace Ghost {
 	class Event {
 		friend class EventDispatcher;
 	public:
+		bool handled = false;
+
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -44,7 +46,6 @@ namespace Ghost {
 		inline bool IsInCategory(EventCategory category) {
 			return GetCategoryFlags() & category;
 		}
-		bool handled = false;
 	};
 
 	class EventDispatcher {
