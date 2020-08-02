@@ -162,27 +162,27 @@ namespace Ghost {
 #if GT_PROFILE
 // Syntax highlighting could mark wrong one in your editor
 #if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600)) || defined(__ghs__)
-#define HZ_FUNC_SIG __PRETTY_FUNCTION__
+#define GT_FUNC_SIG __PRETTY_FUNCTION__
 #elif defined(__DMC__) && (__DMC__ >= 0x810)
-#define HZ_FUNC_SIG __PRETTY_FUNCTION__
+#define GT_FUNC_SIG __PRETTY_FUNCTION__
 #elif defined(__FUNCSIG__)
-#define HZ_FUNC_SIG __FUNCSIG__
+#define GT_FUNC_SIG __FUNCSIG__
 #elif (defined(__INTEL_COMPILER) && (__INTEL_COMPILER >= 600)) || (defined(__IBMCPP__) && (__IBMCPP__ >= 500))
-#define HZ_FUNC_SIG __FUNCTION__
+#define GT_FUNC_SIG __FUNCTION__
 #elif defined(__BORLANDC__) && (__BORLANDC__ >= 0x550)
-#define HZ_FUNC_SIG __FUNC__
+#define GT_FUNC_SIG __FUNC__
 #elif defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901)
-#define HZ_FUNC_SIG __func__
+#define GT_FUNC_SIG __func__
 #elif defined(__cplusplus) && (__cplusplus >= 201103)
-#define HZ_FUNC_SIG __func__
+#define GT_FUNC_SIG __func__
 #else
-#define HZ_FUNC_SIG "HZ_FUNC_SIG unknown!"
+#define GT_FUNC_SIG "HZ_FUNC_SIG unknown!"
 #endif
 
 #define GT_PROFILE_BEGIN_SESSION(name, filepath)  ::Ghost::Instrumentor::Get().BeginSession(name, filepath)
 #define GT_PROFILE_END_SESSION()                  ::Ghost::Instrumentor::Get().EndSession();
 #define GT_PROFILE_SCOPE(name)                    ::Ghost::InstrumentationTimer timer##__LINE__(name);
-#define GT_PROFILE_FUNCTION()                     GT_PROFILE_SCOPE(HZ_FUNC_SIG)
+#define GT_PROFILE_FUNCTION()                     GT_PROFILE_SCOPE(GT_FUNC_SIG)
 #else
 #define GT_PROFILE_BEGIN_SESSION(name, filepath)
 #define GT_PROFILE_END_SESSION()
