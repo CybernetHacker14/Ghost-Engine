@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Ghost/Events/Event.h"
+#include "Ghost/Core/Input.h"
 
 namespace Ghost {
 	class MouseMovedEvent : public Event {
@@ -47,19 +48,19 @@ namespace Ghost {
 
 	class MouseButtonEvent : public Event {
 	public:
-		inline int GetMouseButton() const { return m_Button; }
+		inline MouseCode GetMouseButton() const { return m_Button; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	protected:
-		MouseButtonEvent(int button)
+		MouseButtonEvent(MouseCode button)
 			:m_Button(button) {}
 
-		int m_Button;
+		MouseCode m_Button;
 	};
 
 	class MouseButtonPressedEvent : public MouseButtonEvent {
 	public:
-		MouseButtonPressedEvent(int button)
+		MouseButtonPressedEvent(MouseCode button)
 			:MouseButtonEvent(button) {}
 
 		std::string ToString() const override {
@@ -73,7 +74,7 @@ namespace Ghost {
 
 	class MouseButtonReleasedEvent : public MouseButtonEvent {
 	public:
-		MouseButtonReleasedEvent(int button)
+		MouseButtonReleasedEvent(MouseCode button)
 			:MouseButtonEvent(button) {}
 
 		std::string ToString() const override {

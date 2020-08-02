@@ -96,9 +96,6 @@
     <ClInclude Include="src\Ghost\Core\Log.h">
       <Filter>src\Ghost\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Core\MouseButtonCodes.h">
-      <Filter>src\Ghost\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\Ghost\Core\Timestep.h">
       <Filter>src\Ghost\Core</Filter>
     </ClInclude>
@@ -1405,6 +1402,9 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Debug\Instrumentor.h" />
+    <ClInclude Include="src\Ghost\Core\MouseCodes.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp">

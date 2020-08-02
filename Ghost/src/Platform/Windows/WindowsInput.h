@@ -6,16 +6,16 @@
 namespace Ghost {
 	class WindowsInput : public Input {
 	protected:
-		virtual bool IsKeyPressedImpl(int keycode) override;
-		virtual bool IsKeyDownImpl(int keycode) override;
-		virtual bool IsKeyUpImpl(int keycode) override;
+		virtual bool IsKeyPressedImpl(KeyCode keycode) override;
+		virtual bool IsKeyDownImpl(KeyCode keycode) override;
+		virtual bool IsKeyUpImpl(KeyCode keycode) override;
 
-		virtual bool IsMouseButtonPressedImpl(int button) override;
+		virtual bool IsMouseButtonPressedImpl(MouseCode button) override;
 
 		virtual std::pair<float, float> GetMousePositionImpl() override;
 		virtual float GetMouseXImpl() override;
 		virtual float GetMouseYImpl() override;
 	private:
-		std::unordered_map<int, int> m_keyPressMap;
+		std::unordered_map<KeyCode, int> m_keyPressMap;
 	};
 }

@@ -12,7 +12,7 @@
 
 #include "Ghost/Core/Input.h"
 #include "Ghost/Core/KeyCodes.h"
-#include "Ghost/Core/MouseButtonCodes.h"
+#include "Ghost/Core/MouseCodes.h"
 #include "Ghost/Camera/Controllers/OrthographicCameraController.h"
 
 #include "Ghost/ImGui/ImGuiLayer.h"
