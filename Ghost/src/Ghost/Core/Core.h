@@ -29,12 +29,20 @@
 #endif // _WIN32
 
 #ifdef GT_DEBUG
+#if defined(GT_PLATFORM_WINDOWS)
+#define GT_DEBUGBREAK() __debugbreak()
+#elif defined(GT_PLATFORM_LINUX)
+#include <signal.h>
+#define GT_DEBUGBREAK() raise(SIGTRAP)
+#endif
 #define GT_ENABLE_ASSERTS
+#else
+#define GT_DEBUGBREAK()
 #endif // GT_DEBUG
 
 #ifdef GT_ENABLE_ASSERTS
-#define GT_ASSERT(x, ...) { if(!(x)) { GT_ERROR("Assetion Failed: {0}",__VA_ARGS__); __debugbreak(); } }
-#define GT_CORE_ASSERT(x, ...) { if(!(x)) { GT_CORE_ERROR("Assertion Failed: {0}",__VA_ARGS__); __debugbreak(); } }
+#define GT_ASSERT(x, ...) { if(!(x)) { GT_ERROR("Assetion Failed: {0}",__VA_ARGS__); GT_DEBUGBREAK(); } }
+#define GT_CORE_ASSERT(x, ...) { if(!(x)) { GT_CORE_ERROR("Assertion Failed: {0}",__VA_ARGS__); GT_DEBUGBREAK(); } }
 #else
 #define GT_ASSERT(x, ...)
 #define GT_CORE_ASSERT(x, ...)

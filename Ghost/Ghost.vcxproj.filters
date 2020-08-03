@@ -16,6 +16,9 @@
     <Filter Include="src\Ghost\Core">
       <UniqueIdentifier>{19CA34F5-0598-28FB-EE2B-9921DA980460}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Ghost\Debug">
+      <UniqueIdentifier>{5768DA9B-C3F3-4760-CC04-CB54380FA460}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Ghost\Events">
       <UniqueIdentifier>{E5C5B11A-D1BE-D06C-FAF0-B5F1E648B078}</UniqueIdentifier>
     </Filter>
@@ -96,11 +99,17 @@
     <ClInclude Include="src\Ghost\Core\Log.h">
       <Filter>src\Ghost\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ghost\Core\MouseCodes.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ghost\Core\Timestep.h">
       <Filter>src\Ghost\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Core\Window.h">
       <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Debug\Instrumentor.h">
+      <Filter>src\Ghost\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Events\ApplicationEvent.h">
       <Filter>src\Ghost\Events</Filter>
@@ -1401,10 +1410,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Debug\Instrumentor.h" />
-    <ClInclude Include="src\Ghost\Core\MouseCodes.h">
-      <Filter>src\Ghost\Core</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp">
@@ -1416,6 +1421,9 @@
     <ClCompile Include="src\Ghost\Core\Application.cpp">
       <Filter>src\Ghost\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ghost\Core\Input.cpp">
+      <Filter>src\Ghost\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ghost\Core\Layer.cpp">
       <Filter>src\Ghost\Core</Filter>
     </ClCompile>
@@ -1423,6 +1431,9 @@
       <Filter>src\Ghost\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Core\Log.cpp">
+      <Filter>src\Ghost\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Core\Window.cpp">
       <Filter>src\Ghost\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\ImGui\ImGuiBuild.cpp">
@@ -1435,6 +1446,9 @@
       <Filter>src\Ghost\ImGui\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\Buffer.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\GraphicsContext.cpp">
       <Filter>src\Ghost\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\RenderCommand.cpp">
@@ -1488,8 +1502,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ghost\Renderer\GraphicsContext.cpp" />
-    <ClCompile Include="src\Ghost\Core\Input.cpp" />
-    <ClCompile Include="src\Ghost\Core\Window.cpp" />
   </ItemGroup>
 </Project>
