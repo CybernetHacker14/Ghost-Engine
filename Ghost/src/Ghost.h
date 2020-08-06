@@ -24,6 +24,7 @@
 
 #include "Ghost/Renderer/Buffer.h"
 #include "Ghost/Renderer/Shader.h"
+#include "Ghost/Renderer/Framebuffer.h"
 #include "Ghost/Renderer/Texture.h"
 #include "Ghost/Renderer/VertexArray.h"
 

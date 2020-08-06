@@ -166,6 +166,7 @@
     <ClInclude Include="src\Ghost\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Ghost\ImGui\Utilities\ImGuiConsole.h" />
     <ClInclude Include="src\Ghost\Renderer\Buffer.h" />
+    <ClInclude Include="src\Ghost\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Ghost\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Ghost\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Ghost\Renderer\Renderer.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="src\Ghost\Renderer\VertexArray.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
@@ -607,6 +609,7 @@
     <ClCompile Include="src\Ghost\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Ghost\ImGui\Utilities\ImGuiConsole.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Ghost\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Ghost\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Ghost\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Renderer.cpp" />
@@ -618,6 +621,7 @@
     <ClCompile Include="src\Ghost\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />

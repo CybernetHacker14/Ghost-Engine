@@ -1411,6 +1411,8 @@
       <Filter>src\Ghost\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Renderer\SubTexture2D.h" />
+    <ClInclude Include="src\Ghost\Renderer\Framebuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp">
@@ -1504,5 +1506,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\SubTexture2D.cpp" />
+    <ClCompile Include="src\Ghost\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
   </ItemGroup>
 </Project>

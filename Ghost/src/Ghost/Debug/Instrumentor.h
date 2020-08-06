@@ -183,7 +183,7 @@ namespace Ghost {
 	}
 }
 
-#define GT_PROFILE 1
+#define GT_PROFILE 0
 #if GT_PROFILE
 // Syntax highlighting could mark wrong one in your editor
 #if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600)) || defined(__ghs__)

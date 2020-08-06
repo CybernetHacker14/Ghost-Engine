@@ -19,6 +19,6 @@ namespace Ghost {
 		glm::vec2 max = { ((coords.x + spriteSize.x) * cellSize.x) / (float)texture->GetWidth(),
 			((coords.y + spriteSize.y) * cellSize.y) / (float)texture->GetHeight() };
 
-		return Ref<SubTexture2D> result = CreateRef<SubTexture2D>(texture, min, max);
+		return CreateRef<SubTexture2D>(texture, min, max);
 	}
 }
