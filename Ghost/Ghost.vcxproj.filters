@@ -78,6 +78,9 @@
     <ClInclude Include="src\Ghost\Core\Application.h">
       <Filter>src\Ghost\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ghost\Core\Base.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ghost\Core\EntryPoint.h">
       <Filter>src\Ghost\Core</Filter>
     </ClInclude>
@@ -129,6 +132,9 @@
     <ClInclude Include="src\Ghost\Renderer\Buffer.h">
       <Filter>src\Ghost\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\Framebuffer.h">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ghost\Renderer\GraphicsContext.h">
       <Filter>src\Ghost\Renderer</Filter>
     </ClInclude>
@@ -147,6 +153,9 @@
     <ClInclude Include="src\Ghost\Renderer\Shader.h">
       <Filter>src\Ghost\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\SubTexture2D.h">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Ghost\Renderer\Texture.h">
       <Filter>src\Ghost\Renderer</Filter>
     </ClInclude>
@@ -157,6 +166,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -170,9 +182,6 @@
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1407,12 +1416,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Core\Base.h">
-      <Filter>src\Ghost\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ghost\Renderer\SubTexture2D.h" />
-    <ClInclude Include="src\Ghost\Renderer\Framebuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp">
@@ -1422,9 +1425,6 @@
       <Filter>src\Ghost\Camera</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Core\Application.cpp">
-      <Filter>src\Ghost\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ghost\Core\Input.cpp">
       <Filter>src\Ghost\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Core\Layer.cpp">
@@ -1451,6 +1451,9 @@
     <ClCompile Include="src\Ghost\Renderer\Buffer.cpp">
       <Filter>src\Ghost\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\Framebuffer.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\GraphicsContext.cpp">
       <Filter>src\Ghost\Renderer</Filter>
     </ClCompile>
@@ -1469,6 +1472,9 @@
     <ClCompile Include="src\Ghost\Renderer\Shader.cpp">
       <Filter>src\Ghost\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\SubTexture2D.cpp">
+      <Filter>src\Ghost\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\Texture.cpp">
       <Filter>src\Ghost\Renderer</Filter>
     </ClCompile>
@@ -1479,6 +1485,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1505,8 +1514,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ghost\Renderer\SubTexture2D.cpp" />
-    <ClCompile Include="src\Ghost\Renderer\Framebuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
   </ItemGroup>
 </Project>

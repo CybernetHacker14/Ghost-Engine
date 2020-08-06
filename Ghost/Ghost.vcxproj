@@ -183,7 +183,6 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\gtpch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -600,7 +599,6 @@
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Ghost\Camera\OrthographicCamera.cpp" />
     <ClCompile Include="src\Ghost\Core\Application.cpp" />
-    <ClCompile Include="src\Ghost\Core\Input.cpp" />
     <ClCompile Include="src\Ghost\Core\Layer.cpp" />
     <ClCompile Include="src\Ghost\Core\LayerStack.cpp" />
     <ClCompile Include="src\Ghost\Core\Log.cpp" />

@@ -20,7 +20,6 @@ private:
 	// Temp
 	Ghost::Ref<Ghost::VertexArray> m_SquareVA;
 	Ghost::Ref<Ghost::Shader> m_FlatColorShader;
-	Ghost::Ref<Ghost::Framebuffer> m_Framebuffer;
 
 	Ghost::Ref<Ghost::Texture2D> m_Texture;
 };

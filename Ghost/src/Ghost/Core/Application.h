@@ -17,7 +17,7 @@ namespace Ghost {
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Ghost App");
 		virtual ~Application();
 
 		void OnEvent(Event& e);
@@ -28,6 +28,8 @@ namespace Ghost {
 		Window& GetWindow() { return *m_Window; }
 
 		void Close();
+
+		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 
 		static Application& Get() { return *s_Instance; }
 	private:

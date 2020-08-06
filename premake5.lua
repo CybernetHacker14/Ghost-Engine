@@ -139,3 +139,48 @@ project "Sandbox"
 		defines "GT_DIST"
 		runtime "Release"
 		optimize "on"
+
+project "Ghost-Editor"
+	location "Ghost-Editor"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs{
+		"Ghost/vendor/spdlog/include",
+		"Ghost/src",
+		"Ghost/vendor",
+		"%{IncludeDir.glm}"
+	}
+
+	links{
+		"Ghost"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+
+	filter "configurations:Debug"
+		defines "GT_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "GT_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "GT_DIST"
+		runtime "Release"
+		optimize "on"
