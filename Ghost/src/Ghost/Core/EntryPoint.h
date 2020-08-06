@@ -1,5 +1,5 @@
 #pragma once
-#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Base.h"
 
 #ifdef GT_PLATFORM_WINDOWS
 

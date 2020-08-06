@@ -2,7 +2,7 @@
 
 // For use by Ghost applications
 
-#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Base.h"
 
 #include "Ghost/Core/Application.h"
 #include "Ghost/Core/Layer.h"

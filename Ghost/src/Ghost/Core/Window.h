@@ -2,7 +2,7 @@
 
 #include "gtpch.h"
 
-#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Base.h"
 #include "Ghost/Events/Event.h"
 
 namespace Ghost {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "gtpch.h"
-#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Base.h"
 
 namespace Ghost {
 	/*  Events in Ghost are currently blocking, i.e., when an event occurs it

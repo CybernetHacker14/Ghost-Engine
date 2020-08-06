@@ -1,11 +1,9 @@
 #include "gtpch.h"
+
 #include "Ghost/Core/Application.h"
-
-#include "Ghost/Core/Log.h"
-
-#include "Ghost/Renderer/Renderer.h"
-
 #include "Ghost/Core/Input.h"
+#include "Ghost/Core/Log.h"
+#include "Ghost/Renderer/Renderer.h"
 
 #include <GLFW/glfw3.h>
 
@@ -60,10 +58,10 @@ namespace Ghost {
 		dispatcher.Dispatch<WindowResizeEvent>(GT_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = m_layerStack.rbegin(); it != m_layerStack.rend(); ++it) {
-			(*it)->OnEvent(e);
 			if (e.handled) {
 				break;
 			}
+			(*it)->OnEvent(e);
 		}
 	}
 

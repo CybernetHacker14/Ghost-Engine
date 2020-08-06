@@ -78,9 +78,6 @@
     <ClInclude Include="src\Ghost\Core\Application.h">
       <Filter>src\Ghost\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Core\Core.h">
-      <Filter>src\Ghost\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\Ghost\Core\EntryPoint.h">
       <Filter>src\Ghost\Core</Filter>
     </ClInclude>
@@ -1410,6 +1407,10 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ghost\Core\Base.h">
+      <Filter>src\Ghost\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Renderer\SubTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp">
@@ -1502,5 +1503,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ghost\Renderer\SubTexture2D.cpp" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Base.h"
 
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>

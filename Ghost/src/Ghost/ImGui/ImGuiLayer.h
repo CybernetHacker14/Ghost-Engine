@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Base.h"
 #include "Ghost/Core/Layer.h"
 #include "Ghost/Events/ApplicationEvent.h"
 #include "Ghost/Events/KeyEvent.h"
@@ -14,6 +14,7 @@ namespace Ghost {
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
+		virtual void OnEvent(Event& e) override;
 
 		void Begin();
 		void End();

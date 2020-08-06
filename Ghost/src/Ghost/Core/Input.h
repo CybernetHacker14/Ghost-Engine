@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Base.h"
 #include "Ghost/Core/KeyCodes.h"
 #include "Ghost/Core/MouseCodes.h"
 

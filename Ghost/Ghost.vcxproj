@@ -148,7 +148,7 @@
     <ClInclude Include="src\Ghost\Camera\Controllers\OrthographicCameraController.h" />
     <ClInclude Include="src\Ghost\Camera\OrthographicCamera.h" />
     <ClInclude Include="src\Ghost\Core\Application.h" />
-    <ClInclude Include="src\Ghost\Core\Core.h" />
+    <ClInclude Include="src\Ghost\Core\Base.h" />
     <ClInclude Include="src\Ghost\Core\EntryPoint.h" />
     <ClInclude Include="src\Ghost\Core\Input.h" />
     <ClInclude Include="src\Ghost\Core\KeyCodes.h" />
@@ -172,6 +172,7 @@
     <ClInclude Include="src\Ghost\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Ghost\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Ghost\Renderer\Shader.h" />
+    <ClInclude Include="src\Ghost\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\Ghost\Renderer\Texture.h" />
     <ClInclude Include="src\Ghost\Renderer\VertexArray.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
@@ -612,6 +613,7 @@
     <ClCompile Include="src\Ghost\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Ghost\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Ghost\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Texture.cpp" />
     <ClCompile Include="src\Ghost\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />

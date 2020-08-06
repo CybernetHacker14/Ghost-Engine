@@ -1,7 +1,7 @@
 #include "gtpch.h"
 #include "Platform/Windows/WindowsInput.h"
 
-#include "Ghost/Core/Core.h"
+#include "Ghost/Core/Base.h"
 #include "Ghost/Core/Application.h"
 #include "Ghost/Events/MouseEvent.h"
 #include "Ghost/Events/KeyEvent.h"
