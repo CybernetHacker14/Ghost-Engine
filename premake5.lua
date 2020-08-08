@@ -1,6 +1,6 @@
 workspace "Ghost"
 	architecture "x86_64"
-	startproject "Sandbox"
+	startproject "Ghost-Editor"
 
 	configurations{
 		"Debug",
@@ -21,6 +21,7 @@ IncludeDir["Glad"] = "Ghost/vendor/Glad/include"
 IncludeDir["ImGui"] = "Ghost/vendor/imgui"
 IncludeDir["glm"] = "Ghost/vendor/glm"
 IncludeDir["stb_image"] = "Ghost/vendor/stb_image"
+IncludeDir["entt"] = "Ghost/vendor/entt/include"
 
 group "Dependencies"
 include "Ghost/vendor/GLFW"
@@ -63,7 +64,8 @@ project "Ghost"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 	
 	links{
@@ -114,7 +116,8 @@ project "Sandbox"
 		"Ghost/vendor/spdlog/include",
 		"Ghost/src",
 		"Ghost/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links{
@@ -159,7 +162,8 @@ project "Ghost-Editor"
 		"Ghost/vendor/spdlog/include",
 		"Ghost/src",
 		"Ghost/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links{

@@ -23,6 +23,10 @@ namespace Ghost {
 		GT_CORE_INFO("Hardware        : {0}", glGetString(GL_RENDERER));
 		GT_CORE_INFO("OpenGL Version  : {0}", glGetString(GL_VERSION));
 
+		m_ContextInfo.Vendor = (unsigned char*)glGetString(GL_VENDOR);
+		m_ContextInfo.Renderer = (unsigned char*)glGetString(GL_RENDERER);
+		m_ContextInfo.Version = (unsigned char*)glGetString(GL_VERSION);
+
 		#ifdef GT_ENABLE_ASSERTS
 		int versionMajor;
 		int versionMinor;
@@ -38,5 +42,10 @@ namespace Ghost {
 		GT_PROFILE_FUNCTION();
 
 		glfwSwapBuffers(m_WindowHandle);
+	}
+
+	ContextInfo OpenGLContext::GetContextInfo()
+	{
+		return m_ContextInfo;
 	}
 }

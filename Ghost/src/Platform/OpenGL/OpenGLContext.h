@@ -11,7 +11,11 @@ namespace Ghost {
 
 		virtual void Init() override;
 		virtual void SwapBuffers() override;
+
+		virtual ContextInfo GetContextInfo() override;
+
 	private:
 		GLFWwindow* m_WindowHandle;
+		ContextInfo m_ContextInfo;
 	};
 }

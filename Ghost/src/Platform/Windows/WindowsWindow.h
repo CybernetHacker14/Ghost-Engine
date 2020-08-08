@@ -22,6 +22,8 @@ namespace Ghost {
 		bool IsVSync() const override;
 
 		virtual void* GetNativeWindow() const { return m_Window; }
+		virtual ContextInfo GetGraphicsContextInfo() const { return m_Context->GetContextInfo(); }
+
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();

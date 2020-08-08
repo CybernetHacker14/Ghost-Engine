@@ -21,6 +21,12 @@ namespace Ghost {
 		fbSpec.Height = 720;
 
 		m_Framebuffer = Framebuffer::Create(fbSpec);
+
+		m_ActiveScene = CreateRef<Scene>();
+
+		auto square = m_ActiveScene->CreateEntity();
+		m_ActiveScene->Reg().emplace<TransformComponent>(square);
+		m_ActiveScene->Reg().emplace<SpriteRendererComponent>(square, glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 	}
 
 	void EditorLayer::OnDetach()
@@ -32,41 +38,31 @@ namespace Ghost {
 	{
 		GT_PROFILE_FUNCTION();
 
+		// Resize
+		if (Ghost::FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
+			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
+		{
+			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+		}
+
 		// Update
 		if (m_ViewportFocused)
 			m_CameraController.OnUpdate(ts);
 
 		// Render
-		m_Framebuffer->Bind();
 		Renderer2D::ResetStats();
+		m_Framebuffer->Bind();
 		RenderCommand::SetClearColor({ 0.1f,0.1f,0.1f,1 });
 		RenderCommand::Clear();
 
-		{
-			static float rotation = 30.0f;
-			rotation += 1.0f;
+		Renderer2D::BeginScene(m_CameraController.GetCamera());
+		m_ActiveScene->OnUpdate(ts);
 
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
+		Renderer2D::EndScene();
 
-			Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-			Renderer2D::DrawRotatedQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, glm::radians(-25.0f), { 0.2f, 0.3f, 0.8f, 1.0f });
-			Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 5.0f, 5.0f }, m_Texture);
-			Renderer2D::DrawRotatedQuad({ -5.0f, 0.0f, 0.1f }, { 3.0f, 3.0f }, glm::radians(rotation), m_Texture);
-
-			Renderer2D::EndScene();
-		}
-
-		{
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
-			for (float y = -5.0f; y < 5.0f; y += 0.5f) {
-				for (float x = -5.0f; x < 5.0f; x += 0.5f) {
-					glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f,(y + 5.0f) / 10.0f,0.7f };
-					Renderer2D::DrawQuad({ x,y }, { 0.45f,0.45f }, color);
-				}
-			}
-			Renderer2D::EndScene();
-			m_Framebuffer->Unbind();
-		}
+		m_Framebuffer->Unbind();
 	}
 
 	void EditorLayer::OnImGuiRender()
@@ -104,7 +100,7 @@ namespace Ghost {
 		// We cannot preserve the docking relationship between an active window and an inactive docking, otherwise
 		// any change of dockspace/settings would lead to windows being stuck in limbo and never being visible.
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-		ImGui::Begin("DockSpace Demo", &dockspaceOpen, window_flags);
+		ImGui::Begin("DockSpace", &dockspaceOpen, window_flags);
 		ImGui::PopStyleVar();
 
 		if (opt_fullscreen)
@@ -140,25 +136,24 @@ namespace Ghost {
 		m_ViewportHovered = ImGui::IsWindowHovered();
 		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-		if (m_ViewportSize != *((glm::vec2*) & viewportPanelSize)) {
-			m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
-			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
-
-			m_CameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
-		}
+		m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0,1 }, ImVec2{ 1,0 });
 		ImGui::End();
 		ImGui::PopStyleVar();
 
-		ImGui::Begin("Settings");
+		ImGui::Begin("Renderer2D Statistics");
 		auto stats = Ghost::Renderer2D::GetStats();
-		ImGui::Text("Renderer2D Stats :");
 		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 		ImGui::Text("Quads: %d", stats.QuadCount);
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+		ImGui::End();
 
+		ImGui::Begin("Renderer Info");
+		ImGui::Text("Vendor         : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Vendor);
+		ImGui::Text("Renderer       : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Renderer);
+		ImGui::Text("OpenGL Version : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Version);
 		ImGui::End();
 
 		ImGui::End();

@@ -27,15 +27,9 @@ namespace Ghost {
 
 	class Instrumentor
 	{
-	private:
-		std::mutex m_Mutex;
-		InstrumentationSession* m_CurrentSession;
-		std::ofstream m_OutputStream;
 	public:
-		Instrumentor()
-			: m_CurrentSession(nullptr)
-		{
-		}
+		Instrumentor(const Instrumentor&) = delete;
+		Instrumentor(Instrumentor&&) = delete;
 
 		void BeginSession(const std::string& name, const std::string& filepath = "results.json")
 		{
@@ -74,6 +68,7 @@ namespace Ghost {
 		{
 			std::stringstream json;
 
+			json << std::setprecision(3) << std::fixed;
 			json << ",{";
 			json << "\"cat\":\"function\",";
 			json << "\"dur\":" << (result.ElapsedTime.count()) << ',';
@@ -98,9 +93,17 @@ namespace Ghost {
 		}
 
 	private:
+		Instrumentor()
+			: m_CurrentSession(nullptr) {
+		}
+
+		~Instrumentor() {
+			EndSession();
+		}
+
 		void WriteHeader()
 		{
-			m_OutputStream << "{\"otherData\": {},\"traceEvents\":[";
+			m_OutputStream << "{\"otherData\": {},\"traceEvents\":[{}";
 			m_OutputStream.flush();
 		}
 
@@ -120,6 +123,10 @@ namespace Ghost {
 				m_CurrentSession = nullptr;
 			}
 		}
+	private:
+		std::mutex m_Mutex;
+		InstrumentationSession* m_CurrentSession;
+		std::ofstream m_OutputStream;
 	};
 
 	class InstrumentationTimer
