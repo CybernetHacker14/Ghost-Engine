@@ -85,9 +85,6 @@
 
 #endif
 
-#undef min
-#undef max
-
 namespace entt {
 
 

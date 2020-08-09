@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Ghost.h" />
+    <ClInclude Include="src\Ghost\Camera\Camera.h" />
     <ClInclude Include="src\Ghost\Camera\Controllers\OrthographicCameraController.h" />
     <ClInclude Include="src\Ghost\Camera\OrthographicCamera.h" />
     <ClInclude Include="src\Ghost\Core\Application.h" />
@@ -177,7 +178,9 @@
     <ClInclude Include="src\Ghost\Renderer\Texture.h" />
     <ClInclude Include="src\Ghost\Renderer\VertexArray.h" />
     <ClInclude Include="src\Ghost\Scene\Components.h" />
+    <ClInclude Include="src\Ghost\Scene\Entity.h" />
     <ClInclude Include="src\Ghost\Scene\Scene.h" />
+    <ClInclude Include="src\Ghost\Scene\SceneCamera.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
@@ -619,7 +622,9 @@
     <ClCompile Include="src\Ghost\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Texture.cpp" />
     <ClCompile Include="src\Ghost\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Ghost\Scene\Entity.cpp" />
     <ClCompile Include="src\Ghost\Scene\Scene.cpp" />
+    <ClCompile Include="src\Ghost\Scene\SceneCamera.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />

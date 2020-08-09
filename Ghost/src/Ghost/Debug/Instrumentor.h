@@ -190,7 +190,7 @@ namespace Ghost {
 	}
 }
 
-#define GT_PROFILE 0
+#define GT_PROFILE 1
 #if GT_PROFILE
 // Syntax highlighting could mark wrong one in your editor
 #if defined(__GNUC__) || (defined(__MWERKS__) && (__MWERKS__ >= 0x3000)) || (defined(__ICC) && (__ICC >= 600)) || defined(__ghs__)
@@ -213,8 +213,10 @@ namespace Ghost {
 
 #define GT_PROFILE_BEGIN_SESSION(name, filepath)          ::Ghost::Instrumentor::Get().BeginSession(name, filepath)
 #define GT_PROFILE_END_SESSION()                          ::Ghost::Instrumentor::Get().EndSession();
-#define GT_PROFILE_SCOPE(name) constexpr auto fixedName = ::Ghost::InstrumentorUtils::CleanOutputString(name,"__cdecls ");\
-														  ::Ghost::InstrumentationTimer timer##__LINE__(name);
+#define GT_PROFILE_SCOPE_LINE2(name, line) constexpr auto fixedName##line =::Ghost::InstrumentorUtils::CleanOutputString(name, "__cdecl ");\
+::Ghost::InstrumentationTimer timer##line(fixedName##line.Data);
+#define GT_PROFILE_SCOPE_LINE(name, line) GT_PROFILE_SCOPE_LINE2(name, line);
+#define GT_PROFILE_SCOPE(name) GT_PROFILE_SCOPE_LINE(name, __LINE__)
 #define GT_PROFILE_FUNCTION()                             GT_PROFILE_SCOPE(GT_FUNC_SIG)
 #else
 #define GT_PROFILE_BEGIN_SESSION(name, filepath)

@@ -18,5 +18,7 @@
 #include "Ghost/Debug/Instrumentor.h"
 
 #ifdef GT_PLATFORM_WINDOWS
+#undef min
+#undef max
 #include <Windows.h>
 #endif // GT_PLATFORM_WINDOWS

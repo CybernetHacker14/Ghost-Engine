@@ -31,6 +31,9 @@
     <Filter Include="src\Ghost\Renderer">
       <UniqueIdentifier>{E7E13585-D3C5-F6DA-3C26-F12D2829E15C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Ghost\Scene">
+      <UniqueIdentifier>{FECAE89C-6A56-5661-7367-D955DF71B261}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
@@ -68,6 +71,9 @@
   <ItemGroup>
     <ClInclude Include="src\Ghost.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Camera\Camera.h">
+      <Filter>src\Ghost\Camera</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Camera\Controllers\OrthographicCameraController.h">
       <Filter>src\Ghost\Camera\Controllers</Filter>
@@ -161,6 +167,15 @@
     </ClInclude>
     <ClInclude Include="src\Ghost\Renderer\VertexArray.h">
       <Filter>src\Ghost\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Scene\Components.h">
+      <Filter>src\Ghost\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Scene\Entity.h">
+      <Filter>src\Ghost\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Scene\Scene.h">
+      <Filter>src\Ghost\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1416,8 +1431,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Scene\Scene.h" />
-    <ClInclude Include="src\Ghost\Scene\Components.h" />
+    <ClInclude Include="src\Ghost\Scene\SceneCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp">
@@ -1483,6 +1497,12 @@
     <ClCompile Include="src\Ghost\Renderer\VertexArray.cpp">
       <Filter>src\Ghost\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ghost\Scene\Entity.cpp">
+      <Filter>src\Ghost\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Ghost\Scene\Scene.cpp">
+      <Filter>src\Ghost\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1516,6 +1536,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ghost\Scene\Scene.cpp" />
+    <ClCompile Include="src\Ghost\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

@@ -18,6 +18,7 @@
 #include "Ghost/ImGui/ImGuiLayer.h"
 
 #include "Ghost/Scene/Scene.h"
+#include "Ghost/Scene/Entity.h"
 #include "Ghost/Scene/Components.h"
 
 // --Renderer----------------------
