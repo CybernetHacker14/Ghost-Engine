@@ -148,11 +148,19 @@ namespace Ghost {
 		ImGui::Begin("Properties");
 		if (m_SquareEntity) {
 			ImGui::Separator();
+
 			auto& tag = m_SquareEntity.GetComponent<TagComponent>().Tag;
 			ImGui::Text("%s", tag.c_str());
 
 			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
 			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+
+			ImGui::Separator();
+
+			auto& position = m_SquareEntity.GetComponent<TransformComponent>().Transform[3];
+			ImGui::Text("Transform");
+			ImGui::DragFloat3("", glm::value_ptr(position));
+
 			ImGui::Separator();
 		}
 		ImGui::End();
