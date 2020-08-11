@@ -1,6 +1,5 @@
 # Ghost-Engine
-An Work-In-Progress engine written in C++ for the Windows Operating System.  
-Following tutorials for learning basics, before starting standalone non-assisted development.
+An Work-In-Progress engine written in C++ for the Windows Operating System.
 
 To generate a Visual Studio solution, run the "Win-GenProjects.bat" file in "scripts" folder.
 
