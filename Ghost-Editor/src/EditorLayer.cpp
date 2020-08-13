@@ -1,4 +1,5 @@
 #include "EditorLayer.h"
+
 #include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
@@ -13,6 +14,8 @@ namespace Ghost {
 	void EditorLayer::OnAttach()
 	{
 		GT_PROFILE_FUNCTION();
+
+		ImGuiConsole::Init();
 
 		m_Texture = Texture2D::Create("assets/textures/crate2_diffuse.png");
 
@@ -30,6 +33,35 @@ namespace Ghost {
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 		m_CameraEntity.AddComponent<CameraComponent>();
+
+		class CameraController : public ScriptableEntity {
+		public:
+			void OnCreate() {
+			}
+
+			void OnDestroy() {
+			}
+
+			void OnUpdate(Timestep ts) {
+				auto& transform = GetComponent<TransformComponent>().Transform;
+				float speed = 5.0f;
+
+				if (Input::IsKeyPressed(KeyCode::A)) {
+					transform[3][0] -= speed * ts;
+				}
+				if (Input::IsKeyPressed(KeyCode::D)) {
+					transform[3][0] += speed * ts;
+				}
+				if (Input::IsKeyPressed(KeyCode::W)) {
+					transform[3][1] += speed * ts;
+				}
+				if (Input::IsKeyPressed(KeyCode::S)) {
+					transform[3][1] -= speed * ts;
+				}
+			}
+		};
+
+		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 	}
 
 	void EditorLayer::OnDetach()
@@ -163,6 +195,10 @@ namespace Ghost {
 
 			ImGui::Separator();
 		}
+		ImGui::End();
+
+		ImGui::Begin("Console");
+		ImGuiConsole::Draw();
 		ImGui::End();
 
 		ImGui::End();

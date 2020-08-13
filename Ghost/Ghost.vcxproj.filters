@@ -132,9 +132,6 @@
     <ClInclude Include="src\Ghost\ImGui\ImGuiLayer.h">
       <Filter>src\Ghost\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\ImGui\Utilities\ImGuiConsole.h">
-      <Filter>src\Ghost\ImGui\Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="src\Ghost\Renderer\Buffer.h">
       <Filter>src\Ghost\Renderer</Filter>
     </ClInclude>
@@ -175,6 +172,9 @@
       <Filter>src\Ghost\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Scene\Scene.h">
+      <Filter>src\Ghost\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Scene\SceneCamera.h">
       <Filter>src\Ghost\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
@@ -1431,7 +1431,10 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ghost\Scene\SceneCamera.h" />
+    <ClInclude Include="src\Ghost\ImGui\ImGuiConsole.h">
+      <Filter>src\Ghost\ImGui\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ghost\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp">
@@ -1460,9 +1463,6 @@
     </ClCompile>
     <ClCompile Include="src\Ghost\ImGui\ImGuiLayer.cpp">
       <Filter>src\Ghost\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ghost\ImGui\Utilities\ImGuiConsole.cpp">
-      <Filter>src\Ghost\ImGui\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="src\Ghost\Renderer\Buffer.cpp">
       <Filter>src\Ghost\Renderer</Filter>
@@ -1503,6 +1503,9 @@
     <ClCompile Include="src\Ghost\Scene\Scene.cpp">
       <Filter>src\Ghost\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ghost\Scene\SceneCamera.cpp">
+      <Filter>src\Ghost\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1536,6 +1539,8 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ghost\Scene\SceneCamera.cpp" />
+    <ClCompile Include="src\Ghost\ImGui\ImGuiConsole.cpp">
+      <Filter>src\Ghost\ImGui\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

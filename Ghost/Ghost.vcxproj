@@ -92,6 +92,9 @@
     <Lib>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -165,7 +168,7 @@
     <ClInclude Include="src\Ghost\Events\KeyEvent.h" />
     <ClInclude Include="src\Ghost\Events\MouseEvent.h" />
     <ClInclude Include="src\Ghost\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Ghost\ImGui\Utilities\ImGuiConsole.h" />
+    <ClInclude Include="src\Ghost\ImGui\ImGuiConsole.h" />
     <ClInclude Include="src\Ghost\Renderer\Buffer.h" />
     <ClInclude Include="src\Ghost\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Ghost\Renderer\GraphicsContext.h" />
@@ -181,6 +184,7 @@
     <ClInclude Include="src\Ghost\Scene\Entity.h" />
     <ClInclude Include="src\Ghost\Scene\Scene.h" />
     <ClInclude Include="src\Ghost\Scene\SceneCamera.h" />
+    <ClInclude Include="src\Ghost\Scene\ScriptableEntity.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
@@ -610,7 +614,7 @@
     <ClCompile Include="src\Ghost\Core\Window.cpp" />
     <ClCompile Include="src\Ghost\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Ghost\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Ghost\ImGui\Utilities\ImGuiConsole.cpp" />
+    <ClCompile Include="src\Ghost\ImGui\ImGuiConsole.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Ghost\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Ghost\Renderer\GraphicsContext.cpp" />

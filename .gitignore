@@ -7,3 +7,10 @@ bin-int/
 *.user
 *.json
 *.log
+
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user

@@ -43,7 +43,8 @@ project "Ghost"
 	pchheader "gtpch.h"
 	pchsource "Ghost/src/gtpch.cpp"
 
-	files{
+	files
+	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/stb_image/**.h",
@@ -52,12 +53,14 @@ project "Ghost"
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 	
-	defines{
+	defines
+	{
 		"_CRT_SECURE_NO_WARNINGS",
 		"GLFW_INCLUDE_NONE"
 	}
 
-	includedirs{
+	includedirs
+	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
@@ -68,7 +71,8 @@ project "Ghost"
 		"%{IncludeDir.entt}"
 	}
 	
-	links{
+	links
+	{
 		"GLFW",
 		"Glad",
 		"ImGui",
@@ -78,7 +82,8 @@ project "Ghost"
 	filter "system:windows"
 		systemversion "latest"
 
-		defines{
+		defines
+		{
 
 		}
 
@@ -107,12 +112,14 @@ project "Sandbox"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files{
+	files
+	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs{
+	includedirs
+	{
 		"Ghost/vendor/spdlog/include",
 		"Ghost/src",
 		"Ghost/vendor",
@@ -120,7 +127,8 @@ project "Sandbox"
 		"%{IncludeDir.entt}"
 	}
 
-	links{
+	links
+	{
 		"Ghost"
 	}
 
@@ -153,12 +161,14 @@ project "Ghost-Editor"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files{
+	files
+	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs{
+	includedirs
+	{
 		"Ghost/vendor/spdlog/include",
 		"Ghost/src",
 		"Ghost/vendor",
@@ -166,7 +176,8 @@ project "Ghost-Editor"
 		"%{IncludeDir.entt}"
 	}
 
-	links{
+	links
+	{
 		"Ghost"
 	}
 

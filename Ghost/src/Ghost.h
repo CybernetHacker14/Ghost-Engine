@@ -17,8 +17,11 @@
 
 #include "Ghost/ImGui/ImGuiLayer.h"
 
+#include "Ghost/ImGui/ImGuiConsole.h"
+
 #include "Ghost/Scene/Scene.h"
 #include "Ghost/Scene/Entity.h"
+#include "Ghost/Scene/ScriptableEntity.h"
 #include "Ghost/Scene/Components.h"
 
 // --Renderer----------------------
