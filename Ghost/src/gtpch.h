@@ -1,5 +1,14 @@
 #pragma once
 
+#include "Ghost/Core/PlatformDetection.h"
+
+#ifdef GT_PLATFORM_WINDOWS
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif // !NOMINMAX
+
+#endif // GT_PLATFORM_WINDOWS
+
 #include <iostream>
 #include <memory>
 #include <utility>
@@ -18,7 +27,5 @@
 #include "Ghost/Debug/Instrumentor.h"
 
 #ifdef GT_PLATFORM_WINDOWS
-#undef min
-#undef max
 #include <Windows.h>
 #endif // GT_PLATFORM_WINDOWS

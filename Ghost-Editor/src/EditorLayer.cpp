@@ -15,7 +15,12 @@ namespace Ghost {
 	{
 		GT_PROFILE_FUNCTION();
 
-		ImGuiConsole::Init();
+		ImGuiConsole::Log("This is a log statement");
+		ImGuiConsole::Log("This is a long statement with parameters: %d, %f, %s", 69, 420.0f, "Hello");
+		ImGuiConsole::LogWarning("This is a warning statement");
+		ImGuiConsole::LogWarning("This is a warning statement with parameters: %d, %f, %s", 911, 3.14f, "World");
+		ImGuiConsole::LogError("This is an error statement");
+		ImGuiConsole::LogError("This is an error statement with parameters: %f, %s, %i", 69.420f, "Folks", 5);
 
 		m_Texture = Texture2D::Create("assets/textures/crate2_diffuse.png");
 
@@ -85,6 +90,10 @@ namespace Ghost {
 		}
 
 		// Update
+		if (Input::IsKeyPressed(KeyCode::G)) {
+			ImGuiConsole::Log("Key G is pressed");
+		}
+
 		if (m_ViewportFocused)
 			m_CameraController.OnUpdate(ts);
 

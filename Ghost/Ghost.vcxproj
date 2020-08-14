@@ -160,6 +160,7 @@
     <ClInclude Include="src\Ghost\Core\LayerStack.h" />
     <ClInclude Include="src\Ghost\Core\Log.h" />
     <ClInclude Include="src\Ghost\Core\MouseCodes.h" />
+    <ClInclude Include="src\Ghost\Core\PlatformDetection.h" />
     <ClInclude Include="src\Ghost\Core\Timestep.h" />
     <ClInclude Include="src\Ghost\Core\Window.h" />
     <ClInclude Include="src\Ghost\Debug\Instrumentor.h" />

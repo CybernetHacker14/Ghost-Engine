@@ -1435,6 +1435,7 @@
       <Filter>src\Ghost\ImGui\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="src\Ghost\Scene\ScriptableEntity.h" />
+    <ClInclude Include="src\Ghost\Core\PlatformDetection.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ghost\Camera\Controllers\OrthographicCameraController.cpp">
