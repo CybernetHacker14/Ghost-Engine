@@ -51,6 +51,14 @@ namespace Ghost {
 				auto& transform = GetComponent<TransformComponent>().Transform;
 				float speed = 5.0f;
 
+				if (Input::IsKeyDown(KeyCode::G)) {
+					ImGuiConsole::LogWarning("G is down");
+				}
+
+				if (Input::IsKeyUp(KeyCode::H)) {
+					ImGuiConsole::LogError("H is up");
+				}
+
 				if (Input::IsKeyPressed(KeyCode::A)) {
 					transform[3][0] -= speed * ts;
 				}
@@ -87,11 +95,6 @@ namespace Ghost {
 			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
 
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-		}
-
-		// Update
-		if (Input::IsKeyPressed(KeyCode::G)) {
-			ImGuiConsole::Log("Key G is pressed");
 		}
 
 		if (m_ViewportFocused)
@@ -205,7 +208,7 @@ namespace Ghost {
 			ImGui::Separator();
 		}
 		ImGui::End();
-
+		static bool open = true;
 		ImGui::Begin("Console");
 		ImGuiConsole::Draw();
 		ImGui::End();

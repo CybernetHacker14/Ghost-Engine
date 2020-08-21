@@ -36,6 +36,7 @@ namespace Ghost {
 		void Run();
 		bool OnWindowClosed(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
+
 	private:
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;

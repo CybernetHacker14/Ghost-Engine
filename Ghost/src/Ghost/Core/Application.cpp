@@ -95,7 +95,10 @@ namespace Ghost {
 				for (Layer* layer : m_layerStack)
 					layer->OnImGuiRender();
 			}
+
 			m_ImGuiLayer->End();
+
+			Input::OnUpdate();
 
 			m_Window->OnUpdate();
 		}

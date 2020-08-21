@@ -23,6 +23,7 @@
 #include <unordered_set>
 
 #include "Ghost/Core/Log.h"
+#include "Ghost/ImGui/ImGuiConsole.h"
 
 #include "Ghost/Debug/Instrumentor.h"
 

@@ -13,6 +13,9 @@ namespace Ghost {
 			Clear();
 		}
 
+		ImGui::Separator();
+		ImGui::Separator();
+
 		for (uint32_t i = 0; i < ImGuiConsole::s_LogMessageCount; i++) {
 			if (s_MessageBuffer.at(i).m_MessageLevel == Message::Level::Info) {
 				ImGui::TextColored({ 1.0f, 1.0f, 1.0f, 1.0f }, s_MessageBuffer.at(i).m_MessageData.c_str());
