@@ -35,6 +35,8 @@ namespace Ghost {
 
 		GT_CORE_ASSERT(versionMajor > 4 || (versionMajor == 4 && versionMinor >= 5), "Ghost requires atleast OpenGL version 4.5");
 		#endif // GT_ENABLE_ASSERTS
+		GT_CORE_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5),
+			"Ghost requires atleast OpenGL version 4.5");
 	}
 
 	void OpenGLContext::SwapBuffers()

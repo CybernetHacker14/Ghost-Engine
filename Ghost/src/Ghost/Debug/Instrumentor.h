@@ -8,6 +8,10 @@
 #include <iomanip>
 #include <string>
 #include <thread>
+#include <mutex>
+#include <sstream>
+
+#include "Ghost/Core/Log.h"
 
 namespace Ghost {
 	using FloatingPointMicroseconds = std::chrono::duration<double, std::micro>;

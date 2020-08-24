@@ -1,6 +1,8 @@
 #pragma once
 
-#include "gtpch.h"
+#include <functional>
+
+#include "Ghost/Debug/Instrumentor.h"
 #include "Ghost/Core/Base.h"
 
 namespace Ghost {

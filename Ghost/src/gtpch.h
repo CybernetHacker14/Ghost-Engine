@@ -4,6 +4,7 @@
 
 #ifdef GT_PLATFORM_WINDOWS
 #ifndef NOMINMAX
+// See github.com/skypjack/entt/wiki/Frequently-Asked-Questions#warning-c4003-the-min-the-max-and-the-macro
 #define NOMINMAX
 #endif // !NOMINMAX
 
@@ -22,8 +23,10 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Ghost/Core/Base.h"
+
 #include "Ghost/Core/Log.h"
-#include "Ghost/ImGui/ImGuiConsole.h"
+#include "Ghost/ImGui/Utilities/ImGuiConsole.h"
 
 #include "Ghost/Debug/Instrumentor.h"
 

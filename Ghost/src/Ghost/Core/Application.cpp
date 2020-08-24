@@ -82,21 +82,22 @@ namespace Ghost {
 			m_LastFrameTime = time;
 
 			if (!m_Minimized) {
-				GT_PROFILE_SCOPE("LayerStack OnUpdate");
+				{
+					GT_PROFILE_SCOPE("LayerStack OnUpdate");
 
-				for (Layer* layer : m_layerStack)
-					layer->OnUpdate(timestep);
+					for (Layer* layer : m_layerStack)
+						layer->OnUpdate(timestep);
+				}
+
+				m_ImGuiLayer->Begin();
+				{
+					GT_PROFILE_SCOPE("LayerStack OnImGuiRender");
+
+					for (Layer* layer : m_layerStack)
+						layer->OnImGuiRender();
+				}
+				m_ImGuiLayer->End();
 			}
-
-			m_ImGuiLayer->Begin();
-			{
-				GT_PROFILE_SCOPE("LayerStack OnImGuiRender");
-
-				for (Layer* layer : m_layerStack)
-					layer->OnImGuiRender();
-			}
-
-			m_ImGuiLayer->End();
 
 			Input::OnUpdate();
 

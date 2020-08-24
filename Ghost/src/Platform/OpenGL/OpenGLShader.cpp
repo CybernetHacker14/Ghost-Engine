@@ -45,7 +45,7 @@ namespace Ghost {
 		GT_PROFILE_FUNCTION();
 
 		std::string result;
-		std::ifstream in(filepath, std::ios::in | std::ios::binary);
+		std::ifstream in(filepath, std::ios::in | std::ios::binary);// ifstream closes itself due to RAII
 		if (in) {
 			in.seekg(0, std::ios::end);
 			size_t size = in.tellg();
