@@ -51,8 +51,7 @@ This will generate a Visual Studio 2019 solution with appropriate settings.
 
 The `Win-GenProjects.bat` file can also be edited to generate a Visual Studio 2017
 solution by changing:  
-`call vendor\premake\bin\premake5.exe vs2019` to  
-`call vendor\premake\bin\premake5.exe vs2017`
+`call vendor\premake\bin\premake5.exe vs2019` to `call vendor\premake\bin\premake5.exe vs2017`
 
 ***
 
