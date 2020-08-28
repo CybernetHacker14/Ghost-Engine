@@ -152,12 +152,12 @@ namespace Ghost {
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool Input::IsKeyDown(KeyCode keycode)
+	bool Input::IsKeyDown(const KeyCode keycode)
 	{
 		return GetKey(keycode) && !s_KeyStateMap[keycode];
 	}
 
-	bool Input::IsKeyUp(KeyCode keycode)
+	bool Input::IsKeyUp(const KeyCode keycode)
 	{
 		return !GetKey(keycode) && s_KeyStateMap[keycode];
 	}
@@ -168,12 +168,12 @@ namespace Ghost {
 		return state == GLFW_PRESS;
 	}
 
-	bool Input::IsMouseButtonDown(MouseCode button)
+	bool Input::IsMouseButtonDown(const MouseCode button)
 	{
 		return GetMouseButton(button) && !s_MouseButtonStateMap[button];
 	}
 
-	bool Input::IsMouseButtonUp(MouseCode button)
+	bool Input::IsMouseButtonUp(const MouseCode button)
 	{
 		return !GetMouseButton(button) && s_MouseButtonStateMap[button];
 	}
@@ -196,13 +196,13 @@ namespace Ghost {
 		return GetMousePosition().y;
 	}
 
-	bool Input::GetKey(KeyCode keycode)
+	bool Input::GetKey(const KeyCode keycode)
 	{
 		return glfwGetKey(static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow()),
 			static_cast<int32_t>(keycode)) == GLFW_PRESS;
 	}
 
-	bool Input::GetMouseButton(MouseCode mousecode)
+	bool Input::GetMouseButton(const MouseCode mousecode)
 	{
 		return glfwGetMouseButton(static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow()),
 			static_cast<int32_t>(mousecode)) == GLFW_PRESS;

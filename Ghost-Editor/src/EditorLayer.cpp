@@ -16,7 +16,7 @@ namespace Ghost {
 		GT_PROFILE_FUNCTION();
 
 		ImGuiConsole::Log("This is a log statement");
-		ImGuiConsole::Log("This is a long statement with parameters: %d, %f, %s", 69, 420.0f, "Hello");
+		ImGuiConsole::Log("This is a log statement with parameters: %d, %f, %s", 69, 420.0f, "Hello");
 		ImGuiConsole::LogWarning("This is a warning statement");
 		ImGuiConsole::LogWarning("This is a warning statement with parameters: %d, %f, %s", 911, 3.14f, "World");
 		ImGuiConsole::LogError("This is an error statement");
@@ -75,6 +75,8 @@ namespace Ghost {
 		};
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
 	void EditorLayer::OnDetach()
@@ -175,6 +177,8 @@ namespace Ghost {
 			ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0,1 }, ImVec2{ 1,0 });
 		ImGui::End();
 		ImGui::PopStyleVar();
+
+		m_SceneHierarchyPanel.OnImGuiRender();
 
 		ImGui::Begin("Renderer2D Statistics");
 		auto stats = Ghost::Renderer2D::GetStats();
