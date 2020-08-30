@@ -66,7 +66,8 @@ namespace Ghost {
 			{
 				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-				Renderer2D::DrawQuad(transform, sprite.Color);
+				//Renderer2D::DrawQuad(transform, sprite.Color);
+				Renderer2D::DrawQuad(transform, sprite.Texture, 1.0f, sprite.Color);
 			}
 
 			Renderer2D::EndScene();

@@ -7,7 +7,7 @@
 
 namespace Ghost {
 	EditorLayer::EditorLayer()
-		:Layer("EditorLayer"), m_CameraController(1600.0f / 900.0f)
+		:Layer("EditorLayer"), m_CameraController(1920.0f / 1080.0f)
 	{
 	}
 
@@ -22,7 +22,7 @@ namespace Ghost {
 		ImGuiConsole::LogError("This is an error statement");
 		ImGuiConsole::LogError("This is an error statement with parameters: %f, %s, %i", 69.420f, "Folks", 5);
 
-		m_Texture = Texture2D::Create("assets/textures/crate2_diffuse.png");
+		// m_Texture = Texture2D::Create("assets/textures/crate2_diffuse.png");
 
 		FramebufferSpecification fbSpec;
 		fbSpec.Width = 1280;
@@ -34,7 +34,8 @@ namespace Ghost {
 
 		// Entity
 		m_SquareEntity = m_ActiveScene->CreateEntity("Square");
-		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f },
+			Texture2D::Create("assets/textures/test_texture.png"));
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 		m_CameraEntity.AddComponent<CameraComponent>();
@@ -101,6 +102,11 @@ namespace Ghost {
 
 		if (m_ViewportFocused)
 			m_CameraController.OnUpdate(ts);
+
+		m_SquareEntity.GetComponent<TransformComponent>().Transform =
+			glm::translate(glm::mat4(1.0f), m_SquareEntityTranslation)
+			* glm::rotate(glm::mat4(1.0f), glm::radians(m_SquareEntityRotation), { 0.0f, 0.0f, 1.0f })
+			* glm::scale(glm::mat4(1.0f), { m_SquareEntityScaling.x, m_SquareEntityScaling.y, 1.0f });
 
 		// Render
 		Renderer2D::ResetStats();
@@ -198,17 +204,16 @@ namespace Ghost {
 		if (m_SquareEntity) {
 			ImGui::Separator();
 
-			auto& tag = m_SquareEntity.GetComponent<TagComponent>().Tag;
-			ImGui::Text("%s", tag.c_str());
-
+			ImGui::Text("Color");
 			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
-			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+			ImGui::ColorEdit4("", glm::value_ptr(squareColor));
 
 			ImGui::Separator();
 
-			auto& position = m_SquareEntity.GetComponent<TransformComponent>().Transform[3];
 			ImGui::Text("Transform");
-			ImGui::DragFloat3("", glm::value_ptr(position));
+			ImGui::DragFloat3("Position", (float*)&m_SquareEntityTranslation);
+			ImGui::DragFloat("Rotation", &m_SquareEntityRotation);
+			ImGui::DragFloat2("Scale", (float*)&m_SquareEntityScaling);
 
 			ImGui::Separator();
 		}

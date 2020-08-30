@@ -29,10 +29,14 @@ namespace Ghost {
 		Entity m_SquareEntity;
 		Entity m_CameraEntity;
 
-		Ref<Texture2D> m_Texture;
+		// Ref<Texture2D> m_Texture;
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
+
+		glm::vec3 m_SquareEntityTranslation = { 0.0f, 0.0f, 0.0f };
+		float m_SquareEntityRotation = 0.0f;
+		glm::vec2 m_SquareEntityScaling = { 1.0f, 1.0f };
 
 		// Panels
 		SceneHierarchyPanel m_SceneHierarchyPanel;

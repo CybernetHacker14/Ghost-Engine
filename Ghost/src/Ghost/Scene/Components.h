@@ -5,6 +5,8 @@
 #include "Ghost/Scene/SceneCamera.h"
 #include "Ghost/Scene/ScriptableEntity.h"
 
+#include "Ghost/Renderer/Texture.h"
+
 namespace Ghost {
 	struct TagComponent {
 		std::string Tag;
@@ -29,11 +31,14 @@ namespace Ghost {
 
 	struct SpriteRendererComponent {
 		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
+		Ref<Texture2D> Texture;
 
 		SpriteRendererComponent() = default;
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
 		SpriteRendererComponent(const glm::vec4& color)
 			:Color(color) {}
+		SpriteRendererComponent(const glm::vec4& color, const Ref<Texture2D>& texture)
+			:Color(color), Texture(texture) {}
 	};
 
 	struct CameraComponent {

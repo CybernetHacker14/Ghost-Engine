@@ -17,7 +17,7 @@ namespace Ghost {
 	class Application
 	{
 	public:
-		Application(const std::string& name = "Ghost App");
+		Application(const std::string& name = "Ghost Engine");
 		virtual ~Application();
 
 		void OnEvent(Event& e);

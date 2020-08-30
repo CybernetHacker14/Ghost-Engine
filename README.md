@@ -28,6 +28,7 @@ Right now, this engine has been developed for the **Windows OS only**, with
  * Input Polling
  * Internal Key and Mouse Codes
  * Timesteps, Vsync, Delta Time
+ * Visual Profiling (uses chrome://tracing)
  * Shaders and Textures
  * 2D Rendering pipeline - VertexBuffers, IndexBuffers, VertexArrays
  * Simplified API for drawing colored and textured quads.
