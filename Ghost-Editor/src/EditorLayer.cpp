@@ -34,8 +34,7 @@ namespace Ghost {
 
 		// Entity
 		m_SquareEntity = m_ActiveScene->CreateEntity("Square");
-		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f },
-			Texture2D::Create("assets/textures/test_texture.png"));
+		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 		m_CameraEntity.AddComponent<CameraComponent>();
@@ -102,11 +101,6 @@ namespace Ghost {
 
 		if (m_ViewportFocused)
 			m_CameraController.OnUpdate(ts);
-
-		m_SquareEntity.GetComponent<TransformComponent>().Transform =
-			glm::translate(glm::mat4(1.0f), m_SquareEntityTranslation)
-			* glm::rotate(glm::mat4(1.0f), glm::radians(m_SquareEntityRotation), { 0.0f, 0.0f, 1.0f })
-			* glm::scale(glm::mat4(1.0f), { m_SquareEntityScaling.x, m_SquareEntityScaling.y, 1.0f });
 
 		// Render
 		Renderer2D::ResetStats();
@@ -200,7 +194,7 @@ namespace Ghost {
 		ImGui::Text("OpenGL Version : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Version);
 		ImGui::End();
 
-		ImGui::Begin("Properties");
+		/*ImGui::Begin("Properties");
 		if (m_SquareEntity) {
 			ImGui::Separator();
 
@@ -217,7 +211,8 @@ namespace Ghost {
 
 			ImGui::Separator();
 		}
-		ImGui::End();
+		ImGui::End();*/
+
 		static bool open = true;
 		ImGui::Begin("Console");
 		ImGuiConsole::Draw();

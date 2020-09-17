@@ -29,6 +29,16 @@ namespace Ghost {
 		operator const glm::mat4& () const { return Transform; }
 	};
 
+	struct SpriteTextureComponent {
+		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
+		Ref<Texture2D> Texture;
+
+		SpriteTextureComponent() = default;
+		SpriteTextureComponent(const SpriteTextureComponent&) = default;
+		SpriteTextureComponent(const glm::vec4& color, const Ref<Texture2D>& texture)
+			:Color(color), Texture(texture) {}
+	};
+
 	struct SpriteRendererComponent {
 		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
 		Ref<Texture2D> Texture;
@@ -36,7 +46,9 @@ namespace Ghost {
 		SpriteRendererComponent() = default;
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
 		SpriteRendererComponent(const glm::vec4& color)
-			:Color(color) {}
+			:Color(color) {
+			Texture = nullptr;
+		}
 		SpriteRendererComponent(const glm::vec4& color, const Ref<Texture2D>& texture)
 			:Color(color), Texture(texture) {}
 	};
