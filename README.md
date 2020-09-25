@@ -24,17 +24,18 @@ Right now, this engine has been developed for the **Windows OS only**, with
  * LayerStack and Layers
  * Modern OpenGL setup, using Glad
  * ImGui, Docking, Frambuffers and ImGui Viewport
- * ImGui Console Logging
  * Input Polling
  * Internal Key and Mouse Codes
  * Timesteps, Vsync, Delta Time
- * Visual Profiling (uses chrome://tracing)
+ * Visual Profiling (uses [Chrome Tracing](chrome://tracing))
  * Shaders and Textures
  * 2D Rendering pipeline - VertexBuffers, IndexBuffers, VertexArrays
  * Simplified API for drawing colored and textured quads.
  * Entity Component System
  * Native C++ scripting
+ * ImGui Console Logging
  * ImGui Scene Hierarchy Panel
+ * ImGui Properties Panel
 
 ***
 
