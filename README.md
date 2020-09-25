@@ -78,6 +78,12 @@ solution by changing:
 
 ***
 
+<ins>**Screenshot:**</ins>
+
+![Screenshot_1](Images/Screenshot_1.png)
+
+***
+
 <ins>**Note from creator:**</ins>
 
 This project serves as a means for me to learning core engine development, graphics programming,
