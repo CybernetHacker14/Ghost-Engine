@@ -34,7 +34,7 @@ namespace Ghost {
 
 		// Entity
 		m_SquareEntity = m_ActiveScene->CreateEntity("Square");
-		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f }, Texture2D::Create("assets/textures/test_texture.png"));
+		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 1.0f, 1.0f, 1.0f }, Texture2D::Create("assets/textures/test_texture.png"));
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 		m_CameraEntity.AddComponent<CameraComponent>();
@@ -52,11 +52,15 @@ namespace Ghost {
 				float speed = 5.0f;
 
 				if (Input::IsKeyDown(Key::G)) {
-					ImGuiConsole::LogWarning("G is down");
+					ImGuiConsole::LogWarning("G is pressed once");
 				}
 
 				if (Input::IsKeyUp(Key::H)) {
-					ImGuiConsole::LogError("H is up");
+					ImGuiConsole::LogError("H is released");
+				}
+
+				if (Input::IsKeyPressed(Key::J)) {
+					ImGuiConsole::Log("J is pressed");
 				}
 
 				if (Input::IsKeyPressed(Key::A)) {
@@ -77,6 +81,8 @@ namespace Ghost {
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
+		ImGuiAssetBrowser::Init();
 	}
 
 	void EditorLayer::OnDetach()
@@ -194,9 +200,12 @@ namespace Ghost {
 		ImGui::Text("OpenGL Version : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Version);
 		ImGui::End();
 
-		static bool open = true;
 		ImGui::Begin("Console");
 		ImGuiConsole::Draw();
+		ImGui::End();
+
+		ImGui::Begin("Project");
+		ImGuiAssetBrowser::Draw();
 		ImGui::End();
 
 		ImGui::End();

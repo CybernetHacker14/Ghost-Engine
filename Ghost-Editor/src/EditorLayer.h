@@ -29,8 +29,6 @@ namespace Ghost {
 		Entity m_SquareEntity;
 		Entity m_CameraEntity;
 
-		// Ref<Texture2D> m_Texture;
-
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 

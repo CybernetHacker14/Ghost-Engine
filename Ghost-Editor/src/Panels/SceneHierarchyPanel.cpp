@@ -82,7 +82,7 @@ namespace Ghost {
 				auto& spriteRenderer = entity.GetComponent<SpriteRendererComponent>();
 				ImGui::ColorEdit4("Color", glm::value_ptr(spriteRenderer.Color));
 				if (ImGui::TreeNodeEx((void*)typeid(SpriteRendererComponent::Texture).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Texture")) {
-					ImGui::Image(reinterpret_cast<void*>(spriteRenderer.Texture->GetRendererID()), ImVec2{ 60, 60 }, ImVec2{ 0,1 }, ImVec2{ 1,0 });
+					ImGui::ImageButton(reinterpret_cast<void*>(spriteRenderer.Texture->GetRendererID()), ImVec2{ 60, 60 }, ImVec2{ 0,1 }, ImVec2{ 1,0 });
 					ImGui::TreePop();
 				}
 				ImGui::TreePop();

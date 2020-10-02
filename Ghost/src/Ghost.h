@@ -18,6 +18,7 @@
 #include "Ghost/ImGui/ImGuiLayer.h"
 
 #include "Ghost/ImGui/Utilities/ImGuiConsole.h"
+#include "Ghost/ImGui/Utilities/ImGuiAssetBrowser.h"
 
 #include "Ghost/Scene/Scene.h"
 #include "Ghost/Scene/Entity.h"
