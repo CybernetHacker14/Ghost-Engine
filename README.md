@@ -68,7 +68,7 @@ solution by changing:
  * GLSL (Shader Language)
  * Lua (Premake)
 
-<ins>*External Libraries:*</ins> 
+<ins>*External Libraries Used:*</ins> 
  * [GLFW](https://www.glfw.org/)
  * [Glad](https://glad.dav1d.de/)
  * [ImGui](https://github.com/ocornut/imgui)
@@ -85,7 +85,7 @@ solution by changing:
 
 ***
 
-<ins>**Note from creator:**</ins>
+<ins>**Note from the creator:**</ins>
 
 This project serves as a means for me to learning core engine development, graphics programming,
 mathematics and other stuff. This is formed by watching YouTube series on engine development 
