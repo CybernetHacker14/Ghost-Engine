@@ -16,13 +16,8 @@
 #define GT_DEBUGBREAK()
 #endif // GT_DEBUG
 
-#ifdef GT_ENABLE_ASSERTS
-#define GT_ASSERT(x, ...) { if(!(x)) { GT_ERROR("Assetion Failed: {0}",__VA_ARGS__); GT_DEBUGBREAK(); } }
-#define GT_CORE_ASSERT(x, ...) { if(!(x)) { GT_CORE_ERROR("Assertion Failed: {0}",__VA_ARGS__); GT_DEBUGBREAK(); } }
-#else
-#define GT_ASSERT(x, ...)
-#define GT_CORE_ASSERT(x, ...)
-#endif // GT_ENABLE_ASSERTS
+#define GT_EXPAND_MACRO(x) x
+#define GT_STRINGIFY_MACRO(x) #x
 
 #define BIT(x) (1 << x)
 
@@ -45,3 +40,6 @@ namespace Ghost {
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
 }
+
+#include "Ghost/Core/Log.h"
+#include "Ghost/Core/Assert.h"

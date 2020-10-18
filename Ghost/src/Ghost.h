@@ -7,6 +7,7 @@
 #include "Ghost/Core/Application.h"
 #include "Ghost/Core/Layer.h"
 #include "Ghost/Core/Log.h"
+#include "Ghost/Core/Assert.h"
 
 #include "Ghost/Core/Timestep.h"
 
