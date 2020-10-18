@@ -16,7 +16,7 @@ Right now, this engine has been developed for the **Windows OS only**, with
 
 ***
 
-<ins>**Implemented Features**</ins>
+<ins>**Implemented Features:**</ins>
 
  * Premake Setup
  * Console Logging
