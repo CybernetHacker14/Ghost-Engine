@@ -60,7 +60,8 @@
 };*/
 #pragma endregion
 
-namespace Ghost {
+namespace Ghost {//opening of ghost editor class
+	
 	class GhostEditor : public Application {
 	public:
 		GhostEditor() {
@@ -73,6 +74,6 @@ namespace Ghost {
 	};
 
 	Application* CreateApplication() {
-		return new GhostEditor(); // reference using extern in EntryPoint.h
+		return new GhostEditor(); // reference using external in EntryPoint.h
 	}
 }
