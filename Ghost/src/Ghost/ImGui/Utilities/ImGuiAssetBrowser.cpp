@@ -10,15 +10,6 @@ namespace Ghost {
 
 	void ImGuiAssetBrowser::Init()
 	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.Fonts->AddFontDefault();
-
-		// merge in icons from Font Awesome
-		static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
-		ImFontConfig icons_config;
-		icons_config.MergeMode = true;
-		icons_config.PixelSnapH = true;
-		io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 16.0f, &icons_config, icons_ranges);
 	}
 
 	void ImGuiAssetBrowser::Draw()
@@ -136,7 +127,7 @@ namespace Ghost {
 	{
 		for (const auto& entry : std::filesystem::directory_iterator(path)) {
 			if (!IsDirectory(entry.path())) {
-				return;
+				continue;
 			}
 
 			std::string name = entry.path().filename().string();
@@ -144,10 +135,9 @@ namespace Ghost {
 
 			if (!IsDirectoryEmpty(entry.path())) {
 				treeName = ICON_FA_FOLDER + std::string(" ") + name;
-				bool opened;
 
 				if (!HasSubDirectory(entry.path())) {
-					opened = ImGui::TreeNodeEx(name.c_str(), ImGuiTreeNodeFlags_Leaf, treeName.c_str());
+					bool opened = ImGui::TreeNodeEx(name.c_str(), ImGuiTreeNodeFlags_Leaf, treeName.c_str());
 
 					if (ImGui::IsItemClicked()) {
 						m_CurrentRightPanelDirectoryPath = entry.path();
@@ -157,7 +147,7 @@ namespace Ghost {
 					ImGui::TreePop();
 				}
 				else {
-					opened = ImGui::TreeNodeEx(name.c_str(), ImGuiTreeNodeFlags_OpenOnArrow, treeName.c_str());
+					bool opened = ImGui::TreeNodeEx(name.c_str(), ImGuiTreeNodeFlags_OpenOnArrow, treeName.c_str());
 
 					if (ImGui::IsItemClicked()) {
 						m_CurrentRightPanelDirectoryPath = entry.path();

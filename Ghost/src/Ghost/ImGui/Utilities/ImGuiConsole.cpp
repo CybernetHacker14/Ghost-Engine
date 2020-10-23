@@ -1,5 +1,6 @@
 #include "gtpch.h"
 #include "Ghost/ImGui/Utilities/ImGuiConsole.h"
+#include "Ghost/Fonts/IconsFontAwesome5Pro.h"
 
 #include "imgui.h"
 
@@ -13,22 +14,22 @@ namespace Ghost {
 
 	void ImGuiConsole::Draw()
 	{
-		if (ImGui::Button("Clear", { 50.0f, 20.0f })) {
+		if (ImGui::Button("Clear", { 50.0f, 30.0f })) {
 			Clear();
 		}
 
 		ImGui::SameLine();
-		if (ImGui::Button("Log", { 50.0f, 20.0f })) {
+		if (ImGui::Button("Log", { 50.0f, 30.0f })) {
 			s_ShowInfoMessages = !s_ShowInfoMessages;
 		}
 
 		ImGui::SameLine();
-		if (ImGui::Button("Warn", { 50.0f, 20.0f })) {
+		if (ImGui::Button("Warn", { 50.0f, 30.0f })) {
 			s_ShowWarnMessages = !s_ShowWarnMessages;
 		}
 
 		ImGui::SameLine();
-		if (ImGui::Button("Error", { 50.0f, 20.0f })) {
+		if (ImGui::Button("Error", { 50.0f, 30.0f })) {
 			s_ShowErrorMessages = !s_ShowErrorMessages;
 		}
 

@@ -81,7 +81,7 @@ solution by changing:
 
 <ins>**Screenshot:**</ins>
 
-![Screenshot_1](Images/Screenshot_1.png)
+![Screenshot_1](Images/Screenshot_1.jpg)
 
 ***
 
