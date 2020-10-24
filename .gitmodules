@@ -17,3 +17,4 @@
 [submodule "Ghost/vendor/yaml-cpp"]
 	path = Ghost/vendor/yaml-cpp
 	url = https://github.com/thecherno/yaml-cpp
+	branch = master
