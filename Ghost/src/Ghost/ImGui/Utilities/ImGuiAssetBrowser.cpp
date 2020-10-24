@@ -116,6 +116,14 @@ namespace Ghost {
 						}
 						break;
 					}
+					case AssetFileType::SCENE:
+					{
+						treeName = std::string(ICON_FA_ARCHIVE) + std::string(" ") + name;
+						if (ImGui::TreeNodeEx(name.c_str(), ImGuiTreeNodeFlags_Leaf, treeName.c_str())) {
+							ImGui::TreePop();
+						}
+						break;
+					}
 				}
 			}
 		}

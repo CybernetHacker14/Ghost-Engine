@@ -14,3 +14,6 @@
 	path = Ghost/vendor/glm
 	url = ../../g-truc/glm
 	branch = master
+[submodule "Ghost/vendor/yaml-cpp"]
+	path = Ghost/vendor/yaml-cpp
+	url = https://github.com/thecherno/yaml-cpp

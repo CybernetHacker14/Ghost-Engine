@@ -1,5 +1,7 @@
 #include "EditorLayer.h"
 
+#include "Ghost/Scene/SceneSerializer.h"
+
 #include <imgui/imgui.h>
 
 #include <glm/gtc/matrix_transform.hpp>
@@ -31,6 +33,8 @@ namespace Ghost {
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
 		m_ActiveScene = CreateRef<Scene>();
+
+		#if 0
 
 		// Entity
 		m_SquareEntity = m_ActiveScene->CreateEntity("Square");
@@ -79,6 +83,8 @@ namespace Ghost {
 		};
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+		#endif
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 
@@ -169,8 +175,18 @@ namespace Ghost {
 		{
 			if (ImGui::BeginMenu("File"))
 			{
+				if (ImGui::MenuItem("Serialize")) {
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.Serialize("assets/scenes/Example.ghost");
+				}
+
+				if (ImGui::MenuItem("Deserialize")) {
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.Deserialize("assets/scenes/Example.ghost");
+				}
+
 				if (ImGui::MenuItem("Exit"))
-					Ghost::Application::Get().Close();
+					Application::Get().Close();
 				ImGui::EndMenu();
 			}
 

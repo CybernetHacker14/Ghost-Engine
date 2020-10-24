@@ -7,6 +7,7 @@ namespace Ghost {
 		PNG = 0,
 		GLSL = 1,
 		TTF = 2,
+		SCENE = 3,
 		NONE = -1
 	};
 
@@ -33,9 +34,10 @@ namespace Ghost {
 
 		inline static std::unordered_map<std::string, AssetFileType> m_FileExtensionMap =
 		{
-			{".png" , AssetFileType::PNG },
-			{".glsl", AssetFileType::GLSL},
-			{".ttf" , AssetFileType::TTF }
+			{".png" ,  AssetFileType::PNG },
+			{".glsl",  AssetFileType::GLSL},
+			{".ttf" ,  AssetFileType::TTF },
+			{".ghost", AssetFileType::SCENE}
 		};
 	};
 }
