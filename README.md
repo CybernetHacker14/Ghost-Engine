@@ -22,20 +22,20 @@ Right now, this engine has been developed for the **Windows OS only**, with
  * Console Logging
  * Event System and Events
  * LayerStack and Layers
- * Modern OpenGL setup, using Glad
- * ImGui, Docking, Frambuffers and ImGui Viewport
- * Input Polling
- * Internal Key and Mouse Codes
+ * Internal Key, Mouse Codes and Input polling
  * Timesteps, Vsync, Delta Time
  * Visual Profiling (uses [Chrome Tracing](chrome://tracing))
- * Shaders and Textures
+ * Modern OpenGL setup, using Glad
  * 2D Rendering pipeline - VertexBuffers, IndexBuffers, VertexArrays
+ * ImGui, Docking, Frambuffers and ImGui Viewport
+ * Shaders and Textures
  * Simplified API for drawing colored and textured quads.
  * Entity Component System
  * Native C++ scripting
  * ImGui Console Logging
  * ImGui Scene Hierarchy Panel
  * ImGui Properties Panel
+ * Scene Serialization and Deserialization using YAML (WIP)
 
 ***
 
@@ -76,6 +76,8 @@ solution by changing:
  * [glm](https://glm.g-truc.net/0.9.9/index.html)
  * [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h)
  * [entt](https://github.com/skypjack/entt)
+ * [yaml-cpp](https://github.com/jbeder/yaml-cpp)
+ * [IconFontCppHeaders](https://github.com/juliettef/IconFontCppHeaders)
 
 ***
 
