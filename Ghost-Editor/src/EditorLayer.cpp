@@ -288,7 +288,7 @@ namespace Ghost {
 	void EditorLayer::OpenScene()
 	{
 		std::optional<std::string> filepath = FileDialogs::OpenFile("Ghost Scene (*.ghost)\0*.ghost\0");
-		if (!filepath) {
+		if (filepath) {
 			m_ActiveScene = CreateRef<Scene>();
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
@@ -301,7 +301,7 @@ namespace Ghost {
 	void EditorLayer::SaveSceneAs()
 	{
 		std::optional<std::string> filepath = FileDialogs::SaveFile("Ghost Scene (*.ghost)\0*.ghost\0");
-		if (!filepath) {
+		if (filepath) {
 			SceneSerializer serializer(m_ActiveScene);
 			serializer.Serialize(*filepath);
 		}
