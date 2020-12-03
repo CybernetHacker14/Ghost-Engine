@@ -25,7 +25,8 @@ project "Ghost-Editor"
 		"%{wks.location}/Ghost/src",
 		"%{wks.location}/Ghost/vendor",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}"
 	}
 
 	links
