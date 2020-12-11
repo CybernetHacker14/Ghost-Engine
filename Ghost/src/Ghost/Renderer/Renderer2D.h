@@ -4,6 +4,8 @@
 #include "Ghost/Camera/OrthographicCamera.h"
 #include "Ghost/Renderer/Texture.h"
 
+#include "Ghost/Renderer/EditorCamera.h"
+
 namespace Ghost {
 	class Renderer2D {
 	public:
@@ -11,6 +13,7 @@ namespace Ghost {
 		static void Shutdown();
 
 		static void BeginScene(const Camera& camera, const glm::mat4& transform);
+		static void BeginScene(const EditorCamera& editorCamera);
 		static void BeginScene(const OrthographicCamera& camera); // TODO: Remove
 		static void EndScene();
 		static void Flush();

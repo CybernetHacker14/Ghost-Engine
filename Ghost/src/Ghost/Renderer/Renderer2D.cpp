@@ -122,6 +122,18 @@ namespace Ghost {
 		StartBatch();
 	}
 
+	void Renderer2D::BeginScene(const EditorCamera& editorCamera)
+	{
+		GT_PROFILE_FUNCTION();
+
+		glm::mat4 viewProj = editorCamera.GetViewProjection();
+
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+		StartBatch();
+	}
+
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
 		GT_PROFILE_FUNCTION();
