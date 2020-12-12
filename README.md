@@ -29,13 +29,15 @@ Right now, this engine has been developed for the **Windows OS only**, with
  * 2D Rendering pipeline - VertexBuffers, IndexBuffers, VertexArrays
  * ImGui, Docking, Frambuffers and ImGui Viewport
  * Shaders and Textures
- * Simplified API for drawing colored and textured quads.
+ * Simplified API for drawing colored and textured quads
  * Entity Component System
  * Native C++ scripting
  * ImGui Console Logging
  * ImGui Scene Hierarchy Panel
  * ImGui Properties Panel
- * Scene Serialization and Deserialization using YAML (WIP)
+ * Scene Serialization and Deserialization using YAML
+ * Editor Gizmos
+ * Editor Camera
 
 ***
 
@@ -78,6 +80,7 @@ solution by changing:
  * [entt](https://github.com/skypjack/entt)
  * [yaml-cpp](https://github.com/jbeder/yaml-cpp)
  * [IconFontCppHeaders](https://github.com/juliettef/IconFontCppHeaders)
+ * [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo)
 
 ***
 
