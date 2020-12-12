@@ -95,39 +95,3 @@ as well as implementing my own little additions. This is NOT, by any means, an e
 from-scratch, all-by-myself, engine, as I am still learning what it takes to make a game 
 engine in the hopes that one day I will be able to atleast create a minimum viable product
 all by myself.
-
-***
-
-<ins>**For Udacity Nanodegree Capstone Project:**</ins>
-
-List of all Rubric points covered in code:
-
- ### Loops, Functions, I/O
-- The project demonstrates an understanding of C++ functions and control structures 
-    - All Files  
-- The project reads data from a file and process the data, or the program writes data to a file 
-    - [WindowsPlatformUtils.cpp](Ghost/src/Platform/Windows/WindowsPlatformUtils.cpp) - Line no. 12, 35
-    - [SceneSerializer.cpp](Ghost/src/Ghost/Scene/SceneSerializer.cpp) - Line 144, 172
-- The project accepts user input and processes the input.
-    - [EditorLayer.cpp](Ghost-Editor/src/EditorLayer.cpp) - Line no. 307 to 351
-    - [WindowsInput.cpp](Ghost/src/Platform/Windows/WindowsInput.cpp) - Line no. 148 to 218
-
-### Object Oriented Programming
-- Templates generalize functions in the project.
-    - [Base.h](Ghost/src/Ghost/Core/Base.h) - Line no. 27, 28, 
-- Derived class functions override virtual base class functions.
-    - [Window.h](Ghost/src/Ghost/Core/Window.h) - Line no. 32, 33
-    - [WindowsWindow.h](Ghost/src/Platform/Windows/WindowsWindow.h) - Line no. 16, 17
-- Classes follow an appropriate inheritance hierarchy.
-    - [Window.h](Ghost/src/Ghost/Core/Window.h)
-    - [WindowsWindow.h](Ghost/src/Platform/Windows/WindowsWindow.h)
-
-### Memory Management
-- The project makes use of references in function declarations.  
-    - [Window.h](Ghost/src/Ghost/Core/Window.h) - Line 36, 43
-- The project uses smart pointers instead of raw pointers.
-    - [Base.h](Ghost/src/Ghost/Core/Base.h) - Line no. 28, 36, 30, 31, 35, 36, 38, 39
-
-### Concurrency
-- A mutex or lock is used in the project.
-    - [Instrumentor.h](Ghost/src/Ghost/Debug/Instrumentor.h) - Line no. 40, 67, 86
