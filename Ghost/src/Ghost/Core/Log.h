@@ -26,11 +26,11 @@ namespace Ghost {
 #define GT_CORE_INFO(...)      ::Ghost::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define GT_CORE_WARN(...)      ::Ghost::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define GT_CORE_ERROR(...)     ::Ghost::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define GT_CORE_FATAL(...)     ::Ghost::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define GT_CORE_CRITICAL(...)     ::Ghost::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define GT_TRACE(...)   ::Ghost::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define GT_INFO(...)    ::Ghost::Log::GetClientLogger()->info(__VA_ARGS__)
 #define GT_WARN(...)    ::Ghost::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define GT_ERROR(...)   ::Ghost::Log::GetClientLogger()->error(__VA_ARGS__)
-#define GT_FATAL(...)   ::Ghost::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define GT_CRITICAL(...)   ::Ghost::Log::GetClientLogger()->critical(__VA_ARGS__)

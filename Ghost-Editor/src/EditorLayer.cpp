@@ -11,14 +11,12 @@
 
 #include "Ghost/Math/Math.h"
 
-namespace Ghost {
+namespace Ghost
+{
 	EditorLayer::EditorLayer()
-		:Layer("EditorLayer"), m_CameraController(1920.0f / 1080.0f)
-	{
-	}
+		:Layer("EditorLayer"), m_CameraController(1920.0f / 1080.0f) {}
 
-	void EditorLayer::OnAttach()
-	{
+	void EditorLayer::OnAttach() {
 		GT_PROFILE_FUNCTION();
 
 		ImGuiConsole::Log("This is a log statement");
@@ -31,6 +29,7 @@ namespace Ghost {
 		// m_Texture = Texture2D::Create("assets/textures/crate2_diffuse.png");
 
 		FramebufferSpecification fbSpec;
+		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 
@@ -40,7 +39,7 @@ namespace Ghost {
 
 		m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 
-		#if 0
+	#if 0
 
 		// Entity
 		m_SquareEntity = m_ActiveScene->CreateEntity("Square");
@@ -51,38 +50,43 @@ namespace Ghost {
 
 		class CameraController : public ScriptableEntity {
 		public:
-			void OnCreate() {
-			}
+			void OnCreate() {}
 
-			void OnDestroy() {
-			}
+			void OnDestroy() {}
 
 			void OnUpdate(Timestep ts) {
 				auto& translation = GetComponent<TransformComponent>().Translation;
 				float speed = 5.0f;
 
-				if (Input::IsKeyDown(Key::G)) {
+				if (Input::IsKeyDown(Key::G))
+				{
 					ImGuiConsole::LogWarning("G is pressed once");
 				}
 
-				if (Input::IsKeyUp(Key::H)) {
+				if (Input::IsKeyUp(Key::H))
+				{
 					ImGuiConsole::LogError("H is released");
 				}
 
-				if (Input::IsKeyPressed(Key::J)) {
+				if (Input::IsKeyPressed(Key::J))
+				{
 					ImGuiConsole::Log("J is pressed");
 				}
 
-				if (Input::IsKeyPressed(Key::A)) {
+				if (Input::IsKeyPressed(Key::A))
+				{
 					translation.x -= speed * ts;
 				}
-				if (Input::IsKeyPressed(Key::D)) {
+				if (Input::IsKeyPressed(Key::D))
+				{
 					translation.x += speed * ts;
 				}
-				if (Input::IsKeyPressed(Key::W)) {
+				if (Input::IsKeyPressed(Key::W))
+				{
 					translation.y += speed * ts;
 				}
-				if (Input::IsKeyPressed(Key::S)) {
+				if (Input::IsKeyPressed(Key::S))
+				{
 					translation.y -= speed * ts;
 				}
 			}
@@ -90,20 +94,18 @@ namespace Ghost {
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 
-		#endif
+	#endif
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 
 		ImGuiAssetBrowser::Init();
 	}
 
-	void EditorLayer::OnDetach()
-	{
+	void EditorLayer::OnDetach() {
 		GT_PROFILE_FUNCTION();
 	}
 
-	void EditorLayer::OnUpdate(Timestep ts)
-	{
+	void EditorLayer::OnUpdate(Timestep ts) {
 		GT_PROFILE_FUNCTION();
 
 		// Resize
@@ -112,12 +114,14 @@ namespace Ghost {
 			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
 		{
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			//m_IDFramebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
 			m_EditorCamera.SetViewportSize(m_ViewportSize.x, m_ViewportSize.y);
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
 
-		if (m_ViewportFocused) {
+		if (m_ViewportFocused)
+		{
 			m_CameraController.OnUpdate(ts);
 		}
 
@@ -128,14 +132,16 @@ namespace Ghost {
 		m_Framebuffer->Bind();
 		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		RenderCommand::Clear();
+		m_Framebuffer->Bind();
 
+		// Update Scene
 		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
+		//m_ActiveScene->DrawIDBuffer(m_IDFramebuffer, m_EditorCamera);
 
 		m_Framebuffer->Unbind();
 	}
 
-	void EditorLayer::OnImGuiRender()
-	{
+	void EditorLayer::OnImGuiRender() {
 		GT_PROFILE_FUNCTION();
 
 		static bool dockspaceOpen = true;
@@ -184,15 +190,18 @@ namespace Ghost {
 		{
 			if (ImGui::BeginMenu("File"))
 			{
-				if (ImGui::MenuItem("New", "Ctrl+N")) {
+				if (ImGui::MenuItem("New", "Ctrl+N"))
+				{
 					NewScene();
 				}
 
-				if (ImGui::MenuItem("Open...", "Ctrl+O")) {
+				if (ImGui::MenuItem("Open...", "Ctrl+O"))
+				{
 					OpenScene();
 				}
 
-				if (ImGui::MenuItem("Save As...", "Ctrl+Shfit+S")) {
+				if (ImGui::MenuItem("Save As...", "Ctrl+Shfit+S"))
+				{
 					SaveSceneAs();
 				}
 
@@ -206,18 +215,31 @@ namespace Ghost {
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });
 		ImGui::Begin("Viewport");
+		auto viewportOffset = ImGui::GetCursorPos(); // includes tab bar;
+
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
 		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused && !m_ViewportHovered);
+
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 		m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+
 		uint64_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image(reinterpret_cast<void*>(textureID),
 			ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0,1 }, ImVec2{ 1,0 });
 
+		auto windowSize = ImGui::GetWindowSize();
+		ImVec2 minBound = ImGui::GetWindowPos();
+		minBound.x += viewportOffset.x;
+		minBound.y += viewportOffset.y;
+
+		ImVec2 maxBound = { minBound.x + windowSize.x , minBound.y + windowSize.y };
+		m_ViewportBounds[0] = { minBound.x, minBound.y };
+		m_ViewportBounds[1] = { maxBound.x, maxBound.y };
+
 		// Gizmos
 		Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
-		if (selectedEntity && m_GizmoType != -1)
+		if (selectedEntity && m_GizmoType != -1 && !Input::IsKeyPressed(Key::LeftAlt))
 		{
 			ImGuizmo::SetOrthographic(false);
 			ImGuizmo::SetDrawlist();
@@ -244,7 +266,8 @@ namespace Ghost {
 			bool snap = Input::IsKeyPressed(Key::LeftControl);
 			float snapValue = 0.5f; // Snap to 0.5m for translation/scale
 			// Snap to 45 degrees for rotation
-			if (m_GizmoType == ImGuizmo::OPERATION::ROTATE) {
+			if (m_GizmoType == ImGuizmo::OPERATION::ROTATE)
+			{
 				snapValue = 45.0f;
 			}
 
@@ -271,18 +294,18 @@ namespace Ghost {
 
 		m_SceneHierarchyPanel.OnImGuiRender();
 
+		ImGui::Begin("Renderer Info");
+		ImGui::Text("Vendor         : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Vendor);
+		ImGui::Text("Hardware       : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Renderer);
+		ImGui::Text("OpenGL Version : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Version);
+		ImGui::End();
+
 		ImGui::Begin("Renderer2D Statistics");
 		auto stats = Ghost::Renderer2D::GetStats();
 		ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 		ImGui::Text("Quads: %d", stats.QuadCount);
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
-		ImGui::End();
-
-		ImGui::Begin("Renderer Info");
-		ImGui::Text("Vendor         : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Vendor);
-		ImGui::Text("Hardware       : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Renderer);
-		ImGui::Text("OpenGL Version : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Version);
 		ImGui::End();
 
 		ImGui::Begin("Console");
@@ -296,47 +319,50 @@ namespace Ghost {
 		ImGui::End();
 	}
 
-	void EditorLayer::OnEvent(Event& e)
-	{
+	void EditorLayer::OnEvent(Event& e) {
 		m_CameraController.OnEvent(e);
 		m_EditorCamera.OnEvent(e);
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<KeyPressedEvent>(GT_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+		dispatcher.Dispatch<MouseButtonPressedEvent>(GT_BIND_EVENT_FN(EditorLayer::OnMouseButtonPressed));
 	}
 
-	bool EditorLayer::OnKeyPressed(KeyPressedEvent& e)
-	{
+	bool EditorLayer::OnKeyPressed(KeyPressedEvent& e) {
 		// Shortcuts
-		if (e.GetRepeatCount() > 0) {
+		if (e.GetRepeatCount() > 0)
+		{
 			return false;
 		}
 
 		bool control = Input::IsKeyPressed(Key::LeftControl) || Input::IsKeyPressed(Key::RightControl);
 		bool shift = Input::IsKeyPressed(Key::LeftShift) || Input::IsKeyPressed(Key::RightShift);
 
-		switch (e.GetKeyCode()) {
-			case Key::N: {
+		switch (e.GetKeyCode())
+		{
+			case Key::N:
+			{
 				if (control)
 					NewScene();
 
 				break;
 			}
 
-			case Key::O: {
+			case Key::O:
+			{
 				if (control)
 					OpenScene();
 
 				break;
 			}
 
-			case Key::S: {
+			case Key::S:
+			{
 				if (control && shift)
 					SaveSceneAs();
 
 				break;
 			}
 
-					   // Gizmos
 			case Key::Q:
 				m_GizmoType = -1;
 				break;
@@ -352,17 +378,27 @@ namespace Ghost {
 		}
 	}
 
-	void EditorLayer::NewScene()
-	{
+	bool EditorLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e) {
+		if (e.GetMouseButton() == Mouse::ButtonLeft &&
+			!ImGuizmo::IsUsing() &&
+			!ImGuizmo::IsOver() &&
+			!Input::IsKeyPressed(Key::LeftAlt))
+		{
+		}
+
+		return false;
+	}
+
+	void EditorLayer::NewScene() {
 		m_ActiveScene = CreateRef<Scene>();
 		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 	}
 
-	void EditorLayer::OpenScene()
-	{
+	void EditorLayer::OpenScene() {
 		std::optional<std::string> filepath = FileDialogs::OpenFile("Ghost Scene (*.ghost)\0*.ghost\0");
-		if (filepath) {
+		if (filepath)
+		{
 			m_ActiveScene = CreateRef<Scene>();
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
@@ -372,10 +408,10 @@ namespace Ghost {
 		}
 	}
 
-	void EditorLayer::SaveSceneAs()
-	{
+	void EditorLayer::SaveSceneAs() {
 		std::optional<std::string> filepath = FileDialogs::SaveFile("Ghost Scene (*.ghost)\0*.ghost\0");
-		if (filepath) {
+		if (filepath)
+		{
 			SceneSerializer serializer(m_ActiveScene);
 			serializer.Serialize(*filepath);
 		}

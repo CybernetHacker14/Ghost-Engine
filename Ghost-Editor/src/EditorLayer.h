@@ -5,7 +5,8 @@
 
 #include "Ghost/Renderer/EditorCamera.h"
 
-namespace Ghost {
+namespace Ghost
+{
 	class EditorLayer : public Layer {
 	public:
 		EditorLayer();
@@ -19,6 +20,7 @@ namespace Ghost {
 		void OnEvent(Event& e) override;
 	private:
 		bool OnKeyPressed(KeyPressedEvent& e);
+		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
 
 		void NewScene();
 		void OpenScene();
@@ -30,7 +32,6 @@ namespace Ghost {
 		Ref<VertexArray> m_SquareVA;
 		Ref<Shader> m_FlatColorShader;
 		Ref<Framebuffer> m_Framebuffer;
-
 		Ref<Scene> m_ActiveScene;
 
 		Entity m_SquareEntity;
@@ -40,6 +41,7 @@ namespace Ghost {
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
+		glm::vec2 m_ViewportBounds[2];
 
 		int m_GizmoType = -1;
 

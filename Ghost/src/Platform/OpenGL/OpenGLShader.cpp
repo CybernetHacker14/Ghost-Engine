@@ -122,7 +122,7 @@ namespace Ghost {
 
 			if (isCompiled == GL_FALSE) {
 				glDeleteShader(shaderID);
-				GT_CORE_FATAL("Shader compilation failure!");
+				GT_CORE_CRITICAL("Shader compilation failure!");
 				GT_CORE_ASSERT(false, "Shader could not be compiled");
 				return false;
 			}
@@ -155,53 +155,53 @@ namespace Ghost {
 		GLint isCompiled = 0;
 
 		switch (type) {
-			case ShaderType::None:
-			{
-				GT_CORE_FATAL("ShaderType::None is currently not supported");
+		case ShaderType::None:
+		{
+			GT_CORE_CRITICAL("ShaderType::None is currently not supported");
+			return false;
+		}
+		case ShaderType::VertexShader:
+		{
+			shaderID = glCreateShader(GL_VERTEX_SHADER);
+
+			glShaderSource(shaderID, 1, &shaderSource, nullptr);
+			glCompileShader(shaderID);
+			glGetShaderiv(shaderID, GL_COMPILE_STATUS, &isCompiled);
+
+			if (isCompiled == GL_FALSE) {
+				glDeleteShader(shaderID);
+				GT_CORE_CRITICAL("Vertex Shader compilation failure!");
+				GT_CORE_ASSERT(false, "Vertex Shader could not be compiled");
 				return false;
 			}
-			case ShaderType::VertexShader:
-			{
-				shaderID = glCreateShader(GL_VERTEX_SHADER);
-
-				glShaderSource(shaderID, 1, &shaderSource, nullptr);
-				glCompileShader(shaderID);
-				glGetShaderiv(shaderID, GL_COMPILE_STATUS, &isCompiled);
-
-				if (isCompiled == GL_FALSE) {
-					glDeleteShader(shaderID);
-					GT_CORE_FATAL("Vertex Shader compilation failure!");
-					GT_CORE_ASSERT(false, "Vertex Shader could not be compiled");
-					return false;
-				}
-				else {
-					glAttachShader(m_RendererID, shaderID);
-					m_ShaderIDMap[type] = shaderID;
-					m_Name = name;
-					return true;
-				}
+			else {
+				glAttachShader(m_RendererID, shaderID);
+				m_ShaderIDMap[type] = shaderID;
+				m_Name = name;
+				return true;
 			}
-			case ShaderType::FragmentShader:
-			{
-				shaderID = glCreateShader(GL_FRAGMENT_SHADER);
+		}
+		case ShaderType::FragmentShader:
+		{
+			shaderID = glCreateShader(GL_FRAGMENT_SHADER);
 
-				glShaderSource(shaderID, 1, &shaderSource, nullptr);
-				glCompileShader(shaderID);
-				glGetShaderiv(shaderID, GL_COMPILE_STATUS, &isCompiled);
+			glShaderSource(shaderID, 1, &shaderSource, nullptr);
+			glCompileShader(shaderID);
+			glGetShaderiv(shaderID, GL_COMPILE_STATUS, &isCompiled);
 
-				if (isCompiled == GL_FALSE) {
-					glDeleteShader(shaderID);
-					GT_CORE_FATAL("Fragment Shader compilation failure!");
-					GT_CORE_ASSERT(false, "Fragment Shader could not be compiled");
-					return false;
-				}
-				else {
-					glAttachShader(m_RendererID, shaderID);
-					m_ShaderIDMap[type] = shaderID;
-					m_Name = name;
-					return true;
-				}
+			if (isCompiled == GL_FALSE) {
+				glDeleteShader(shaderID);
+				GT_CORE_CRITICAL("Fragment Shader compilation failure!");
+				GT_CORE_ASSERT(false, "Fragment Shader could not be compiled");
+				return false;
 			}
+			else {
+				glAttachShader(m_RendererID, shaderID);
+				m_ShaderIDMap[type] = shaderID;
+				m_Name = name;
+				return true;
+			}
+		}
 		}
 	}
 
@@ -226,7 +226,7 @@ namespace Ghost {
 
 			m_ShaderIDMap.clear();
 
-			GT_CORE_FATAL("Shader link failure!");
+			GT_CORE_CRITICAL("Shader link failure!");
 			GT_CORE_ASSERT(false, "Shader program couldn't be linked");
 			return false;
 		}

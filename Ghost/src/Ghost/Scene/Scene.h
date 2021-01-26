@@ -4,6 +4,7 @@
 
 #include "Ghost/Core/Timestep.h"
 #include "Ghost/Renderer/EditorCamera.h"
+#include "Ghost/Renderer/Framebuffer.h"
 
 namespace Ghost {
 	class Entity;
@@ -19,6 +20,9 @@ namespace Ghost {
 		void OnUpdateRuntime(Timestep ts);
 		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
 		void OnViewportResize(uint32_t width, uint32_t height);
+
+		void DrawIDBuffer(Ref<Framebuffer> target, EditorCamera& camera);
+		int Pixel(int x, int y);
 
 		Entity GetPrimaryCameraEntity();
 	private:
