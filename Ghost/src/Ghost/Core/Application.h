@@ -13,11 +13,21 @@
 
 int main(int argc, char** argv);
 
-namespace Ghost {
-	class Application
-	{
+namespace Ghost
+{
+	struct ApplicationCommandLineArgs {
+		int Count = 0;
+		char** Args = nullptr;
+		const char* operator[](int index) const {
+			GT_CORE_ASSERT(index < Count);
+			return Args[index];
+		}
+	};
+
+	class Application {
 	public:
-		Application(const std::string& name = "Ghost Engine");
+		Application(const std::string& name = "Ghost App", ApplicationCommandLineArgs args =
+			ApplicationCommandLineArgs());
 		virtual ~Application();
 
 		void OnEvent(Event& e);
@@ -32,12 +42,15 @@ namespace Ghost {
 		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 
 		static Application& Get() { return *s_Instance; }
+
+		ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
 	private:
 		void Run();
 		bool OnWindowClosed(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
 	private:
+		ApplicationCommandLineArgs m_CommandLineArgs;
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 
@@ -53,5 +66,5 @@ namespace Ghost {
 	};
 
 	// TO BE defined in client
-	Application* CreateApplication();
+	Application* CreateApplication(ApplicationCommandLineArgs args);
 }

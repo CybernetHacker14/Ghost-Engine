@@ -2,22 +2,22 @@ Scene: Untitled
 Entities:
   - Entity: 12837192831273
     TagComponent:
-      Tag: GreenQuad
+      Tag: Green Quad
     TransformComponent:
-      Translation: [-1.99008679, -1.78283203, -0.10345646]
-      Rotation: [1.52594674, 0.234866202, 1.4130758]
-      Scale: [2.98951054, 4.15020704, 0.999860585]
+      Translation: [-0.0460120961, 0, -1.91211367]
+      Rotation: [0, 0.785398245, 0]
+      Scale: [3.29999852, 2.79999995, 0.999997616]
     SpriteRendererComponent:
-      Color: [0, 0.876447856, 0.0156507958, 1]
+      Color: [0.101190448, 1, 0, 1]
   - Entity: 12837192831273
     TagComponent:
-      Tag: YellowQuad
+      Tag: Yellow Quad
     TransformComponent:
-      Translation: [-0.833846331, -2.29076052, -2.58829093]
-      Rotation: [0, -0.157491118, 0]
-      Scale: [4.31197453, 4.68296385, 0.999997556]
+      Translation: [0, 0, -1.86609435]
+      Rotation: [0, 0, 0]
+      Scale: [3.45956874, 3.38098192, 1]
     SpriteRendererComponent:
-      Color: [0.915057898, 0.849696338, 0, 1]
+      Color: [0.863095284, 1, 0, 1]
   - Entity: 12837192831273
     TagComponent:
       Tag: Camera
@@ -27,7 +27,7 @@ Entities:
       Scale: [1, 1, 1]
     CameraComponent:
       Camera:
-        ProjectionType: 0
+        ProjectionType: 1
         PerspectiveFOV: 0.785398185
         PerspectiveNear: 0.00999999978
         PerspectiveFar: 1000
@@ -35,22 +35,4 @@ Entities:
         OrthographicNear: -1
         OrthographicFar: 1
       Primary: true
-      FixedAspectRatio: false
-  - Entity: 12837192831273
-    TagComponent:
-      Tag: Camera2D
-    TransformComponent:
-      Translation: [0, 0, -3]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    CameraComponent:
-      Camera:
-        ProjectionType: 1
-        PerspectiveFOV: 0.785398185
-        PerspectiveNear: 0.00999999978
-        PerspectiveFar: 1000
-        OrthographicSize: 10
-        OrthographicNear: -10
-        OrthographicFar: 10
-      Primary: false
       FixedAspectRatio: false

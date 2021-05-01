@@ -6,7 +6,8 @@
 #include "Ghost/Renderer/EditorCamera.h"
 #include "Ghost/Renderer/Framebuffer.h"
 
-namespace Ghost {
+namespace Ghost
+{
 	class Entity;
 
 	class Scene {

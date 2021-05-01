@@ -7,11 +7,12 @@
 
 #include <GLFW/glfw3.h>
 
-namespace Ghost {
+namespace Ghost
+{
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const std::string& name)
-	{
+	Application::Application(const std::string& name, ApplicationCommandLineArgs args)
+		: m_CommandLineArgs(args) {
 		GT_PROFILE_FUNCTION();
 
 		GT_CORE_ASSERT(!s_Instance, "Application already exists!");
@@ -26,62 +27,60 @@ namespace Ghost {
 		PushOverlay(m_ImGuiLayer);
 	}
 
-	Application::~Application()
-	{
+	Application::~Application() {
 		GT_PROFILE_FUNCTION();
 
 		Renderer::Shutdown();
 	}
 
-	void Application::PushLayer(Layer* layer)
-	{
+	void Application::PushLayer(Layer* layer) {
 		GT_PROFILE_FUNCTION();
 
 		m_layerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
-	void Application::PushOverlay(Layer* overlay)
-	{
+	void Application::PushOverlay(Layer* overlay) {
 		GT_PROFILE_FUNCTION();
 
 		m_layerStack.PushLayerOverlay(overlay);
 		overlay->OnAttach();
 	}
 
-	void Application::Close()
-	{
+	void Application::Close() {
 		m_Running = false;
 	}
 
-	void Application::OnEvent(Event& e)
-	{
+	void Application::OnEvent(Event& e) {
 		GT_PROFILE_FUNCTION();
 
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(GT_BIND_EVENT_FN(Application::OnWindowClosed));
 		dispatcher.Dispatch<WindowResizeEvent>(GT_BIND_EVENT_FN(Application::OnWindowResize));
 
-		for (auto it = m_layerStack.rbegin(); it != m_layerStack.rend(); ++it) {
-			if (e.handled) {
+		for (auto it = m_layerStack.rbegin(); it != m_layerStack.rend(); ++it)
+		{
+			if (e.handled)
+			{
 				break;
 			}
 			(*it)->OnEvent(e);
 		}
 	}
 
-	void Application::Run()
-	{
+	void Application::Run() {
 		GT_PROFILE_FUNCTION();
 
-		while (m_Running) {
+		while (m_Running)
+		{
 			GT_PROFILE_SCOPE("RunLoop");
 
 			float time = (float)glfwGetTime(); // Platform::GetTime() - Platform based implementation and abstraction
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			if (!m_Minimized) {
+			if (!m_Minimized)
+			{
 				{
 					GT_PROFILE_SCOPE("LayerStack OnUpdate");
 
@@ -105,17 +104,16 @@ namespace Ghost {
 		}
 	}
 
-	bool Application::OnWindowClosed(WindowCloseEvent& e)
-	{
+	bool Application::OnWindowClosed(WindowCloseEvent& e) {
 		m_Running = false;
 		return true;
 	}
 
-	bool Application::OnWindowResize(WindowResizeEvent& e)
-	{
+	bool Application::OnWindowResize(WindowResizeEvent& e) {
 		GT_PROFILE_FUNCTION();
 
-		if (e.GetWidth() == 0 || e.GetHeight() == 0) {
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
 			m_Minimized = true;
 			return false;
 		}

@@ -1,4 +1,4 @@
-# Directories
+# Build & Intermediate Directories
 bin/
 !vendor/premake/bin/
 bin-int/
@@ -14,3 +14,8 @@ bin-int/
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+# Directories
+Ghost/vendor/VulkanSDK
+Ghost-Editor/assets/cache
+scripts/__pycache__

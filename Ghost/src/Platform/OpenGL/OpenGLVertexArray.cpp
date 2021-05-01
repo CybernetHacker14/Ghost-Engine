@@ -3,7 +3,8 @@
 
 #include <glad/glad.h>
 
-namespace Ghost {
+namespace Ghost
+{
 	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type) {
 		switch (type)
 		{
@@ -24,36 +25,31 @@ namespace Ghost {
 		return 0;
 	}
 
-	OpenGLVertexArray::OpenGLVertexArray()
-	{
+	OpenGLVertexArray::OpenGLVertexArray() {
 		GT_PROFILE_FUNCTION();
 
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 
-	OpenGLVertexArray::~OpenGLVertexArray()
-	{
+	OpenGLVertexArray::~OpenGLVertexArray() {
 		GT_PROFILE_FUNCTION();
 
 		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
-	void OpenGLVertexArray::Bind() const
-	{
+	void OpenGLVertexArray::Bind() const {
 		GT_PROFILE_FUNCTION();
 
 		glBindVertexArray(m_RendererID);
 	}
 
-	void OpenGLVertexArray::Unbind() const
-	{
+	void OpenGLVertexArray::Unbind() const {
 		GT_PROFILE_FUNCTION();
 
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
-	{
+	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) {
 		GT_PROFILE_FUNCTION();
 
 		GT_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
@@ -62,20 +58,31 @@ namespace Ghost {
 		vertexBuffer->Bind();
 
 		const auto& layout = vertexBuffer->GetLayout();
-		for (const auto& element : layout) {
+		for (const auto& element : layout)
+		{
 			switch (element.Type)
 			{
 				case ShaderDataType::Float:
 				case ShaderDataType::Float2:
 				case ShaderDataType::Float3:
 				case ShaderDataType::Float4:
-				case ShaderDataType::Bool:
 				{
 					glEnableVertexAttribArray(m_VertexBufferIndex);
 					glVertexAttribPointer(m_VertexBufferIndex,
 						element.GetComponentCount(),
 						ShaderDataTypeToOpenGLBaseType(element.Type),
 						element.Normalized ? GL_TRUE : GL_FALSE,
+						layout.GetStride(),
+						(const void*)element.Offset);
+					m_VertexBufferIndex++;
+					break;
+				}
+				case ShaderDataType::Bool:
+				{
+					glEnableVertexAttribArray(m_VertexBufferIndex);
+					glVertexAttribIPointer(m_VertexBufferIndex,
+						element.GetComponentCount(),
+						ShaderDataTypeToOpenGLBaseType(element.Type),
 						layout.GetStride(),
 						(const void*)element.Offset);
 					m_VertexBufferIndex++;
@@ -121,8 +128,7 @@ namespace Ghost {
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
-	{
+	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) {
 		GT_PROFILE_FUNCTION();
 
 		glBindVertexArray(m_RendererID);

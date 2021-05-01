@@ -5,7 +5,8 @@
 #include "Ghost/Scene/Scene.h"
 #include "Ghost/Scene/Entity.h"
 
-namespace Ghost {
+namespace Ghost
+{
 	class SceneHierarchyPanel {
 	public:
 		SceneHierarchyPanel() = default;
@@ -16,7 +17,7 @@ namespace Ghost {
 		void OnImGuiRender();
 
 		Entity GetSelectedEntity() const { return m_SelectionContext; }
-		void SetSelectedEntity(Entity entity) { m_SelectionContext = entity; }
+		void SetSelectedEntity(Entity entity);
 	private:
 		void DrawEntityNode(Entity entity);
 		void DrawComponents(Entity entity);

@@ -1,4 +1,5 @@
 include "./vendor/premake/premake_customization/solution_items.lua"
+include "Dependencies.lua"
 
 workspace "Ghost"
 	architecture "x86_64"
@@ -22,17 +23,6 @@ workspace "Ghost"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-
--- Include directories relative to root folder (solution directory)
-IncludeDir = {}
-IncludeDir["GLFW"] = "%{wks.location}/Ghost/vendor/GLFW/include"
-IncludeDir["Glad"] = "%{wks.location}/Ghost/vendor/Glad/include"
-IncludeDir["ImGui"] = "%{wks.location}/Ghost/vendor/imgui"
-IncludeDir["glm"] = "%{wks.location}/Ghost/vendor/glm"
-IncludeDir["stb_image"] = "%{wks.location}/Ghost/vendor/stb_image"
-IncludeDir["entt"] = "%{wks.location}/Ghost/vendor/entt/include"
-IncludeDir["yaml_cpp"] = "%{wks.location}/Ghost/vendor/yaml-cpp/include"
-IncludeDir["ImGuizmo"] = "%{wks.location}/Ghost/vendor/ImGuizmo"
 
 group "Dependencies"
 	include "vendor/premake"
