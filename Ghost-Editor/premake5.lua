@@ -41,34 +41,13 @@ project "Ghost-Editor"
 		defines "GT_DEBUG"
 		runtime "Debug"
 		symbols "on"
-		
-		links
-		{
-			"%{Library.ShaderC_Debug}",
-			"%{Library.SPIRV_Cross_Debug}",
-			"%{Library.SPIRV_Cross_GLSL_Debug}"
-		}
 
 	filter "configurations:Release"
 		defines "GT_RELEASE"
 		runtime "Release"
 		optimize "on"
-		
-		links
-		{
-			"%{Library.ShaderC_Release}",
-			"%{Library.SPRIV_Cross_Release}",
-			"%{Library.SPRIV_Cross_GLSL_Release}"
-		}
 
 	filter "configurations:Dist"
 		defines "GT_DIST"
 		runtime "Release"
 		optimize "on"
-		
-		links
-		{
-			"%{Library.ShaderC_Release}",
-			"%{Library.SPIRV_Cross_Release}",
-			"%{Library.SPIRV_Cross_GLSL_Release}"
-		}
