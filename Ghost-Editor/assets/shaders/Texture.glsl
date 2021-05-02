@@ -28,10 +28,10 @@ layout (location = 4) out flat int v_EntityID;
 
 void main()
 {
-	Output.v_Color = a_Color;
-	Output.v_TexCoord = a_TexCoord;
-	Output.v_TexIndex = a_TexIndex;
-	Output.v_TilingFactor = a_TilingFactor;
+	Output.Color = a_Color;
+	Output.TexCoord = a_TexCoord;
+	Output.TexIndex = a_TexIndex;
+	Output.TilingFactor = a_TilingFactor;
 	v_EntityID = a_EntityID;
 
 	gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
@@ -58,9 +58,9 @@ layout (binding = 0) uniform sampler2D u_Textures[32];
 
 void main()
 {
-	vec4 texColor = v_Color;
+	vec4 texColor = Input.Color;
 
-	switch(int(v_TexIndex))
+	switch(int(Input.TexIndex))
 	{
 		case  0: texColor *= texture(u_Textures[ 0], Input.TexCoord * Input.TilingFactor); break;
 		case  1: texColor *= texture(u_Textures[ 1], Input.TexCoord * Input.TilingFactor); break;
