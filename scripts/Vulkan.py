@@ -10,12 +10,13 @@ from urllib.request import urlopen
 from zipfile import ZipFile
 
 VULKAN_SDK = os.environ.get('VULKAN_SDK')
-VULKAN_SDK_INSTALLER_URL = 'https://sdk.lunarg.com/sdk/download/1.2.170.0/windows/vulkan_sdk.exe'
 GHOST_VULKAN_VERSION = '1.2.170.0'
+VULKAN_SDK_INSTALLER_URL = f"https://sdk.lunarg.com/sdk/download/{GHOST_VULKAN_VERSION}/windows/VulkanSDK-{GHOST_VULKAN_VERSION}-Installer.exe"
 VULKAN_SDK_EXE_PATH = 'Ghost/vendor/VulkanSDK/VulkanSDK.exe'
 
 def InstallVulkanSDK():
     print('Downloading {} to {}'.format(VULKAN_SDK_INSTALLER_URL, VULKAN_SDK_EXE_PATH))
+    os.makedirs(os.path.dirname(VULKAN_SDK_EXE_PATH), exist_ok=True)
     Utils.DownloadFile(VULKAN_SDK_INSTALLER_URL, os.path.abspath(VULKAN_SDK_EXE_PATH))
     print("Done!")
     print("Running Vulkan SDK installer...")
@@ -43,7 +44,7 @@ def CheckVulkanSDK():
     print(f"Correct Vulkan SDK located at {VULKAN_SDK}")
     return True
     
-VulkanSDKDebugLibsURL = 'https://files.lunarg.com/SDK-1.2.170.0/VulkanSDK-1.2.170.0-DebugLibs.zip'
+VulkanSDKDebugLibsURL = f"https://sdk.lunarg.com/sdk/download/{GHOST_VULKAN_VERSION}/windows/VulkanSDK-{GHOST_VULKAN_VERSION}-DebugLibs.zip"
 OutputDirectory = "Ghost/vendor/VulkanSDK"
 TempZipFile = f"{OutputDirectory}/VulkanSDK.zip"
 
