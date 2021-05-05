@@ -37,14 +37,14 @@ def CheckVulkanSDK():
         return False
     elif(GHOST_VULKAN_VERSION not in VULKAN_SDK):
         print(f"Located Vulkan SDK at {VULKAN_SDK}")
-        print(f"You don't havethe correct Vulkan SDK version! (Ghost requires {GHOST_VULKAN_VERSION})")
+        print(f"You don't have the correct Vulkan SDK version! (Ghost requires {GHOST_VULKAN_VERSION})")
         InstallVulkanPrompt()
         return False
         
     print(f"Correct Vulkan SDK located at {VULKAN_SDK}")
     return True
     
-VulkanSDKDebugLibsURL = f"https://sdk.lunarg.com/sdk/download/{GHOST_VULKAN_VERSION}/windows/VulkanSDK-{GHOST_VULKAN_VERSION}-DebugLibs.zip"
+VulkanSDKDebugLibsURL = f"https://files.lunarg.com/SDK-{GHOST_VULKAN_VERSION}/VulkanSDK-{GHOST_VULKAN_VERSION}-DebugLibs.zip"
 OutputDirectory = "Ghost/vendor/VulkanSDK"
 TempZipFile = f"{OutputDirectory}/VulkanSDK.zip"
 
