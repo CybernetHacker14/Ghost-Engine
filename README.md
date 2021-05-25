@@ -50,12 +50,8 @@ Clone this repository to a local destination using git:
 
 <ins>**Project Creation:**</ins>
 
-<ins>*Windows-*</ins> Run the `Win-GenProjects.bat` file in `scripts` folder.
-This will generate a Visual Studio 2019 solution with appropriate settings.
-
-The `Win-GenProjects.bat` file can also be edited to generate a Visual Studio 2017
-solution by changing:  
-`call vendor\premake\bin\premake5.exe vs2019` to `call vendor\premake\bin\premake5.exe vs2017`
+<ins>*Windows-*</ins> Run the `Setup.bat` file in `scripts` folder.
+This will generate a Visual Studio 2019 solution with appropriate settings, as well as download the required SPIR-V and Vulkan SDK libraries.
 
 ***
 
