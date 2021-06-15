@@ -257,6 +257,7 @@ namespace Ghost
 		ImGui::PopStyleVar();
 
 		m_SceneHierarchyPanel.OnImGuiRender();
+		m_ContentBrowserPanel.OnImGuiRender();
 
 		ImGui::Begin("Renderer Info");
 		ImGui::Text("Vendor         : %s", Application::Get().GetWindow().GetGraphicsContextInfo().Vendor);
@@ -276,9 +277,9 @@ namespace Ghost
 		ImGuiConsole::Draw();
 		ImGui::End();
 
-		ImGui::Begin("Project");
+		/*ImGui::Begin("Project");
 		ImGuiAssetBrowser::Draw();
-		ImGui::End();
+		ImGui::End();*/
 
 		ImGui::End();
 	}

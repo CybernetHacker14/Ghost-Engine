@@ -14,18 +14,14 @@
 
 #include <ImGuizmo.h>
 
-namespace Ghost {
+namespace Ghost
+{
 	ImGuiLayer::ImGuiLayer()
-		:Layer("ImGuiLayer")
-	{
-	}
+		:Layer("ImGuiLayer") {}
 
-	ImGuiLayer::~ImGuiLayer()
-	{
-	}
+	ImGuiLayer::~ImGuiLayer() {}
 
-	void ImGuiLayer::OnAttach()
-	{
+	void ImGuiLayer::OnAttach() {
 		GT_PROFILE_FUNCTION();
 
 		// Setup Dear ImGui context
@@ -39,7 +35,9 @@ namespace Ghost {
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskbarIcons;
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
 
-		io.Fonts->AddFontFromFileTTF("assets/fonts/opensans/OpenSans-Bold.ttf", 18.0f);
+		float fontSize = 18.0f;
+
+		io.Fonts->AddFontFromFileTTF("assets/fonts/opensans/OpenSans-Bold.ttf", fontSize);
 
 		// merge in icons from Font Awesome
 		static const ImWchar icons_ranges_fontawesome[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
@@ -47,11 +45,10 @@ namespace Ghost {
 		icons_config_fontawesome.MergeMode = true;
 		icons_config_fontawesome.PixelSnapH = true;
 
-		io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 18.0f, &icons_config_fontawesome, icons_ranges_fontawesome);
+		io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, fontSize, &icons_config_fontawesome, icons_ranges_fontawesome);
 
-		io.FontDefault = io.Fonts->AddFontFromFileTTF("assets/fonts/opensans/OpenSans-Regular.ttf", 18.0f);
-
-		io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 18.0f, &icons_config_fontawesome, icons_ranges_fontawesome);
+		io.FontDefault = io.Fonts->AddFontFromFileTTF("assets/fonts/opensans/OpenSans-Regular.ttf", fontSize);
+		io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, fontSize, &icons_config_fontawesome, icons_ranges_fontawesome);
 
 		// Setup Dear ImGui style
 		ImGui::StyleColorsDark();
@@ -59,7 +56,8 @@ namespace Ghost {
 
 		// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to
 		ImGuiStyle& style = ImGui::GetStyle();
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
 			style.WindowRounding = 0.0f;
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
@@ -75,8 +73,7 @@ namespace Ghost {
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
 
-	void ImGuiLayer::OnDetach()
-	{
+	void ImGuiLayer::OnDetach() {
 		GT_PROFILE_FUNCTION();
 
 		ImGui_ImplOpenGL3_Shutdown();
@@ -84,17 +81,16 @@ namespace Ghost {
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::OnEvent(Event& e)
-	{
-		if (m_BlockEvents) {
+	void ImGuiLayer::OnEvent(Event& e) {
+		if (m_BlockEvents)
+		{
 			ImGuiIO& io = ImGui::GetIO();
 			e.handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
 			e.handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
 		}
 	}
 
-	void ImGuiLayer::Begin()
-	{
+	void ImGuiLayer::Begin() {
 		GT_PROFILE_FUNCTION();
 
 		ImGui_ImplOpenGL3_NewFrame();
@@ -103,8 +99,7 @@ namespace Ghost {
 		ImGuizmo::BeginFrame();
 	}
 
-	void ImGuiLayer::End()
-	{
+	void ImGuiLayer::End() {
 		GT_PROFILE_FUNCTION();
 
 		ImGuiIO& io = ImGui::GetIO();
@@ -115,15 +110,15 @@ namespace Ghost {
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
 			GLFWwindow* backup_current_context = glfwGetCurrentContext();
 			ImGui::UpdatePlatformWindows();
 			ImGui::RenderPlatformWindowsDefault();
 			glfwMakeContextCurrent(backup_current_context);
 		}
 	}
-	void ImGuiLayer::SetDarkThemeColors()
-	{
+	void ImGuiLayer::SetDarkThemeColors() {
 		auto& colors = ImGui::GetStyle().Colors;
 		colors[ImGuiCol_WindowBg] = ImVec4{ 0.1f, 0.105f, 0.11f, 1.0f };
 
