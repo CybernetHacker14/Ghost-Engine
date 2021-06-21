@@ -36,7 +36,7 @@ project "Ghost-Editor"
 	
 	postbuildcommands
 	{
-		"{COPY} %{LibraryDir.VulkanSDK_DLL} %{wks.location}/bin/" .. outputdir .. "/%{prj.name}"
+		"{COPY} %{LibraryDir.VulkanSDK_DebugDLL} %{cfg.targetdir}"
 	}
 
 	filter "system:windows"

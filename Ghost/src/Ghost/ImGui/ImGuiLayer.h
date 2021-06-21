@@ -6,7 +6,8 @@
 #include "Ghost/Events/KeyEvent.h"
 #include "Ghost/Events/MouseEvent.h"
 
-namespace Ghost {
+namespace Ghost
+{
 	class ImGuiLayer : public Layer {
 	public:
 		ImGuiLayer();
@@ -24,6 +25,5 @@ namespace Ghost {
 		void SetDarkThemeColors();
 	private:
 		bool m_BlockEvents = true;
-		float m_Time = 0.0f;
 	};
 }
