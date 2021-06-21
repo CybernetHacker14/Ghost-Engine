@@ -33,11 +33,6 @@ project "Ghost-Editor"
 	{
 		"Ghost"
 	}
-	
-	postbuildcommands
-	{
-		"{COPY} %{LibraryDir.VulkanSDK_DebugDLL} %{cfg.targetdir}"
-	}
 
 	filter "system:windows"
 		systemversion "latest"
@@ -46,6 +41,11 @@ project "Ghost-Editor"
 		defines "GT_DEBUG"
 		runtime "Debug"
 		symbols "on"
+		
+		postbuildcommands
+		{
+			"{COPY} %{LibraryDir.VulkanSDK_DebugDLL} %{cfg.targetdir}"
+		}
 
 	filter "configurations:Release"
 		defines "GT_RELEASE"
