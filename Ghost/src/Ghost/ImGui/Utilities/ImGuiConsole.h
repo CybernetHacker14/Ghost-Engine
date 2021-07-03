@@ -2,6 +2,8 @@
 
 #include "Ghost/Core/Base.h"
 
+#include <fmt/core.h>
+
 namespace Ghost {
 	class Message {
 	public:
@@ -51,12 +53,7 @@ namespace Ghost {
 	template<typename ...Args>
 	inline std::string ImGuiConsole::Format(const std::string& fmt, Args && ...args)
 	{
-		size_t size = snprintf(nullptr, 0, fmt.c_str(), args...);
-		std::string buffer;
-		buffer.reserve(size + 1);
-		buffer.resize(size);
-		snprintf(&buffer[0], size + 1, fmt.c_str(), args...);
-		return buffer;
+        	return fmt::format(fmt, args...);
 	}
 
 	// Logging Implementations
