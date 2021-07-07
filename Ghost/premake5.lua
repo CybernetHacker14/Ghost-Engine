@@ -83,8 +83,8 @@ project "Ghost"
 		links
 		{
 			"%{Library.ShaderC_Release}",
-			"%{Library.SPRIV_Cross_Release}",
-			"%{Library.SPRIV_Cross_GLSL_Release}"
+			"%{Library.SPIRV_Cross_Release}",
+			"%{Library.SPIRV_Cross_GLSL_Release}"
 		}
 
 	filter "configurations:Dist"

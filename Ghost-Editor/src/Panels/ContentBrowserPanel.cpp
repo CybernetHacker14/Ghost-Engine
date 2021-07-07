@@ -30,16 +30,16 @@ namespace Ghost
 
 			if (directoryEntry.is_directory())
 			{
-				if (ImGui::Button(filenameString.c_str()))
+				/*if (ImGui::Button(filenameString.c_str()))
 				{
 					m_CurrentDirectory /= path.filename();
-				}
+				}*/
 			}
 			else
 			{
-				if (ImGui::Button(filenameString.c_str()))
+				/*if (ImGui::Button(filenameString.c_str()))
 				{
-				}
+				}*/
 			}
 		}
 

@@ -277,9 +277,9 @@ namespace Ghost
 		ImGuiConsole::Draw();
 		ImGui::End();
 
-		ImGui::Begin("Project");
-		ImGuiAssetBrowser::Draw();
-		ImGui::End();
+		//ImGui::Begin("Project");
+		//ImGuiAssetBrowser::Draw();
+		//ImGui::End();
 
 		ImGui::End();
 	}
