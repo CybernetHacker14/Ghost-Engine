@@ -17,7 +17,7 @@ class VulkanConfiguration:
         if (not cls.CheckVulkanSDK()):
             print("Vulkan SDK not installed correctly.")
             return
-
+            
         if (not cls.CheckVulkanSDKDebugLibs()):
             print("Vulkan SDK debug libs not found.")
 
@@ -35,7 +35,7 @@ class VulkanConfiguration:
             print(f"You don't have the correct Vulkan SDK version! (Engine requires {cls.requiredVulkanVersion})")
             cls.__InstallVulkanSDK()
             return False
-
+    
         print(f"Correct Vulkan SDK located at {vulkanSDK}")
         return True
 
@@ -60,12 +60,12 @@ class VulkanConfiguration:
     @classmethod
     def CheckVulkanSDKDebugLibs(cls):
         shadercdLib = Path(f"{cls.vulkanDirectory}/Lib/shaderc_sharedd.lib")
-
+        
         VulkanSDKDebugLibsURLlist = [
             f"https://sdk.lunarg.com/sdk/download/{cls.requiredVulkanVersion}/windows/VulkanSDK-{cls.requiredVulkanVersion}-DebugLibs.zip",
             f"https://files.lunarg.com/SDK-{cls.requiredVulkanVersion}/VulkanSDK-{cls.requiredVulkanVersion}-DebugLibs.zip"
         ]
-
+        
         if not shadercdLib.exists():
             print(f"\nNo Vulkan SDK debug libs found. (Checked {shadercdLib})")
             vulkanPath = f"{cls.vulkanDirectory}/VulkanSDK-{cls.requiredVulkanVersion}-DebugLibs.zip"

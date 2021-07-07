@@ -37,7 +37,7 @@ class PythonConfiguration:
             if reply == 'n':
                 return False
             permissionGranted = (reply == 'y')
-
+        
         print(f"Installing {packageName} module...")
         subprocess.check_call(['python', '-m', 'pip', 'install', packageName])
 
