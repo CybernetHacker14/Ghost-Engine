@@ -82,7 +82,7 @@ This will generate a Visual Studio 2019 solution with appropriate settings, as w
 
 <ins>**Screenshot:**</ins>
 
-![Screenshot_1](Images/Screenshot_3.jpg)
+![Screenshot_3](Images/Screenshot_3.png)
 
 ***
 
