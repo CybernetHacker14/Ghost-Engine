@@ -2,22 +2,22 @@ Scene: Untitled
 Entities:
   - Entity: 12837192831273
     TagComponent:
-      Tag: Green Quad
+      Tag: Blue Quad
     TransformComponent:
-      Translation: [-0.0460120961, 0, -1.91211367]
-      Rotation: [0, 0.785398245, 0]
-      Scale: [3.29999852, 2.79999995, 0.999997616]
+      Translation: [3.21161842, 0, 0.844948649]
+      Rotation: [0, -0.25463888, 0]
+      Scale: [3.27451348, 4.1515584, 0.999999046]
     SpriteRendererComponent:
-      Color: [0.101190448, 1, 0, 1]
+      Color: [0, 0.154440165, 1, 1]
   - Entity: 12837192831273
     TagComponent:
-      Tag: Yellow Quad
+      Tag: Red Quad
     TransformComponent:
-      Translation: [0, 0, -1.86609435]
-      Rotation: [0, 0, 0]
-      Scale: [3.45956874, 3.38098192, 1]
+      Translation: [1.99829257, 0, 0.515303612]
+      Rotation: [0, -0.929071188, 0]
+      Scale: [2.84675574, 2.45156598, 0.999999881]
     SpriteRendererComponent:
-      Color: [0.863095284, 1, 0, 1]
+      Color: [1, 0, 0, 1]
   - Entity: 12837192831273
     TagComponent:
       Tag: Camera
@@ -36,3 +36,21 @@ Entities:
         OrthographicFar: 1
       Primary: true
       FixedAspectRatio: false
+  - Entity: 12837192831273
+    TagComponent:
+      Tag: Yellow Quad
+    TransformComponent:
+      Translation: [2.98023224e-08, 0, -1.32412243]
+      Rotation: [0, 0, 0]
+      Scale: [3.45956874, 3.38098192, 1]
+    SpriteRendererComponent:
+      Color: [0.863095284, 1, 0, 1]
+  - Entity: 12837192831273
+    TagComponent:
+      Tag: Green Quad
+    TransformComponent:
+      Translation: [-2.07492924, 0, 0.116804004]
+      Rotation: [0, 0.785398245, 0]
+      Scale: [3.29999852, 2.79999995, 0.999997616]
+    SpriteRendererComponent:
+      Color: [0.101190448, 1, 0, 1]
