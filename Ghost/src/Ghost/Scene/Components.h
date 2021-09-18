@@ -1,15 +1,16 @@
 #pragma once
 
+#include "Ghost/Core/UUID.h"
+#include "Ghost/Renderer/Texture.h"
+
+#include "Ghost/Scene/SceneCamera.h"
+#include "Ghost/Scene/ScriptableEntity.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
-
-#include "Ghost/Scene/SceneCamera.h"
-#include "Ghost/Scene/ScriptableEntity.h"
-
-#include "Ghost/Renderer/Texture.h"
 
 namespace Ghost
 {
@@ -107,5 +108,12 @@ namespace Ghost
 
 		BoxCollider2DComponent() = default;
 		BoxCollider2DComponent(const BoxCollider2DComponent&) = default;
+	};
+
+
+
+	// For internal use
+	struct SceneComponent {
+		UUID SceneID;
 	};
 }

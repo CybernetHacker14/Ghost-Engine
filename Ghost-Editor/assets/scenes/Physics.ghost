@@ -2,6 +2,63 @@ Scene: Untitled
 Entities:
   - Entity: 12837192831273
     TagComponent:
+      Tag: Floor4
+    TransformComponent:
+      Translation: [0, 15.6907911, 0]
+      Rotation: [0, 0, 0]
+      Scale: [29.7726803, 1, 1]
+    SpriteRendererComponent:
+      Color: [1, 0.41568628, 0, 1]
+    Rigidbody2DComponent:
+      BodyType: Static
+      FixedRotation: false
+    BoxCollider2DComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      RestitutionThreshold: 0.5
+  - Entity: 12837192831273
+    TagComponent:
+      Tag: Floor3
+    TransformComponent:
+      Translation: [14.5845776, 2.65462875, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 27, 1]
+    SpriteRendererComponent:
+      Color: [1, 0.41568628, 0, 1]
+    Rigidbody2DComponent:
+      BodyType: Static
+      FixedRotation: false
+    BoxCollider2DComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      RestitutionThreshold: 0.5
+  - Entity: 12837192831273
+    TagComponent:
+      Tag: Floor2
+    TransformComponent:
+      Translation: [-14.5370779, 2.69095516, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 27, 1]
+    SpriteRendererComponent:
+      Color: [1, 0.41568628, 0, 1]
+    Rigidbody2DComponent:
+      BodyType: Static
+      FixedRotation: false
+    BoxCollider2DComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      RestitutionThreshold: 0.5
+  - Entity: 12837192831273
+    TagComponent:
       Tag: Floor
     TransformComponent:
       Translation: [0, -10.9037504, 0]
@@ -23,7 +80,7 @@ Entities:
     TagComponent:
       Tag: Camera
     TransformComponent:
-      Translation: [0, -6, 20]
+      Translation: [0, 2.70000005, 34.5]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -41,11 +98,11 @@ Entities:
     TagComponent:
       Tag: Sprite
     TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, -0.92926681]
-      Scale: [0.999999821, 0.999999821, 1]
+      Translation: [0.250097871, 13.6531372, 0]
+      Rotation: [0, 0, 0.993269086]
+      Scale: [1.00000155, 1.00000155, 1]
     SpriteRendererComponent:
-      Color: [1, 1, 1, 1]
+      Color: [0.66023165, 0.0892204791, 0.0892204791, 1]
     Rigidbody2DComponent:
       BodyType: Dynamic
       FixedRotation: false
@@ -53,6 +110,6 @@ Entities:
       Offset: [0, 0]
       Size: [0.5, 0.5]
       Density: 0.100000001
-      Friction: 0.349999994
+      Friction: 0.300000012
       Restitution: 1
       RestitutionThreshold: 0.300000012

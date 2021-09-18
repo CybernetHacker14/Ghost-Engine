@@ -15,6 +15,8 @@
 
 namespace Ghost
 {
+	static std::unordered_map<UUID, Scene*> s_ActiveScenes;
+
 	static b2BodyType Rigidbody2DTypeToBox2DBody(Rigidbody2DComponent::BodyType bodyType) {
 		switch (bodyType)
 		{
@@ -30,7 +32,11 @@ namespace Ghost
 		return b2_staticBody;
 	}
 
-	Scene::Scene() {}
+	Scene::Scene() {
+		// Create Scene entity
+		m_SceneEntity = m_Registry.create();
+		m_Registry.emplace<SceneComponent>(m_SceneEntity, m_SceneID);
+	}
 
 	Scene::~Scene() {}
 
@@ -47,6 +53,8 @@ namespace Ghost
 	}
 
 	void Scene::OnRuntimeStart() {
+		s_ActiveScenes[m_SceneID] = this;
+
 		m_PhysicsWorld = new b2World({ 0.0f, -9.8f });
 
 		auto view = m_Registry.view<Rigidbody2DComponent>();
@@ -86,6 +94,7 @@ namespace Ghost
 	}
 
 	void Scene::OnRuntimeStop() {
+		s_ActiveScenes.erase(m_SceneID);
 		delete m_PhysicsWorld;
 		m_PhysicsWorld = nullptr;
 	}
@@ -190,23 +199,6 @@ namespace Ghost
 			{
 				cameraComponent.Camera.SetViewportSize(width, height);
 			}
-		}
-	}
-
-	void Scene::DrawIDBuffer(Ref<Framebuffer> target, EditorCamera& camera) {
-		target->Bind();
-		{
-			// Render to ID buffer
-			Renderer2D::BeginScene(camera);
-
-			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-			for (auto entity : group)
-			{
-				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
-				Renderer2D::DrawQuad(transform.GetTransform(), sprite.Color, (uint32_t)entity);
-			}
-
-			Renderer2D::EndScene();
 		}
 	}
 

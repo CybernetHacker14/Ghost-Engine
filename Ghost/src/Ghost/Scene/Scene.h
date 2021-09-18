@@ -3,8 +3,8 @@
 #include "entt.hpp"
 
 #include "Ghost/Core/Timestep.h"
+#include "Ghost/Core/UUID.h"
 #include "Ghost/Renderer/EditorCamera.h"
-#include "Ghost/Renderer/Framebuffer.h"
 
 class b2World;
 
@@ -27,7 +27,6 @@ namespace Ghost
 		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
 		void OnViewportResize(uint32_t width, uint32_t height);
 
-		void DrawIDBuffer(Ref<Framebuffer> target, EditorCamera& camera);
 		int Pixel(int x, int y);
 
 		Entity GetPrimaryCameraEntity();
@@ -35,8 +34,11 @@ namespace Ghost
 		template<typename T>
 		void OnComponentAdded(Entity entity, T& component);
 	private:
+		UUID m_SceneID;
 		entt::registry m_Registry;
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
+
+		entt::entity m_SceneEntity;
 
 		b2World* m_PhysicsWorld = nullptr;
 

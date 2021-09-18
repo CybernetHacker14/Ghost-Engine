@@ -1,9 +1,9 @@
 #pragma once
 
+#include "Ghost/Core/Base.h"
+
 #define GLM_ENABLE_EXPERIMENTAL
 #include "glm/gtx/string_cast.hpp"
-
-#include "Ghost/Core/Base.h"
 
 #pragma warning(push, 0)
 #include <spdlog/spdlog.h>

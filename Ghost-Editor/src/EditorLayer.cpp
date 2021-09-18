@@ -185,6 +185,11 @@ namespace Ghost
 					OpenScene();
 				}
 
+				if (ImGui::MenuItem("Save", "Ctrl+S"))
+				{
+					SaveScene();
+				}
+
 				if (ImGui::MenuItem("Save As...", "Ctrl+Shfit+S"))
 				{
 					SaveSceneAs();
@@ -379,8 +384,13 @@ namespace Ghost
 
 			case Key::S:
 			{
-				if (control && shift)
-					SaveSceneAs();
+				if (control)
+				{
+					if (shift)
+						SaveSceneAs();
+					else
+						SaveScene();
+				}
 
 				break;
 			}
@@ -428,6 +438,7 @@ namespace Ghost
 		m_ActiveScene = CreateRef<Scene>();
 		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+		m_ActiveScenePath = "";
 	}
 
 	void EditorLayer::OpenScene() {
@@ -453,16 +464,31 @@ namespace Ghost
 			m_ActiveScene = newScene;
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+			m_ActiveScenePath = path;
 		}
+	}
+
+	void EditorLayer::SaveScene() {
+		if (m_ActiveScenePath.empty())
+			SaveSceneAs();
+		else
+			SerializeScene(m_ActiveScenePath);
 	}
 
 	void EditorLayer::SaveSceneAs() {
 		std::string filepath = FileDialogs::SaveFile("Ghost Scene (*.ghost)\0*.ghost\0");
 		if (!filepath.empty())
 		{
-			SceneSerializer serializer(m_ActiveScene);
-			serializer.Serialize(filepath);
+			SerializeScene(filepath);
+			m_ActiveScenePath = filepath;
 		}
+	}
+
+	void EditorLayer::SerializeScene(const std::filesystem::path& path) {
+		GT_CORE_ASSERT(!path.empty());
+
+		SceneSerializer serializer(m_ActiveScene);
+		serializer.Serialize(path.string());
 	}
 
 	void EditorLayer::OnScenePlay() {
