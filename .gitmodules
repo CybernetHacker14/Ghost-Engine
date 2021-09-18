@@ -21,3 +21,6 @@
 [submodule "Ghost/vendor/ImGuizmo"]
 	path = Ghost/vendor/ImGuizmo
 	url = https://github.com/thecherno/imguizmo
+[submodule "Ghost/vendor/Box2D"]
+	path = Ghost/vendor/Box2D
+	url = https://github.com/thecherno/box2d

@@ -6,6 +6,8 @@
 #include "Ghost/Renderer/EditorCamera.h"
 #include "Ghost/Renderer/Framebuffer.h"
 
+class b2World;
+
 namespace Ghost
 {
 	class Entity;
@@ -17,6 +19,9 @@ namespace Ghost
 
 		Entity CreateEntity(const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
+
+		void OnRuntimeStart();
+		void OnRuntimeStop();
 
 		void OnUpdateRuntime(Timestep ts);
 		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
@@ -32,6 +37,8 @@ namespace Ghost
 	private:
 		entt::registry m_Registry;
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
+
+		b2World* m_PhysicsWorld = nullptr;
 
 		friend class Entity;
 		friend class SceneSerializer;
