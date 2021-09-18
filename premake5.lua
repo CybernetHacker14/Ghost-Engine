@@ -33,5 +33,4 @@ group "Dependencies"
 group ""
 
 include "Ghost"
-include "Sandbox"
 include "Ghost-Editor"

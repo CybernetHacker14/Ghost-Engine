@@ -7,10 +7,10 @@
 #include <fstream>
 #include <yaml-cpp/yaml.h>
 
-namespace YAML {
+namespace YAML
+{
 	template<>
-	struct convert<glm::vec3>
-	{
+	struct convert<glm::vec3> {
 		static Node encode(const glm::vec3& rhs) {
 			Node node;
 			node.push_back(rhs.x);
@@ -21,7 +21,8 @@ namespace YAML {
 		}
 
 		static bool decode(const Node& node, glm::vec3& rhs) {
-			if (!node.IsSequence() || node.size() != 3) {
+			if (!node.IsSequence() || node.size() != 3)
+			{
 				return false;
 			}
 
@@ -33,8 +34,7 @@ namespace YAML {
 	};
 
 	template<>
-	struct convert<glm::vec4>
-	{
+	struct convert<glm::vec4> {
 		static Node encode(const glm::vec4& rhs) {
 			Node node;
 			node.push_back(rhs.x);
@@ -46,7 +46,8 @@ namespace YAML {
 		}
 
 		static bool decode(const Node& node, glm::vec4& rhs) {
-			if (!node.IsSequence() || node.size() != 4) {
+			if (!node.IsSequence() || node.size() != 4)
+			{
 				return false;
 			}
 
@@ -59,7 +60,8 @@ namespace YAML {
 	};
 }
 
-namespace Ghost {
+namespace Ghost
+{
 	YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec3& v) {
 		out << YAML::Flow;
 		out << YAML::BeginSeq << v.x << v.y << v.z << YAML::EndSeq;
@@ -73,16 +75,14 @@ namespace Ghost {
 	}
 
 	SceneSerializer::SceneSerializer(const Ref<Scene>& scene)
-		: m_Scene(scene)
-	{
-	}
+		: m_Scene(scene) {}
 
-	static void SerializeEntity(YAML::Emitter& out, Entity entity)
-	{
+	static void SerializeEntity(YAML::Emitter& out, Entity entity) {
 		out << YAML::BeginMap; // Entity
 		out << YAML::Key << "Entity" << YAML::Value << "12837192831273"; // TODO: Entity ID goes here
 
-		if (entity.HasComponent<TagComponent>()) {
+		if (entity.HasComponent<TagComponent>())
+		{
 			out << YAML::Key << "TagComponent";
 			out << YAML::BeginMap; // TagComponent
 
@@ -92,7 +92,8 @@ namespace Ghost {
 			out << YAML::EndMap; // TagComponent
 		}
 
-		if (entity.HasComponent<TransformComponent>()) {
+		if (entity.HasComponent<TransformComponent>())
+		{
 			out << YAML::Key << "TransformComponent";
 			out << YAML::BeginMap; // TransformComponent
 
@@ -104,7 +105,8 @@ namespace Ghost {
 			out << YAML::EndMap; // TransformComponent
 		}
 
-		if (entity.HasComponent<CameraComponent>()) {
+		if (entity.HasComponent<CameraComponent>())
+		{
 			out << YAML::Key << "CameraComponent";
 			out << YAML::BeginMap; // CameraComponent
 
@@ -128,7 +130,8 @@ namespace Ghost {
 			out << YAML::EndMap; // Camera Component
 		}
 
-		if (entity.HasComponent<SpriteRendererComponent>()) {
+		if (entity.HasComponent<SpriteRendererComponent>())
+		{
 			out << YAML::Key << "SpriteRendererComponent";
 			out << YAML::BeginMap; // SpriteRendererComponent
 
@@ -141,21 +144,20 @@ namespace Ghost {
 		out << YAML::EndMap; // Entity
 	}
 
-	void SceneSerializer::Serialize(const std::string& filepath)
-	{
+	void SceneSerializer::Serialize(const std::string& filepath) {
 		YAML::Emitter out;
 		out << YAML::BeginMap;
 		out << YAML::Key << "Scene" << YAML::Value << "Untitled";
 		out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
-		m_Scene->m_Registry.each([&](auto entityID)
-		{
+		m_Scene->m_Registry.each([&](auto entityID) {
 			Entity entity = { entityID, m_Scene.get() };
-			if (!entity) {
+			if (!entity)
+			{
 				return;
 			}
 
 			SerializeEntity(out, entity);
-		});
+			});
 		out << YAML::EndSeq;
 		out << YAML::EndMap;
 
@@ -163,16 +165,24 @@ namespace Ghost {
 		fout << out.c_str();
 	}
 
-	void SceneSerializer::SerializeRuntime(const std::string& filepath)
-	{
+	void SceneSerializer::SerializeRuntime(const std::string& filepath) {
 		// Not implemented
 		GT_CORE_ASSERT(false);
 	}
 
-	bool SceneSerializer::Deserialize(const std::string& filepath)
-	{
-		YAML::Node data = YAML::LoadFile(filepath);
-		if (!data["Scene"]) {
+	bool SceneSerializer::Deserialize(const std::string& filepath) {
+		YAML::Node data;
+		try
+		{
+			data = YAML::LoadFile(filepath);
+		}
+		catch (YAML::ParserException e)
+		{
+			return false;
+		}
+
+		if (!data["Scene"])
+		{
 			return false;
 		}
 
@@ -180,13 +190,16 @@ namespace Ghost {
 		GT_CORE_TRACE("Deserializing scene '{0}'", sceneName);
 
 		auto entities = data["Entities"];
-		if (entities) {
-			for (auto entity : entities) {
+		if (entities)
+		{
+			for (auto entity : entities)
+			{
 				uint64_t uuid = entity["Entity"].as<uint64_t>(); // TODO
 
 				std::string name;
 				auto tagComponent = entity["TagComponent"];
-				if (tagComponent) {
+				if (tagComponent)
+				{
 					name = tagComponent["Tag"].as<std::string>();
 				}
 
@@ -195,7 +208,8 @@ namespace Ghost {
 				Entity deserializedEntity = m_Scene->CreateEntity(name);
 
 				auto transformComponent = entity["TransformComponent"];
-				if (transformComponent) {
+				if (transformComponent)
+				{
 					// Entities always have transforms
 					auto& tc = deserializedEntity.GetComponent<TransformComponent>();
 					tc.Translation = transformComponent["Translation"].as<glm::vec3>();
@@ -204,7 +218,8 @@ namespace Ghost {
 				}
 
 				auto cameraComponent = entity["CameraComponent"];
-				if (cameraComponent) {
+				if (cameraComponent)
+				{
 					auto& cc = deserializedEntity.AddComponent<CameraComponent>();
 
 					auto& cameraProps = cameraComponent["Camera"];
@@ -223,7 +238,8 @@ namespace Ghost {
 				}
 
 				auto spriteRendererComponent = entity["SpriteRendererComponent"];
-				if (spriteRendererComponent) {
+				if (spriteRendererComponent)
+				{
 					auto& src = deserializedEntity.AddComponent<SpriteRendererComponent>();
 					src.Color = spriteRendererComponent["Color"].as<glm::vec4>();
 				}
@@ -233,8 +249,7 @@ namespace Ghost {
 		return true;
 	}
 
-	bool SceneSerializer::DeserializeRuntime(const std::string& filepath)
-	{
+	bool SceneSerializer::DeserializeRuntime(const std::string& filepath) {
 		// Not implemented
 		GT_CORE_ASSERT(false);
 		return false;
