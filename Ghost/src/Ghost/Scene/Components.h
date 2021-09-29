@@ -4,7 +4,6 @@
 #include "Ghost/Renderer/Texture.h"
 
 #include "Ghost/Scene/SceneCamera.h"
-#include "Ghost/Scene/ScriptableEntity.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -14,6 +13,13 @@
 
 namespace Ghost
 {
+	struct IDComponent {
+		UUID ID;
+
+		IDComponent() = default;
+		IDComponent(const IDComponent&) = default;
+	};
+
 	struct TagComponent {
 		std::string Tag;
 
@@ -65,6 +71,8 @@ namespace Ghost
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
 	};
+
+	class ScriptableEntity;
 
 	struct NativeScriptComponent {
 		ScriptableEntity* Instance = nullptr;

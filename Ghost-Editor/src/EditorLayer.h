@@ -28,10 +28,12 @@ namespace Ghost
 		void OpenScene(const std::filesystem::path& path);
 		void SaveScene();
 		void SaveSceneAs();
-		void SerializeScene(const std::filesystem::path& path);
+		void SerializeScene(Ref<Scene> scene, const std::filesystem::path& path);
 
 		void OnScenePlay();
 		void OnSceneStop();
+
+		void OnDuplicateEntity();
 
 		// UI Panels
 		void UI_Toolbar();
@@ -44,13 +46,16 @@ namespace Ghost
 		Ref<Framebuffer> m_Framebuffer;
 
 		Ref<Scene> m_ActiveScene;
-		std::filesystem::path m_ActiveScenePath;
+		Ref<Scene> m_EditorScene, m_RuntimeScene;
+
 		Entity m_SquareEntity;
 		Entity m_CameraEntity;
 
 		Entity m_HoveredEntity;
 
 		EditorCamera m_EditorCamera;
+
+		std::filesystem::path m_EditorScenePath;
 
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };

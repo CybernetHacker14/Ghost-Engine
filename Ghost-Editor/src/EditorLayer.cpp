@@ -51,8 +51,6 @@ namespace Ghost
 
 		m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 
-		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
-
 		ImGuiAssetBrowser::Init();
 	}
 
@@ -395,6 +393,12 @@ namespace Ghost
 				break;
 			}
 
+			case Key::D:
+			{
+				if (control)
+					OnDuplicateEntity();
+			}
+
 			case Key::Q:
 			{
 				if (!ImGuizmo::IsUsing())
@@ -438,7 +442,8 @@ namespace Ghost
 		m_ActiveScene = CreateRef<Scene>();
 		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
-		m_ActiveScenePath = "";
+
+		m_EditorScenePath = std::filesystem::path();
 	}
 
 	void EditorLayer::OpenScene() {
@@ -450,6 +455,9 @@ namespace Ghost
 	}
 
 	void EditorLayer::OpenScene(const std::filesystem::path& path) {
+		if (m_SceneState != SceneState::Edit)
+			OnSceneStop();
+
 		if (path.extension().string() != ".ghost")
 		{
 			GT_WARN("Could not load {0} - not a scene file", path.filename().string());
@@ -461,43 +469,63 @@ namespace Ghost
 
 		if (serializer.Deserialize(path.string()))
 		{
-			m_ActiveScene = newScene;
-			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-			m_SceneHierarchyPanel.SetContext(m_ActiveScene);
-			m_ActiveScenePath = path;
+			m_EditorScene = newScene;
+			m_EditorScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_SceneHierarchyPanel.SetContext(m_EditorScene);
+			m_EditorScenePath = path;
+
+			m_ActiveScene = m_EditorScene;
 		}
 	}
 
 	void EditorLayer::SaveScene() {
-		if (m_ActiveScenePath.empty())
+		if (m_EditorScenePath.empty())
 			SaveSceneAs();
 		else
-			SerializeScene(m_ActiveScenePath);
+			SerializeScene(m_ActiveScene, m_EditorScenePath);
 	}
 
 	void EditorLayer::SaveSceneAs() {
 		std::string filepath = FileDialogs::SaveFile("Ghost Scene (*.ghost)\0*.ghost\0");
 		if (!filepath.empty())
 		{
-			SerializeScene(filepath);
-			m_ActiveScenePath = filepath;
+			SerializeScene(m_ActiveScene, filepath);
+			m_EditorScenePath = filepath;
 		}
 	}
 
-	void EditorLayer::SerializeScene(const std::filesystem::path& path) {
+	void EditorLayer::SerializeScene(Ref<Scene> scene, const std::filesystem::path& path) {
 		GT_CORE_ASSERT(!path.empty());
 
-		SceneSerializer serializer(m_ActiveScene);
+		SceneSerializer serializer(scene);
 		serializer.Serialize(path.string());
 	}
 
 	void EditorLayer::OnScenePlay() {
-		m_ActiveScene->OnRuntimeStart();
 		m_SceneState = SceneState::Play;
+
+		// Make a copy of the Editor scene
+		m_RuntimeScene = Scene::Copy(m_EditorScene);
+
+		m_ActiveScene = m_RuntimeScene;
+		m_ActiveScene->OnRuntimeStart();
 	}
 
 	void EditorLayer::OnSceneStop() {
-		m_ActiveScene->OnRuntimeStop();
 		m_SceneState = SceneState::Edit;
+
+		m_ActiveScene = m_EditorScene;
+		m_RuntimeScene = nullptr;
+		m_ActiveScene->OnRuntimeStop();
+	}
+
+	void EditorLayer::OnDuplicateEntity() {
+
+		if (m_SceneState != SceneState::Edit)
+			return;
+
+		Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
+		if (selectedEntity)
+			m_EditorScene->DuplicateEntity(selectedEntity);
 	}
 }

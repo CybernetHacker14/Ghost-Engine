@@ -33,27 +33,29 @@ namespace Ghost
 	void SceneHierarchyPanel::OnImGuiRender() {
 		ImGui::Begin("Scene Hierarchy");
 
-		m_Context->m_Registry.each([&](auto entityID) {
-			Entity entity{ entityID, m_Context.get() };
-			DrawEntityNode(entity);
-			});
-
-		if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
+		if (m_Context)
 		{
-			m_SelectionContext = {};
-		}
+			m_Context->m_Registry.each([&](auto entityID) {
+				Entity entity{ entityID, m_Context.get() };
+				DrawEntityNode(entity);
+				});
 
-		// Right-click on a blank space
-		if (ImGui::BeginPopupContextWindow(0, 1, false))
-		{
-			if (ImGui::MenuItem("Create Empty Entity"))
+			if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
 			{
-				m_Context->CreateEntity("Empty Entity");
+				m_SelectionContext = {};
 			}
 
-			ImGui::EndPopup();
-		}
+			// Right-click on a blank space
+			if (ImGui::BeginPopupContextWindow(0, 1, false))
+			{
+				if (ImGui::MenuItem("Create Empty Entity"))
+				{
+					m_Context->CreateEntity("Empty Entity");
+				}
 
+				ImGui::EndPopup();
+			}
+		}
 		ImGui::End();
 
 		ImGui::Begin("Properties");
@@ -61,6 +63,7 @@ namespace Ghost
 		{
 			DrawComponents(m_SelectionContext);
 		}
+
 		ImGui::End();
 	}
 

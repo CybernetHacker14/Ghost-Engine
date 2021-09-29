@@ -17,7 +17,10 @@ namespace Ghost
 		Scene();
 		~Scene();
 
+		static Ref<Scene> Copy(Ref<Scene>other);
+
 		Entity CreateEntity(const std::string& name = std::string());
+		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
 
 		void OnRuntimeStart();
@@ -27,7 +30,7 @@ namespace Ghost
 		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
 		void OnViewportResize(uint32_t width, uint32_t height);
 
-		int Pixel(int x, int y);
+		void DuplicateEntity(Entity entity);
 
 		Entity GetPrimaryCameraEntity();
 	private:
